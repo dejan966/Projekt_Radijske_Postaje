@@ -36,6 +36,7 @@ namespace Radijske_Postaje
             this.Btn_Login = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.Btn_Back = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -69,14 +70,14 @@ namespace Radijske_Postaje
             this.Lbl_Pozabljeno_geslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Lbl_Pozabljeno_geslo.Location = new System.Drawing.Point(145, 165);
             this.Lbl_Pozabljeno_geslo.Name = "Lbl_Pozabljeno_geslo";
-            this.Lbl_Pozabljeno_geslo.Size = new System.Drawing.Size(113, 16);
+            this.Lbl_Pozabljeno_geslo.Size = new System.Drawing.Size(102, 15);
             this.Lbl_Pozabljeno_geslo.TabIndex = 3;
             this.Lbl_Pozabljeno_geslo.Text = "Pozabljeno geslo";
             this.Lbl_Pozabljeno_geslo.Click += new System.EventHandler(this.Lbl_Pozabljeno_geslo_Click);
             // 
             // Btn_Login
             // 
-            this.Btn_Login.Location = new System.Drawing.Point(92, 199);
+            this.Btn_Login.Location = new System.Drawing.Point(92, 196);
             this.Btn_Login.Name = "Btn_Login";
             this.Btn_Login.Size = new System.Drawing.Size(86, 28);
             this.Btn_Login.TabIndex = 4;
@@ -102,11 +103,22 @@ namespace Radijske_Postaje
             this.label4.TabIndex = 6;
             this.label4.Text = "Geslo:";
             // 
+            // Btn_Back
+            // 
+            this.Btn_Back.Location = new System.Drawing.Point(232, 246);
+            this.Btn_Back.Name = "Btn_Back";
+            this.Btn_Back.Size = new System.Drawing.Size(75, 28);
+            this.Btn_Back.TabIndex = 7;
+            this.Btn_Back.Text = "Nazaj";
+            this.Btn_Back.UseVisualStyleBackColor = true;
+            this.Btn_Back.Click += new System.EventHandler(this.Btn_Back_Click);
+            // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(319, 286);
+            this.Controls.Add(this.Btn_Back);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Btn_Login);
@@ -132,5 +144,6 @@ namespace Radijske_Postaje
         private System.Windows.Forms.Button Btn_Login;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button Btn_Back;
     }
 }
