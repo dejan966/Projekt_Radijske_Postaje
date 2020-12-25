@@ -42,10 +42,11 @@ namespace Radijske_Postaje
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.Btn_Back = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // label6
@@ -59,7 +60,7 @@ namespace Radijske_Postaje
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(100, 262);
+            this.textBox5.Location = new System.Drawing.Point(100, 293);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(142, 22);
             this.textBox5.TabIndex = 24;
@@ -78,20 +79,20 @@ namespace Radijske_Postaje
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(16, 178);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 17);
+            this.label4.Size = new System.Drawing.Size(40, 17);
             this.label4.TabIndex = 22;
-            this.label4.Text = "Spol";
+            this.label4.Text = "Spol:";
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(100, 223);
+            this.textBox4.Location = new System.Drawing.Point(100, 257);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(142, 22);
             this.textBox4.TabIndex = 21;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(100, 173);
+            this.textBox3.Location = new System.Drawing.Point(100, 218);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(142, 22);
             this.textBox3.TabIndex = 20;
@@ -126,7 +127,7 @@ namespace Radijske_Postaje
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(100, 129);
+            this.textBox2.Location = new System.Drawing.Point(100, 131);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(142, 22);
             this.textBox2.TabIndex = 15;
@@ -158,13 +159,6 @@ namespace Radijske_Postaje
             this.label7.TabIndex = 26;
             this.label7.Text = "Geslo:";
             // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(100, 298);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(142, 22);
-            this.textBox6.TabIndex = 27;
-            // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
@@ -184,7 +178,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Back
             // 
-            this.Btn_Back.Location = new System.Drawing.Point(321, 392);
+            this.Btn_Back.Location = new System.Drawing.Point(288, 382);
             this.Btn_Back.Name = "Btn_Back";
             this.Btn_Back.Size = new System.Drawing.Size(80, 32);
             this.Btn_Back.TabIndex = 30;
@@ -192,15 +186,38 @@ namespace Radijske_Postaje
             this.Btn_Back.UseVisualStyleBackColor = true;
             this.Btn_Back.Click += new System.EventHandler(this.Btn_Back_Click);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(100, 178);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(40, 21);
+            this.radioButton1.TabIndex = 31;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "M";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(204, 178);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(38, 21);
+            this.radioButton2.TabIndex = 32;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Ž";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 453);
+            this.ClientSize = new System.Drawing.Size(417, 432);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.Btn_Back);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox6);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox5);
@@ -218,6 +235,7 @@ namespace Radijske_Postaje
             this.Name = "Form3";
             this.Text = "Registracija";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form3_FormClosed);
+            this.Load += new System.EventHandler(this.Form3_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,9 +256,10 @@ namespace Radijske_Postaje
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button Btn_Back;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
     }
 }

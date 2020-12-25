@@ -31,7 +31,6 @@ namespace Radijske_Postaje
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -51,6 +50,8 @@ namespace Radijske_Postaje
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Lbl_User = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +69,7 @@ namespace Radijske_Postaje
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.Lbl_User);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label4);
@@ -94,16 +96,6 @@ namespace Radijske_Postaje
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Radijske Postaje";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(863, 487);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Lokalni studiji";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -157,6 +149,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Delete
             // 
+            this.Btn_Delete.Enabled = false;
             this.Btn_Delete.Location = new System.Drawing.Point(139, 451);
             this.Btn_Delete.Name = "Btn_Delete";
             this.Btn_Delete.Size = new System.Drawing.Size(75, 31);
@@ -166,6 +159,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Update
             // 
+            this.Btn_Update.Enabled = false;
             this.Btn_Update.Location = new System.Drawing.Point(200, 414);
             this.Btn_Update.Name = "Btn_Update";
             this.Btn_Update.Size = new System.Drawing.Size(75, 31);
@@ -181,6 +175,7 @@ namespace Radijske_Postaje
             this.Btn_Insert.TabIndex = 49;
             this.Btn_Insert.Text = "Vnesi";
             this.Btn_Insert.UseVisualStyleBackColor = true;
+            this.Btn_Insert.Click += new System.EventHandler(this.Btn_Insert_Click);
             // 
             // textBox8
             // 
@@ -189,6 +184,7 @@ namespace Radijske_Postaje
             this.textBox8.Size = new System.Drawing.Size(202, 22);
             this.textBox8.TabIndex = 48;
             this.textBox8.Text = "Regija";
+            this.textBox8.Click += new System.EventHandler(this.textBox8_Click);
             // 
             // textBox7
             // 
@@ -197,6 +193,7 @@ namespace Radijske_Postaje
             this.textBox7.Size = new System.Drawing.Size(202, 22);
             this.textBox7.TabIndex = 47;
             this.textBox7.Text = "Zvrst";
+            this.textBox7.Click += new System.EventHandler(this.textBox7_Click);
             // 
             // textBox6
             // 
@@ -205,6 +202,7 @@ namespace Radijske_Postaje
             this.textBox6.Size = new System.Drawing.Size(202, 22);
             this.textBox6.TabIndex = 46;
             this.textBox6.Text = "Twitter";
+            this.textBox6.Click += new System.EventHandler(this.textBox6_Click);
             // 
             // textBox5
             // 
@@ -213,6 +211,7 @@ namespace Radijske_Postaje
             this.textBox5.Size = new System.Drawing.Size(202, 22);
             this.textBox5.TabIndex = 45;
             this.textBox5.Text = "Youtube";
+            this.textBox5.Click += new System.EventHandler(this.textBox5_Click);
             // 
             // textBox4
             // 
@@ -221,6 +220,7 @@ namespace Radijske_Postaje
             this.textBox4.Size = new System.Drawing.Size(202, 22);
             this.textBox4.TabIndex = 44;
             this.textBox4.Text = "Spletna stran";
+            this.textBox4.Click += new System.EventHandler(this.textBox4_Click);
             // 
             // textBox3
             // 
@@ -229,6 +229,7 @@ namespace Radijske_Postaje
             this.textBox3.Size = new System.Drawing.Size(202, 22);
             this.textBox3.TabIndex = 43;
             this.textBox3.Text = "Jezik";
+            this.textBox3.Click += new System.EventHandler(this.textBox3_Click);
             // 
             // textBox2
             // 
@@ -237,6 +238,7 @@ namespace Radijske_Postaje
             this.textBox2.Size = new System.Drawing.Size(202, 22);
             this.textBox2.TabIndex = 42;
             this.textBox2.Text = "Frekvenca";
+            this.textBox2.Click += new System.EventHandler(this.textBox2_Click);
             // 
             // richTextBox1
             // 
@@ -245,6 +247,7 @@ namespace Radijske_Postaje
             this.richTextBox1.Size = new System.Drawing.Size(241, 55);
             this.richTextBox1.TabIndex = 41;
             this.richTextBox1.Text = "Opis";
+            this.richTextBox1.Click += new System.EventHandler(this.richTextBox1_Click);
             // 
             // label1
             // 
@@ -265,15 +268,36 @@ namespace Radijske_Postaje
             this.textBox1.Size = new System.Drawing.Size(202, 22);
             this.textBox1.TabIndex = 39;
             this.textBox1.Text = "Naslov";
+            this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
-            this.listBox1.Location = new System.Drawing.Point(505, 43);
+            this.listBox1.Location = new System.Drawing.Point(502, 145);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(311, 180);
             this.listBox1.TabIndex = 38;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(863, 487);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Lokalni studiji";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // Lbl_User
+            // 
+            this.Lbl_User.AutoSize = true;
+            this.Lbl_User.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Lbl_User.Location = new System.Drawing.Point(592, 27);
+            this.Lbl_User.Name = "Lbl_User";
+            this.Lbl_User.Size = new System.Drawing.Size(110, 29);
+            this.Lbl_User.TabIndex = 57;
+            this.Lbl_User.Text = "Lbl_User";
             // 
             // Form2
             // 
@@ -317,5 +341,6 @@ namespace Radijske_Postaje
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label Lbl_User;
     }
 }

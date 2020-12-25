@@ -20,12 +20,36 @@ namespace Radijske_Postaje
         {
             InitializeComponent();
         }
-
         private void Btn_Login_Click(object sender, EventArgs e)
         {
-            b = new Form2();
-            Hide();
-            b.Show();
+            try
+            {
+                string email = textBox1.Text;
+                string pass = textBox2.Text;
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                {
+
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT email, geslo FROM uporabniki WHERE (email = '" + email + "') AND (geslo = '" + pass + "')", con);
+                    NpgsqlDataReader reader = com.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string mail_b = reader.GetString(5);
+                        string pass_b = reader.GetString(6);
+                        if(email == mail_b && pass == pass_b)
+                        {
+                            Form2.ImeOsebe(email);
+                            b = new Form2();
+                            Hide();
+                            b.Show();
+                        }
+                    }
+                    reader.Close();
+                    con.Close();
+                }
+                
+            }
+            catch { }
         }
 
         private void Lbl_Pozabljeno_geslo_Click(object sender, EventArgs e)
