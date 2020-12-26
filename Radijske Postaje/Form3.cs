@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
+using System.Security.Cryptography;
 
 namespace Radijske_Postaje
 {
@@ -20,7 +21,19 @@ namespace Radijske_Postaje
             InitializeComponent();
         }
 
+        public string PassHash(string data)
+        {
+            SHA1 sha = SHA1.Create();
+            byte[] hashdata = sha.ComputeHash(Encoding.Default.GetBytes(data));
+            StringBuilder returnValue = new StringBuilder();
 
+            for (int i = 0; i < hashdata.Length; i++)
+            {
+                returnValue.Append(hashdata[i].ToString());
+            }
+
+            return returnValue.ToString();
+        }
 
         private void Form3_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -48,28 +61,38 @@ namespace Radijske_Postaje
                 if (radioButton1.Checked)
                 {
                     spol = 'M';
+                    
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
 
                         con.Open();
                         NpgsqlCommand com = new NpgsqlCommand("SELECT email FROM uporabniki WHERE (email = '" + mail + "')", con);
                         NpgsqlDataReader reader = com.ExecuteReader();
-                        while (reader.Read())
+                        if(reader.HasRows)
                         {
-                            string email = reader.GetString(0);
-                            if (email == mail)
-                                MessageBox.Show("Tak mail že obstaja");
-                            else if (email != mail)
+                            while (reader.Read())
                             {
-                                NpgsqlCommand com2 = new NpgsqlCommand("INSERT INTO uporabniki (ime, priimek, spol, starost, email, geslo, kraj_id) VALUES ('" + ime + "', '" + priimek + "', '" + spol + "', '" + starost + "', '" + mail + "', '" + pass + "', (SELECT id FROM kraji WHERE (ime = '" + kraj + "')))", con);
-                                com2.ExecuteNonQuery();
-
-                                b = new Form4();
-                                Hide();
-                                b.Show();
+                                string email = reader.GetString(0);
+                                if (email == mail)
+                                {
+                                    MessageBox.Show("Uporabnik s tem mailom že obstaja");
+                                }
                             }
-
+                            
                         }
+                        
+                        else if (!reader.HasRows)
+                        {
+                            con.Close();
+                            con.Open();
+                            NpgsqlCommand com2 = new NpgsqlCommand("INSERT INTO uporabniki (ime, priimek, spol, starost, email, geslo, kraj_id) VALUES ('" + ime + "', '" + priimek + "', '" + spol + "', '" + starost + "', '" + mail + "', '" + pass + "', (SELECT id FROM kraji WHERE (ime = '" + kraj + "')))", con);
+                            com2.ExecuteNonQuery();
+
+                            b = new Form4();
+                            Hide();
+                            b.Show();
+                        }
+
                         reader.Close();
                         con.Close();
                     }
@@ -84,30 +107,35 @@ namespace Radijske_Postaje
                         con.Open();
                         NpgsqlCommand com = new NpgsqlCommand("SELECT email FROM uporabniki WHERE (email = '" + mail + "')", con);
                         NpgsqlDataReader reader = com.ExecuteReader();
-                        while (reader.Read())
+                        if (reader.HasRows)
                         {
-                            string email = reader.GetString(5);
-                            if (email == mail)
-                                MessageBox.Show("Tak mail že obstaja");
-                            else if (email != mail)
+                            while (reader.Read())
                             {
-                                NpgsqlCommand com2 = new NpgsqlCommand("INSERT INTO uporabniki (ime, priimek, spol, starost, email, geslo, kraj_id) VALUES ('" + ime + "', '" + priimek + "', '" + spol + "', '" + starost + "', '" + mail + "'. '" + pass + "', (SELECT id FROM kraji WHERE (ime = '" + kraj + "'))", con);
-                                com2.ExecuteNonQuery();
-
-                                b = new Form4();
-                                Hide();
-                                b.Show();
+                                string email = reader.GetString(0);
+                                if (email == mail)
+                                {
+                                    MessageBox.Show("Uporabnik s tem mailom že obstaja");
+                                }
                             }
 
                         }
+
+                        else if (!reader.HasRows)
+                        {
+                            con.Close();
+                            con.Open();
+                            NpgsqlCommand com2 = new NpgsqlCommand("INSERT INTO uporabniki (ime, priimek, spol, starost, email, geslo, kraj_id) VALUES ('" + ime + "', '" + priimek + "', '" + spol + "', '" + starost + "', '" + mail + "', '" + pass + "', (SELECT id FROM kraji WHERE (ime = '" + kraj + "')))", con);
+                            com2.ExecuteNonQuery();
+
+                            b = new Form4();
+                            Hide();
+                            b.Show();
+                        }
+
                         reader.Close();
                         con.Close();
                     }
-                }
-                    
-                
-                
-                
+                }  
             }
             catch (FormatException ex)
             {

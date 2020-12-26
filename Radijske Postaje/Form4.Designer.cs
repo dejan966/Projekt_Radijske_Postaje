@@ -44,7 +44,7 @@ namespace Radijske_Postaje
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(86, 31);
+            this.label1.Location = new System.Drawing.Point(95, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 36);
             this.label1.TabIndex = 0;
@@ -54,14 +54,14 @@ namespace Radijske_Postaje
             // 
             this.textBox1.Location = new System.Drawing.Point(92, 87);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(117, 22);
+            this.textBox1.Size = new System.Drawing.Size(171, 22);
             this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(92, 136);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(117, 22);
+            this.textBox2.Size = new System.Drawing.Size(171, 22);
             this.textBox2.TabIndex = 2;
             // 
             // Lbl_Pozabljeno_geslo
@@ -70,9 +70,9 @@ namespace Radijske_Postaje
             this.Lbl_Pozabljeno_geslo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Lbl_Pozabljeno_geslo.Location = new System.Drawing.Point(145, 165);
             this.Lbl_Pozabljeno_geslo.Name = "Lbl_Pozabljeno_geslo";
-            this.Lbl_Pozabljeno_geslo.Size = new System.Drawing.Size(102, 15);
+            this.Lbl_Pozabljeno_geslo.Size = new System.Drawing.Size(109, 15);
             this.Lbl_Pozabljeno_geslo.TabIndex = 3;
-            this.Lbl_Pozabljeno_geslo.Text = "Pozabljeno geslo";
+            this.Lbl_Pozabljeno_geslo.Text = "Pozabljeno geslo?";
             this.Lbl_Pozabljeno_geslo.Click += new System.EventHandler(this.Lbl_Pozabljeno_geslo_Click);
             // 
             // Btn_Login

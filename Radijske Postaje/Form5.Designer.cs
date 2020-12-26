@@ -32,22 +32,24 @@ namespace Radijske_Postaje
             this.Btn_Reset = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.Btn_Back = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Btn_Reset
             // 
-            this.Btn_Reset.Location = new System.Drawing.Point(122, 181);
+            this.Btn_Reset.Location = new System.Drawing.Point(126, 169);
             this.Btn_Reset.Name = "Btn_Reset";
-            this.Btn_Reset.Size = new System.Drawing.Size(75, 29);
+            this.Btn_Reset.Size = new System.Drawing.Size(87, 29);
             this.Btn_Reset.TabIndex = 0;
             this.Btn_Reset.Text = "Posodobi";
             this.Btn_Reset.UseVisualStyleBackColor = true;
+            this.Btn_Reset.Click += new System.EventHandler(this.Btn_Reset_Click);
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(106, 136);
+            this.textBox1.Location = new System.Drawing.Point(103, 117);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(120, 22);
+            this.textBox1.Size = new System.Drawing.Size(146, 22);
             this.textBox1.TabIndex = 1;
             // 
             // label1
@@ -61,17 +63,29 @@ namespace Radijske_Postaje
             this.label1.TabIndex = 2;
             this.label1.Text = "Resetiranje Gesla";
             // 
+            // Btn_Back
+            // 
+            this.Btn_Back.Location = new System.Drawing.Point(248, 222);
+            this.Btn_Back.Name = "Btn_Back";
+            this.Btn_Back.Size = new System.Drawing.Size(81, 28);
+            this.Btn_Back.TabIndex = 3;
+            this.Btn_Back.Text = "Nazaj";
+            this.Btn_Back.UseVisualStyleBackColor = true;
+            this.Btn_Back.Click += new System.EventHandler(this.Btn_Back_Click);
+            // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 262);
+            this.Controls.Add(this.Btn_Back);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Btn_Reset);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form5";
             this.Text = "Resetiranje Gesla";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form5_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,5 +96,6 @@ namespace Radijske_Postaje
         private System.Windows.Forms.Button Btn_Reset;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Btn_Back;
     }
 }

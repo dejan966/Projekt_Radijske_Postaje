@@ -62,7 +62,7 @@ namespace Radijske_Postaje
             // 
             this.textBox5.Location = new System.Drawing.Point(100, 293);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(142, 22);
+            this.textBox5.Size = new System.Drawing.Size(178, 22);
             this.textBox5.TabIndex = 24;
             // 
             // label5
@@ -87,14 +87,14 @@ namespace Radijske_Postaje
             // 
             this.textBox4.Location = new System.Drawing.Point(100, 257);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(142, 22);
+            this.textBox4.Size = new System.Drawing.Size(178, 22);
             this.textBox4.TabIndex = 21;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(100, 218);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(142, 22);
+            this.textBox3.Size = new System.Drawing.Size(178, 22);
             this.textBox3.TabIndex = 20;
             // 
             // label3
@@ -129,14 +129,14 @@ namespace Radijske_Postaje
             // 
             this.textBox2.Location = new System.Drawing.Point(100, 131);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(142, 22);
+            this.textBox2.Size = new System.Drawing.Size(178, 22);
             this.textBox2.TabIndex = 15;
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(100, 87);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(142, 22);
+            this.textBox1.Size = new System.Drawing.Size(178, 22);
             this.textBox1.TabIndex = 14;
             // 
             // label1
@@ -164,7 +164,7 @@ namespace Radijske_Postaje
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(100, 333);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(142, 24);
+            this.comboBox1.Size = new System.Drawing.Size(178, 24);
             this.comboBox1.TabIndex = 28;
             // 
             // label8
