@@ -61,6 +61,7 @@ namespace Radijske_Postaje
             // 
             this.textBox2.Location = new System.Drawing.Point(92, 136);
             this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
             this.textBox2.Size = new System.Drawing.Size(171, 22);
             this.textBox2.TabIndex = 2;
             // 

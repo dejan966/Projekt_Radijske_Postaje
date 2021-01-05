@@ -26,7 +26,7 @@ namespace Radijske_Postaje
         }
         private void Btn_Reset_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text != "")
+            if (textBox1.Text != "")
             {
                 string novoGeslo = textBox1.Text;
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
@@ -42,6 +42,8 @@ namespace Radijske_Postaje
                 a.Show();
                 Hide();
             }
+            else
+                MessageBox.Show("Morate vnesti novo geslo");
             
         }
 

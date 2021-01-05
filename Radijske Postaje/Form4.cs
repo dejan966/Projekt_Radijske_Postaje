@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
+using System.IO;
 using System.Security.Cryptography;
 
 namespace Radijske_Postaje
@@ -15,14 +16,26 @@ namespace Radijske_Postaje
     public partial class Form4 : Form
     {
         Form1 a;
-        Form2 b;
+        
         Form5 c;
         public Form4()
         {
             InitializeComponent();
         }
 
-        public static string PassHash(string data)
+        /*public byte[] Hash(string data)
+        {
+            byte[] salt1 = new byte[8];
+            using (RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider())
+            {
+                rngCsp.GetBytes(salt1);
+            }
+            int myIterations = 1000;
+            Rfc2898DeriveBytes k1 = new Rfc2898DeriveBytes(data, salt1, myIterations);
+            return salt1;
+        }*/
+
+        /*public string PassHash(string data)
         {
             SHA1 sha = SHA1.Create();
             byte[] hashdata = sha.ComputeHash(Encoding.Default.GetBytes(data));
@@ -34,7 +47,7 @@ namespace Radijske_Postaje
             }
 
             return returnValue.ToString();
-        }
+        }*/
 
         private void Btn_Login_Click(object sender, EventArgs e)
         {
@@ -43,6 +56,8 @@ namespace Radijske_Postaje
                 string email = textBox1.Text;
                 string pass = textBox2.Text;
 
+                //byte[] HashPass= Hash(pass);
+                //MessageBox.Show(Hgeslo);
                 
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
@@ -58,10 +73,10 @@ namespace Radijske_Postaje
                             string pass_b = reader.GetString(1);
                             if (email == mail_b && pass == pass_b)
                             {
-                                Form2.ImeOsebe(email);
-                                b = new Form2();
+                                Form1.ImeOsebe(email);
+                                a = new Form1();
                                 Hide();
-                                b.Show();
+                                a.Show();
                             }
                             
                         }

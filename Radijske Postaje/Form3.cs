@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
+using System.IO;
 using System.Security.Cryptography;
 
 namespace Radijske_Postaje
@@ -21,7 +22,24 @@ namespace Radijske_Postaje
             InitializeComponent();
         }
 
-        public string PassHash(string data)
+        public byte[] Hash(string data)
+        {
+            byte[] salt1 = new byte[8];
+            using (RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider())
+            {
+                rngCsp.GetBytes(salt1);
+            }
+            int myIterations = 1000;
+            Rfc2898DeriveBytes k1 = new Rfc2898DeriveBytes(data, salt1,myIterations);
+            Aes encAlg = Aes.Create();
+            encAlg.Key = k1.GetBytes(16);
+            MemoryStream encryptionStream = new MemoryStream();
+            CryptoStream encrypt = new CryptoStream(encryptionStream,encAlg.CreateEncryptor(), CryptoStreamMode.Write);
+            byte[] utfD1 = new System.Text.UTF8Encoding(false).GetBytes(data);
+            return utfD1;
+        }
+
+        /*public string PassHash(string data)
         {
             SHA1 sha = SHA1.Create();
             byte[] hashdata = sha.ComputeHash(Encoding.Default.GetBytes(data));
@@ -33,7 +51,7 @@ namespace Radijske_Postaje
             }
 
             return returnValue.ToString();
-        }
+        }*/
 
         private void Form3_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -56,12 +74,13 @@ namespace Radijske_Postaje
                 int starost = Convert.ToInt32(textBox3.Text);
                 string mail = textBox4.Text;
                 string pass = textBox5.Text;
-                string kraj = Convert.ToString(comboBox1.SelectedItem);
+                string kraj = comboBox1.Text;
                 char spol;
                 if (radioButton1.Checked)
                 {
                     spol = 'M';
-                    
+                    //byte[] HashPass = Hash(pass);
+                    //MessageBox.Show(Hgeslo);
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
 
@@ -146,9 +165,9 @@ namespace Radijske_Postaje
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            comboBox1.Text = "Adlešiči";
             using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
             {
-
                 con.Open();
                 NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM kraji", con);
                 NpgsqlDataReader reader = com.ExecuteReader();
@@ -157,7 +176,7 @@ namespace Radijske_Postaje
                     string ime = reader.GetString(2);
                     comboBox1.Items.Add(ime);
                 }
-
+                con.Close();
             }
         }
     }
