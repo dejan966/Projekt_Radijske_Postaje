@@ -113,8 +113,6 @@ namespace Radijske_Postaje
                 Btn_Reg.Visible = false;
                 Btn_Login.Visible = false;
             }   
-
-            
         }
     }
 }

@@ -16,21 +16,30 @@ namespace Radijske_Postaje
         Form1 a;
         Form4 b;
         Form3 c;
+
         static String Ime, Priimek;
         static String u;
+
         string l_opis;
         string r_opis;
         string r_splStran;
         string r_yt;
         string r_tw;
+
         int id_r;
         int id_l;
+        int id_k;
+        int id_rg;
+        int id_z;
+
         List<string> postaje = new List<string>();
         List<string> studiji = new List<string>();
+        List<string> kraji = new List<string>();
+        List<string> regije = new List<string>();
+        List<string> zvrsti = new List<string>();
         public Form2()
         {
-            InitializeComponent();
-            
+            InitializeComponent();      
         }
 
         public void Opis_L(string l)
@@ -67,6 +76,20 @@ namespace Radijske_Postaje
             id_l = p;
         }
 
+        public void IDkraja(int z)
+        {
+            id_k = z;
+        }
+
+        public void IDregije(int t)
+        {
+            id_rg = t;
+        }
+
+        public void IDzvrsti(int u)
+        {
+            id_z = u;
+        }
         public static void User(string n1, string n2)
         {
             Ime = n1;
@@ -341,7 +364,6 @@ namespace Radijske_Postaje
             }
         }
 
-
         private void Btn_Insert_Click(object sender, EventArgs e)
         {
             string naslov = textBox1.Text;
@@ -606,10 +628,22 @@ namespace Radijske_Postaje
         {
             Btn_Odjava.Visible = false;
             Btn_Odjava_L.Visible = false;
+            Btn_Odjava_K.Visible = false;
+            Btn_Odjava_R.Visible = false;
+            Btn_Odjava_Z.Visible = false;
+
             Btn_Prijava.Visible = false;
             Btn_Prijava_L.Visible = false;
+            Btn_Prijava_K.Visible = false;
+            Btn_Prijava_R.Visible = false;
+            Btn_Prijava_Z.Visible = false;
+
             Btn_Reg.Visible = false;
             Btn_Reg_L.Visible = false;
+            Btn_Reg_K.Visible = false;
+            Btn_Reg_R.Visible = false;
+            Btn_Reg_Z.Visible = false;
+
             comboBox1.Text = "rock";
             comboBox2.Text = "Gorenjska";
             comboBox3.Text = "Adlešiči";
@@ -620,6 +654,10 @@ namespace Radijske_Postaje
             {
                 Lbl_User.Text = "Niste prijavljeni";
                 Lbl_User_L.Text = "Niste prijavljeni";
+                Lbl_User_K.Text = "Niste prijavljeni";
+                Lbl_User_R.Text = "Niste prijavljeni";
+                Lbl_User_Z.Text = "Niste prijavljeni";
+
                 u = "";
                 Form1.ImeOsebe(u);
             }
@@ -627,86 +665,47 @@ namespace Radijske_Postaje
             {
                 Lbl_User.Text = "Prijavljeni ste kot " + Ime + " " + Priimek;
                 Lbl_User_L.Text = "Prijavljeni ste kot " + Ime + " " + Priimek;
+                Lbl_User_K.Text = "Prijavljeni ste kot " + Ime + " " + Priimek;
+                Lbl_User_R.Text = "Prijavljeni ste kot " + Ime + " " + Priimek;
+                Lbl_User_Z.Text = "Prijavljeni ste kot " + Ime + " " + Priimek;
+
                 Btn_Odjava.Visible = true;
                 Btn_Odjava_L.Visible = true;
+                Btn_Odjava_K.Visible = true;
+                Btn_Odjava_R.Visible = true;
+                Btn_Odjava_Z.Visible = true;
             }
-            if (Lbl_User.Text == "Niste prijavljeni" && Lbl_User_L.Text=="Niste prijavljeni")
+            if (Lbl_User.Text == "Niste prijavljeni" && Lbl_User_L.Text=="Niste prijavljeni" && Lbl_User_K.Text == "Niste prijavljeni" && Lbl_User_R.Text == "Niste prijavljeni" && Lbl_User_Z.Text == "Niste prijavljeni")
             {
                 Btn_Prijava.Visible = true;
                 Btn_Prijava_L.Visible = true;
+                Btn_Prijava_K.Visible = true;
+                Btn_Prijava_R.Visible = true;
+                Btn_Prijava_Z.Visible = true;
+
                 Btn_Reg.Visible = true;
                 Btn_Reg_L.Visible = true;
+                Btn_Reg_K.Visible = true;
+                Btn_Reg_R.Visible = true;
+                Btn_Reg_Z.Visible = true;
+
                 u = "";
                 Form1.ImeOsebe(u);
             }
 
-            else if (Lbl_User.Text == "Prijavljeni ste kot " + Ime + " " + Priimek && Lbl_User_L.Text == "Prijavljeni ste kot " + Ime + " " + Priimek)
+            else if (Lbl_User.Text == "Prijavljeni ste kot " + Ime + " " + Priimek && Lbl_User_L.Text == "Prijavljeni ste kot " + Ime + " " + Priimek && Lbl_User_K.Text == "Prijavljeni ste kot " + Ime + " " + Priimek && Lbl_User_R.Text == "Prijavljeni ste kot " + Ime + " " + Priimek && Lbl_User_Z.Text == "Prijavljeni ste kot " + Ime + " " + Priimek)
             {
                 Btn_Odjava_L.Visible = true;
                 Btn_Odjava.Visible = true;
+                Btn_Odjava_K.Visible = true;
+                Btn_Odjava_R.Visible = true;
+                Btn_Odjava_Z.Visible = true;
             }
 
             using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
             {
                 con.Open();
-                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM radijske_postaje", con);
-                NpgsqlDataReader reader = com.ExecuteReader();
-                while (reader.Read())
-                {
-                    string naslov = reader.GetString(1);
-                    comboBox4.Items.Add(naslov);
-                }
-                con.Close();
-            }
-
-            using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-            {
-
-                con.Open();
-                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM kraji", con);
-                NpgsqlDataReader reader = com.ExecuteReader();
-                while (reader.Read())
-                {
-                    string ime = reader.GetString(2);
-                    comboBox3.Items.Add(ime);
-                }
-                con.Close();
-
-            }
-
-            using (NpgsqlConnection con2 = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-            {
-                con2.Open();
-                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM zvrsti", con2);
-                NpgsqlDataReader reader = com.ExecuteReader();
-                while (reader.Read())
-                {
-                    string ime = reader.GetString(1);
-                    comboBox1.Items.Add(ime);
-                    
-                }
-                reader.Close();
-                con2.Close();
-            }
-
-            using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-            {
-                con.Open();
-                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM regije", con);
-                NpgsqlDataReader reader = com.ExecuteReader();
-                while (reader.Read())
-                {
-                    string regija = reader.GetString(1);
-                    comboBox2.Items.Add(regija);
-                }
-                
-                con.Close();
-            }
-
-            using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-            {
-                con.Open();
-                NpgsqlCommand com = new NpgsqlCommand("SELECT rp.naslov, rp.frekvenca, rp.jezik, z.ime, r.ime FROM radijske_postaje rp INNER JOIN zvrsti z ON z.id = rp.zvrst_id INNER JOIN regije r ON rp.regija_id = r.id", con);
+                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_vse_postaje()", con);
                 NpgsqlDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
@@ -715,22 +714,87 @@ namespace Radijske_Postaje
                     string jezik = reader.GetString(2);
                     string z_ime = reader.GetString(3);
                     string r_ime = reader.GetString(4);
+                    
+                    comboBox4.Items.Add(naslov);
+
                     postaje.Add(naslov + '|' + frekvenca + '|' + jezik + '|' + z_ime + '|' + r_ime);
                     listBox1.Items.Clear();
                     foreach (string item in postaje)
                     {
                         listBox1.Items.Add(item);
                     }
+                }
+                con.Close();
+            }
 
+            using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+            {
+
+                con.Open();
+                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_vsi_kraji()", con);
+                NpgsqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    int posta = reader.GetInt32(0);
+                    string ime = reader.GetString(1);
+                    comboBox3.Items.Add(ime);
+                    
+                    //mal še poglej
+                    kraji.Add(posta + '|' + ime);
+                    listBox3.Items.Clear();
+                    foreach (string item in kraji)
+                    {
+                        listBox3.Items.Add(item);
+                    }
+                }
+                con.Close();
+
+            }
+
+            using (NpgsqlConnection con2 = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+            {
+                con2.Open();
+                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_vse_zvrsti()", con2);
+                NpgsqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    string ime = reader.GetString(0);
+                    comboBox1.Items.Add(ime);
+                    zvrsti.Add(ime);
+                    listBox5.Items.Clear();
+                    foreach (string item in zvrsti)
+                    {
+                        listBox5.Items.Add(item);
+                    }
                 }
                 reader.Close();
+                con2.Close();
+            }
+
+            using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+            {
+                con.Open();
+                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_vse_regije()", con);
+                NpgsqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    string regija = reader.GetString(0);
+                    comboBox2.Items.Add(regija);
+                    regije.Add(regija);
+                    listBox4.Items.Clear();
+                    foreach (string item in regije)
+                    {
+                        listBox4.Items.Add(item);
+                    }
+                }
+                
                 con.Close();
             }
 
             using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
             {
                 con.Open();
-                NpgsqlCommand com = new NpgsqlCommand("SELECT l.ime, k.ime, rp.naslov FROM lokalni_studiji l INNER JOIN radijske_postaje rp ON l.radijska_postaja_id = rp.id INNER JOIN kraji k ON l.kraj_id = k.id", con);
+                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM list_studijev()", con);
                 NpgsqlDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
@@ -747,6 +811,8 @@ namespace Radijske_Postaje
                 }
                 con.Close();
             }
+
+            
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -784,7 +850,7 @@ namespace Radijske_Postaje
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT rp.id FROM radijske_postaje rp INNER JOIN zvrsti z ON z.id = rp.zvrst_id INNER JOIN regije r ON r.id = rp.regija_id WHERE (rp.naslov = '" + textBox1.Text + "') AND (rp.frekvenca = '" + textBox2.Text + "') AND (rp.jezik = '" + textBox3.Text + "') AND (z.ime = '" + comboBox1.Text + "') AND (r.ime = '" + comboBox2.Text + "')", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_id_postaje ('" + textBox1.Text + "','" + textBox2.Text + "', '" + textBox3.Text + "','" + comboBox1.Text + "','" + comboBox2.Text + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
                     while (reader.Read())
                     {
@@ -946,9 +1012,7 @@ namespace Radijske_Postaje
                 else
                     MessageBox.Show("Morate nekaj spremeniti");
                 
-            }
-
-            
+            }  
         }
 
         private void Btn_Delete_Click(object sender, EventArgs e)
@@ -979,65 +1043,33 @@ namespace Radijske_Postaje
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
                         con.Open();
-                        NpgsqlCommand com = new NpgsqlCommand("SELECT radijska_postaja_id FROM lokalni_studiji WHERE (radijska_postaja_id = '" + id_r + "' )", con);
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT  * FROM deletanje_studijev ('" + id_r + "')", con);
                         NpgsqlDataReader reader = com.ExecuteReader();
+                        
                         if (reader.HasRows)
-                        {
+                        {                          
                             while (reader.Read())
                             {
-                                int r_id = reader.GetInt32(0);
+                                string Lime = reader.GetString(0);
+                                string Kime = reader.GetString(1);
+                                string Pime = reader.GetString(2);
 
-                                using (NpgsqlConnection con3 = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                                string skupaj = Lime + '|' + Kime + '|' + Pime;
+
+                                var studio = studiji.Single(r => r.Equals(skupaj));
+
+                                if (studio != null)
                                 {
-                                    con3.Open();
-                                    NpgsqlCommand com3 = new NpgsqlCommand("SELECT l.ime, k.ime, rp.naslov FROM lokalni_studiji l INNER JOIN kraji k ON l.kraj_id = k.id INNER JOIN radijske_postaje rp ON l.radijska_postaja_id = rp.id WHERE (l.radijska_postaja_id = '" + id_r + "')", con3);
-                                    NpgsqlDataReader reader2 = com3.ExecuteReader();
-                                    MessageBox.Show("ksfdsfi12");
-                                    if (reader2.HasRows)
+                                    studiji.Remove(studio);
+
+                                    listBox2.Items.Clear();
+                                    foreach (string item in studiji)
                                     {
-                                        MessageBox.Show("ksfdsfi");
-                                        while (reader2.Read())
-                                        {
-                                            string Lime = reader2.GetString(0);
-                                            string Kime = reader2.GetString(1);
-                                            string Pime = reader2.GetString(2);
-
-                                            string skupaj = Lime + '|' + Kime + '|' + Pime;
-
-                                            var studio = studiji.Single(r => r.Equals(skupaj));
-
-                                            if (studio != null)
-                                            {
-                                                studiji.Remove(studio);
-
-                                                listBox2.Items.Clear();
-                                                foreach (string item in studiji)
-                                                {
-                                                    listBox2.Items.Add(item);
-                                                }
-
-                                                MessageBox.Show("ksi");
-                                            }
-                                            else
-                                                MessageBox.Show("Null");
-                                        }
+                                        listBox2.Items.Add(item);
                                     }
-                                    else
-                                        MessageBox.Show("kfsaf");
 
-                                    con3.Close();
+                                    
                                 }
-
-                                using (NpgsqlConnection con2 = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                                {
-                                    con2.Open();
-                                    NpgsqlCommand com2 = new NpgsqlCommand("DELETE FROM lokalni_studiji WHERE (radijska_postaja_id = '" + id_r + "')", con2);
-                                    com2.ExecuteNonQuery();
-
-                                    con2.Close();
-                                    //MessageBox.Show("kfehr");
-                                }
-
                                 
                             }
                         }
@@ -1048,7 +1080,7 @@ namespace Radijske_Postaje
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
                         con.Open();
-                        NpgsqlCommand com = new NpgsqlCommand("DELETE FROM radijske_postaje WHERE (id = '" + id_r + "')", con);
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM deletanje_postaj ('" + id_r + "' )", con);
                         com.ExecuteNonQuery();
 
                         con.Close();
@@ -1094,14 +1126,27 @@ namespace Radijske_Postaje
             Form1.ImeOsebe(u);
             Lbl_User.Text = "Niste prijavljeni";
             Lbl_User_L.Text = "Niste prijavljeni";
+            Lbl_User_K.Text = "Niste prijavljeni";
+            Lbl_User_R.Text = "Niste prijavljeni";
+            Lbl_User_Z.Text = "Niste prijavljeni";
 
             Btn_Odjava.Visible = false;
-            Btn_Prijava.Visible = true;
-            Btn_Reg.Visible = true;
-
             Btn_Odjava_L.Visible = false;
+            Btn_Odjava_K.Visible = false;
+            Btn_Odjava_R.Visible = false;
+            Btn_Odjava_Z.Visible = false;
+
+            Btn_Prijava.Visible = true;
             Btn_Prijava_L.Visible = true;
+            Btn_Prijava_K.Visible = true;
+            Btn_Prijava_R.Visible = true;
+            Btn_Prijava_Z.Visible = true;
+
+            Btn_Reg.Visible = true;
             Btn_Reg_L.Visible = true;
+            Btn_Reg_K.Visible = true;
+            Btn_Reg_R.Visible = true;
+            Btn_Reg_Z.Visible = true;
         }
 
         private void Btn_Reg_Click(object sender, EventArgs e)
@@ -1169,41 +1214,34 @@ namespace Radijske_Postaje
 
         private void Btn_Update_L_Click(object sender, EventArgs e)
         {
-            Opis_L(l_opis);
+            //Opis_L(l_opis);
+            IDstudija(id_l);
             if (Lbl_User_L.Text == "Niste prijavljeni")
             {
                 MessageBox.Show("Morate biti prijavljeni");
             }
             else if (Lbl_User_L.Text != "Niste prijavljeni")
             {
-                if(l_opis == richTextBox2.Text)
+                Btn_Insert_L.Enabled = true;
+                textBox7.ReadOnly = false;
+
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
-                    MessageBox.Show("Morate nekaj spremeniti");
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM updatanje_studijev('" + id_l + "', '" + richTextBox2.Text + "', '" + comboBox3.Text + "', '" + comboBox4.Text + "') ", con);
+                    com.ExecuteNonQuery();
+                    con.Close();
                 }
-                else if (l_opis != richTextBox2.Text)
-                {
-                    Btn_Insert_L.Enabled = true;
-                    textBox7.ReadOnly = false;
-                    IDstudija(id_l);
-                    using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                    {
-                        con.Open();
-                        NpgsqlCommand com = new NpgsqlCommand("UPDATE lokalni_studiji SET opis = '" + richTextBox2.Text + "' WHERE(id = '"+ id_l + "') ", con);
-                        com.ExecuteNonQuery();
-                        con.Close();
-                    }
-                    textBox7.Clear();
-                    richTextBox2.Clear();
-                    comboBox3.Text = "";
-                    comboBox4.Text = "";
-                }
+                textBox7.Clear();
+                richTextBox2.Clear();
+                comboBox3.Text = "";
+                comboBox4.Text = "";
             }
                 
         }
 
         private void Btn_Delete_L_Click(object sender, EventArgs e)
         {
-            IDstudija(id_l);
             if (Lbl_User_L.Text == "Niste prijavljeni")
             {
                 MessageBox.Show("Morate biti prijavljeni");
@@ -1228,7 +1266,7 @@ namespace Radijske_Postaje
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
                         con.Open();
-                        NpgsqlCommand com = new NpgsqlCommand("DELETE FROM lokalni_studiji WHERE(id = '" + id_l + "') ", con);
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM deletanje_studijev('" + id_l + "')", con);
                         com.ExecuteNonQuery();
                         con.Close();
                     }
@@ -1294,7 +1332,7 @@ namespace Radijske_Postaje
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT l.id FROM lokalni_studiji l INNER JOIN kraji k ON l.kraj_id = k.id INNER JOIN radijske_postaje rp ON l.radijska_postaja_id = rp.id WHERE (k.ime = '" + comboBox3.Text + "') AND (rp.naslov = '" + comboBox4.Text + "')", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_id_studija ('" + textBox7.Text + "', '" + comboBox3.Text + "', '" + comboBox4.Text + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
                     while (reader.Read())
                     {
@@ -1335,16 +1373,30 @@ namespace Radijske_Postaje
         {
             u = "";
             Form1.ImeOsebe(u);
-            Lbl_User_L.Text = "Niste prijavljeni";
-            Lbl_User.Text = "Niste prijavljeni";
 
-            Btn_Odjava_L.Visible = false;
-            Btn_Prijava_L.Visible = true;
-            Btn_Reg_L.Visible = true;
+            Lbl_User.Text = "Niste prijavljeni";
+            Lbl_User_L.Text = "Niste prijavljeni";
+            Lbl_User_K.Text = "Niste prijavljeni";
+            Lbl_User_R.Text = "Niste prijavljeni";
+            Lbl_User_Z.Text = "Niste prijavljeni";
 
             Btn_Odjava.Visible = false;
+            Btn_Odjava_L.Visible = false;
+            Btn_Odjava_K.Visible = false;
+            Btn_Odjava_R.Visible = false;
+            Btn_Odjava_Z.Visible = false;
+
             Btn_Prijava.Visible = true;
+            Btn_Prijava_L.Visible = true;
+            Btn_Prijava_K.Visible = true;
+            Btn_Prijava_R.Visible = true;
+            Btn_Prijava_Z.Visible = true;
+
             Btn_Reg.Visible = true;
+            Btn_Reg_L.Visible = true;
+            Btn_Reg_K.Visible = true;
+            Btn_Reg_R.Visible = true;
+            Btn_Reg_Z.Visible = true;
         }
 
         private void Btn_Prijava_L_Click(object sender, EventArgs e)
@@ -1366,7 +1418,337 @@ namespace Radijske_Postaje
 
         private void textBox7_Click(object sender, EventArgs e)
         {
-            textBox7.Clear();
+            if(textBox7.Text == "Ime")
+                textBox7.Clear();
+        }
+
+        private void Btn_Insert_K_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_Update_K_Click(object sender, EventArgs e)
+        {
+            string posta = Convert.ToString(textBox8.Text);
+            string ime = textBox9.Text;
+            using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+            {
+                con.Open();
+                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM updatanje_krajev(id kraja, '" + posta + "', '" + ime + "') ", con);
+                com.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
+        private void Btn_Delete_K_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_Reg_K_Click(object sender, EventArgs e)
+        {
+            c = new Form3();
+            Hide();
+            c.Show();
+        }
+
+        private void Btn_Prijava_K_Click(object sender, EventArgs e)
+        {
+            b = new Form4();
+            Hide();
+            b.Show();
+
+            Btn_Odjava_K.Visible = true;
+            Btn_Prijava_K.Visible = false;
+            Btn_Reg_K.Visible = false;
+        }
+
+        private void Btn_Odjava_K_Click(object sender, EventArgs e)
+        {
+            u = "";
+            Form1.ImeOsebe(u);
+
+            Lbl_User.Text = "Niste prijavljeni";
+            Lbl_User_L.Text = "Niste prijavljeni";
+            Lbl_User_K.Text = "Niste prijavljeni";
+            Lbl_User_R.Text = "Niste prijavljeni";
+            Lbl_User_Z.Text = "Niste prijavljeni";
+
+            Btn_Odjava.Visible = false;
+            Btn_Odjava_L.Visible = false;
+            Btn_Odjava_K.Visible = false;
+            Btn_Odjava_R.Visible = false;
+            Btn_Odjava_Z.Visible = false;
+
+            Btn_Prijava.Visible = true;
+            Btn_Prijava_L.Visible = true;
+            Btn_Prijava_K.Visible = true;
+            Btn_Prijava_R.Visible = true;
+            Btn_Prijava_Z.Visible = true;
+
+            Btn_Reg.Visible = true;
+            Btn_Reg_L.Visible = true;
+            Btn_Reg_K.Visible = true;
+            Btn_Reg_R.Visible = true;
+            Btn_Reg_Z.Visible = true;
+        }
+
+        private void textBox10_Click(object sender, EventArgs e)
+        {
+            if(textBox10.Text == "Ime")
+                textBox10.Clear();
+        }
+
+        private void textBox8_Click(object sender, EventArgs e)
+        {
+            if (textBox9.Text == "")
+                textBox9.Text = "Ime";
+
+            textBox8.Clear();
+        }
+
+        private void textBox9_Click(object sender, EventArgs e)
+        {
+            if(textBox8.Text == "")
+                textBox8.Text = "Pošta";
+            
+            textBox9.Clear();
+        }
+
+        private void textBox11_Click(object sender, EventArgs e)
+        {
+            if (textBox11.Text == "Ime")
+                textBox11.Clear();
+        }
+
+        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Btn_Insert_K.Enabled = false;
+            Btn_Update_K.Enabled = true;
+            Btn_Delete_K.Enabled = true;
+            if (listBox3.SelectedIndex >= 0)
+            {
+                string allData = listBox3.Items[listBox3.SelectedIndex].ToString();
+                string[] data = allData.Split('|');
+                textBox8.Text = data[0];
+                textBox9.Text = data[1];
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                {
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_id_krajev ('" + textBox8.Text + "', '" + textBox9.Text + "')", con);
+                    NpgsqlDataReader reader = com.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        IDkraja(id);
+                    }
+                    con.Close();
+                }
+            }
+                
+        }
+
+        private void listBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Btn_Insert_R.Enabled = false;
+            Btn_Update_R.Enabled = true;
+            Btn_Delete_R.Enabled = true;
+            if (listBox4.SelectedIndex >= 0)
+            {
+                string allData = listBox4.Items[listBox4.SelectedIndex].ToString();
+                string[] data = allData.Split();
+                textBox10.Text = data[0];
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                {
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_id_regij ('" + textBox10.Text + "')", con);
+                    NpgsqlDataReader reader = com.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        IDregije(id);
+                    }
+                    con.Close();
+                }
+            }
+        }
+
+        private void listBox5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Btn_Insert_Z.Enabled = false;
+            Btn_Update_Z.Enabled = true;
+            Btn_Delete_Z.Enabled = true;
+            if (listBox5.SelectedIndex >= 0)
+            {
+                string allData = listBox5.Items[listBox5.SelectedIndex].ToString();
+                string[] data = allData.Split();
+                textBox11.Text = data[0];
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                {
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_id_zvrsti ('" + textBox11.Text + "')", con);
+                    NpgsqlDataReader reader = com.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        int id = reader.GetInt32(0);
+                        IDzvrsti(id);
+                    }
+                    con.Close();
+                }
+            }
+        }
+
+        private void Btn_Insert_R_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_Update_R_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_Delete_R_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_Reg_R_Click(object sender, EventArgs e)
+        {
+            c = new Form3();
+            Hide();
+            c.Show();
+        }
+
+        private void Btn_Prijava_R_Click(object sender, EventArgs e)
+        {
+            b = new Form4();
+            Hide();
+            b.Show();
+
+            Btn_Odjava_R.Visible = true;
+            Btn_Prijava_R.Visible = false;
+            Btn_Reg_R.Visible = false;
+        }
+
+        private void Btn_Odjava_R_Click(object sender, EventArgs e)
+        {
+            u = "";
+            Form1.ImeOsebe(u);
+
+            Lbl_User.Text = "Niste prijavljeni";
+            Lbl_User_L.Text = "Niste prijavljeni";
+            Lbl_User_K.Text = "Niste prijavljeni";
+            Lbl_User_R.Text = "Niste prijavljeni";
+            Lbl_User_Z.Text = "Niste prijavljeni";
+
+            Btn_Odjava.Visible = false;
+            Btn_Odjava_L.Visible = false;
+            Btn_Odjava_K.Visible = false;
+            Btn_Odjava_R.Visible = false;
+            Btn_Odjava_Z.Visible = false;
+
+            Btn_Prijava.Visible = true;
+            Btn_Prijava_L.Visible = true;
+            Btn_Prijava_K.Visible = true;
+            Btn_Prijava_R.Visible = true;
+            Btn_Prijava_Z.Visible = true;
+
+            Btn_Reg.Visible = true;
+            Btn_Reg_L.Visible = true;
+            Btn_Reg_K.Visible = true;
+            Btn_Reg_R.Visible = true;
+            Btn_Reg_Z.Visible = true;
+        }
+
+        private void Btn_Reg_Z_Click(object sender, EventArgs e)
+        {
+            c = new Form3();
+            Hide();
+            c.Show();
+        }
+
+        private void Btn_Insert_Z_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_Update_Z_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_Delete_Z_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_Prijava_Z_Click(object sender, EventArgs e)
+        {
+            b = new Form4();
+            Hide();
+            b.Show();
+
+            Btn_Odjava_Z.Visible = true;
+            Btn_Prijava_Z.Visible = false;
+            Btn_Reg_Z.Visible = false;
+        }
+
+        private void Btn_Odjava_Z_Click(object sender, EventArgs e)
+        {
+            u = "";
+            Form1.ImeOsebe(u);
+
+            Lbl_User.Text = "Niste prijavljeni";
+            Lbl_User_L.Text = "Niste prijavljeni";
+            Lbl_User_K.Text = "Niste prijavljeni";
+            Lbl_User_R.Text = "Niste prijavljeni";
+            Lbl_User_Z.Text = "Niste prijavljeni";
+
+            Btn_Odjava.Visible = false;
+            Btn_Odjava_L.Visible = false;
+            Btn_Odjava_K.Visible = false;
+            Btn_Odjava_R.Visible = false;
+            Btn_Odjava_Z.Visible = false;
+
+            Btn_Prijava.Visible = true;
+            Btn_Prijava_L.Visible = true;
+            Btn_Prijava_K.Visible = true;
+            Btn_Prijava_R.Visible = true;
+            Btn_Prijava_Z.Visible = true;
+
+            Btn_Reg.Visible = true;
+            Btn_Reg_L.Visible = true;
+            Btn_Reg_K.Visible = true;
+            Btn_Reg_R.Visible = true;
+            Btn_Reg_Z.Visible = true;
+        }
+
+        private void Btn_Bck_K_Click(object sender, EventArgs e)
+        {
+            a = new Form1();
+            Hide();
+            a.Show();
+
+            Form1.ImeOsebe(u);
+        }
+
+        private void Btn_Bck_R_Click(object sender, EventArgs e)
+        {
+            a = new Form1();
+            Hide();
+            a.Show();
+
+            Form1.ImeOsebe(u);
+        }
+
+        private void Btn_Bck_Z_Click(object sender, EventArgs e)
+        {
+            a = new Form1();
+            Hide();
+            a.Show();
+
+            Form1.ImeOsebe(u);
         }
 
         private void Btn_Prijava_Click(object sender, EventArgs e)
@@ -1378,5 +1760,7 @@ namespace Radijske_Postaje
             Btn_Prijava.Visible = false;
             Btn_Reg.Visible = false;
         }
+
+
     }
 }

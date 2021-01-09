@@ -53,6 +53,11 @@ namespace Radijske_Postaje
         {
             try
             {
+                string ime = "";
+                string priimek = "";
+                int starost = 1;
+                string kraj = "";
+                char spol = 'M';
                 string email = textBox1.Text;
                 string pass = textBox2.Text;
 
@@ -62,7 +67,7 @@ namespace Radijske_Postaje
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT email, geslo FROM uporabniki WHERE (email = '" + email + "') AND (geslo = '" + pass + "')", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM reg_prijava ('" + ime + "','" + priimek + "', '" + spol + "' , '" + starost + "' ,'" + email + "', '" + pass + "' , '" + kraj + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
 
                     if (reader.HasRows)

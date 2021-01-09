@@ -66,7 +66,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Back
             // 
-            this.Btn_Back.Location = new System.Drawing.Point(248, 222);
+            this.Btn_Back.Location = new System.Drawing.Point(262, 222);
             this.Btn_Back.Name = "Btn_Back";
             this.Btn_Back.Size = new System.Drawing.Size(81, 28);
             this.Btn_Back.TabIndex = 3;
