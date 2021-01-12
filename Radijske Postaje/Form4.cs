@@ -63,34 +63,27 @@ namespace Radijske_Postaje
 
                 //byte[] HashPass= Hash(pass);
                 //MessageBox.Show(Hgeslo);
-                
+
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
                     NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM reg_prijava ('" + ime + "','" + priimek + "', '" + spol + "' , '" + starost + "' ,'" + email + "', '" + pass + "' , '" + kraj + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
 
-                    if (reader.HasRows)
+                    while (reader.Read())
                     {
-                        while (reader.Read())
+                        string mail_b = reader.GetString(0);
+                        string pass_b = reader.GetString(1);
+                        if (email == mail_b && pass == pass_b)
                         {
-                            string mail_b = reader.GetString(0);
-                            string pass_b = reader.GetString(1);
-                            if (email == mail_b && pass == pass_b)
-                            {
-                                Form1.ImeOsebe(email);
-                                a = new Form1();
-                                Hide();
-                                a.Show();
-                            }
-                            
+                            Form1.ImeOsebe(email);
+                            a = new Form1();
+                            Hide();
+                            a.Show();
                         }
+                        else
+                            MessageBox.Show("Napačno geslo ali mail");
                     }
-                    else if(!reader.HasRows)
-                    {
-                        MessageBox.Show("Napačno geslo ali mail");
-                    }
-                        
 
                     reader.Close();
                     con.Close();

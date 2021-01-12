@@ -44,15 +44,15 @@ namespace Radijske_Postaje
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(38, 27);
+            this.label1.Location = new System.Drawing.Point(104, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(195, 36);
+            this.label1.Size = new System.Drawing.Size(477, 36);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Začetna stran";
+            this.label1.Text = "Urejanje radijskih postaj v Sloveniji";
             // 
             // Btn_Login
             // 
-            this.Btn_Login.Location = new System.Drawing.Point(462, 69);
+            this.Btn_Login.Location = new System.Drawing.Point(465, 90);
             this.Btn_Login.Name = "Btn_Login";
             this.Btn_Login.Size = new System.Drawing.Size(116, 29);
             this.Btn_Login.TabIndex = 3;
@@ -62,7 +62,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Reg
             // 
-            this.Btn_Reg.Location = new System.Drawing.Point(313, 68);
+            this.Btn_Reg.Location = new System.Drawing.Point(313, 90);
             this.Btn_Reg.Name = "Btn_Reg";
             this.Btn_Reg.Size = new System.Drawing.Size(116, 30);
             this.Btn_Reg.TabIndex = 4;
@@ -72,7 +72,7 @@ namespace Radijske_Postaje
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(603, 35);
+            this.button1.Location = new System.Drawing.Point(622, 53);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 32);
             this.button1.TabIndex = 5;
@@ -84,7 +84,7 @@ namespace Radijske_Postaje
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(401, 41);
+            this.label2.Location = new System.Drawing.Point(350, 59);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 18);
             this.label2.TabIndex = 6;
@@ -93,7 +93,7 @@ namespace Radijske_Postaje
             // pictureBox1
             // 
             this.pictureBox1.ImageLocation = "C:\\Srednja šola\\4.letnik\\Mušič\\na daljvo\\Mini projekt\\slika.jpg";
-            this.pictureBox1.Location = new System.Drawing.Point(44, 111);
+            this.pictureBox1.Location = new System.Drawing.Point(45, 135);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(605, 275);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

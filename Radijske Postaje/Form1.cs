@@ -74,7 +74,7 @@ namespace Radijske_Postaje
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT ime, priimek FROM uporabniki WHERE (email = '" + mail + "')", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM vrni_ime_priimek ('" + mail + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
                     while (reader.Read())
                     {
@@ -86,7 +86,6 @@ namespace Radijske_Postaje
                             Form2.User(ime, priimek);
                             Form2.Mail(mail);
                         }
-                        
 
                     }
 

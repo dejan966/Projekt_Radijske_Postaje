@@ -963,6 +963,8 @@ namespace Radijske_Postaje
                 if (r_opis != richTextBox1.Text || r_splStran != textBox4.Text || r_yt != textBox5.Text || r_tw != textBox6.Text)
                 {
                     Btn_Insert.Enabled = true;
+                    Btn_Update.Enabled = false;
+                    Btn_Delete.Enabled = false;
                     textBox1.ReadOnly = false;
                     textBox2.ReadOnly = false;
                     textBox3.ReadOnly = false;
@@ -974,30 +976,40 @@ namespace Radijske_Postaje
                         con.Open();
                         if (richTextBox1.Text != "Opis" && richTextBox1.Text != "")
                         {
-                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET opis = '" + richTextBox1.Text + "' WHERE (id = '" + id_r + "')", con);
+                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET opis = '" + richTextBox1.Text + "', zvrst_id = (SELECT id FROM zvrsti WHERE (ime = '" + comboBox1.Text + "')), regija_id =(SELECT id FROM regije WHERE (ime = '" + comboBox2.Text + "'))  WHERE (id = '" + id_r + "')", con);
                             com2.ExecuteNonQuery();
                         }
 
                         if (textBox4.Text != "Spletna stran" && textBox4.Text != "")
                         {
-                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET spletna_stran = '" + textBox4.Text + "' WHERE (id = '" + id_r + "')", con);
+                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET spletna_stran = '" + textBox4.Text + "',zvrst_id = (SELECT id FROM zvrsti WHERE (ime = '" + comboBox1.Text + "')), regija_id =(SELECT id FROM regije WHERE (ime = '" + comboBox2.Text + "')) WHERE (id = '" + id_r + "')", con);
                             com2.ExecuteNonQuery();
                         }
 
                         if (textBox5.Text != "Youtube" && textBox5.Text != "")
                         {
-                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET yt_link = '" + textBox5.Text + "' WHERE (id = '" + id_r + "')", con);
+                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET yt_link = '" + textBox5.Text + "',zvrst_id = (SELECT id FROM zvrsti WHERE (ime = '" + comboBox1.Text + "')), regija_id =(SELECT id FROM regije WHERE (ime = '" + comboBox2.Text + "')) WHERE (id = '" + id_r + "')", con);
                             com2.ExecuteNonQuery();
                         }
 
                         if (textBox6.Text != "Twitter" && textBox6.Text != "")
                         {
-                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET twitter_link = '" + textBox6.Text + "' WHERE (id = '" + id_r + "')", con);
+                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET twitter_link = '" + textBox6.Text + "',zvrst_id = (SELECT id FROM zvrsti WHERE (ime = '" + comboBox1.Text + "')), regija_id =(SELECT id FROM regije WHERE (ime = '" + comboBox2.Text + "')) WHERE (id = '" + id_r + "')", con);
                             com2.ExecuteNonQuery();
                         }
                         con.Close();
                     }
 
+                    /* problem pri itemu ko je cist zgori
+                       da bodo ble spremembe vidne takoj v listboxu
+                    int i = listBox1.SelectedIndex;
+                    postaje.RemoveAt(i);
+                    listBox1.Items.Clear();
+                    postaje.Add(textBox1.Text + '|' + textBox2.Text + '|' + textBox3.Text + '|' + comboBox1.Text + '|' + comboBox2.Text);
+                    foreach (string item in postaje)
+                    {
+                        listBox1.Items.Add(item);
+                    }*/
 
                     richTextBox1.Clear();
                     textBox1.Clear();
@@ -1008,6 +1020,7 @@ namespace Radijske_Postaje
                     textBox6.Clear();
                     comboBox1.Text = "";
                     comboBox2.Text = "";
+
                 }
                 else
                     MessageBox.Show("Morate nekaj spremeniti");
@@ -1223,6 +1236,8 @@ namespace Radijske_Postaje
             else if (Lbl_User_L.Text != "Niste prijavljeni")
             {
                 Btn_Insert_L.Enabled = true;
+                Btn_Update_L.Enabled = false;
+                Btn_Delete_L.Enabled = false;
                 textBox7.ReadOnly = false;
 
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
@@ -1232,6 +1247,17 @@ namespace Radijske_Postaje
                     com.ExecuteNonQuery();
                     con.Close();
                 }
+
+                /*int i = listBox1.SelectedIndex;
+                 *da bodo ble spremembe vidne takoj v listboxu
+                    postaje.RemoveAt(i);
+                    listBox1.Items.Clear();
+                    postaje.Add(textBox1.Text + '|' + textBox2.Text + '|' + textBox3.Text + '|' + comboBox1.Text + '|' + comboBox2.Text);
+                    foreach (string item in postaje)
+                    {
+                        listBox1.Items.Add(item);
+                    }*/
+
                 textBox7.Clear();
                 richTextBox2.Clear();
                 comboBox3.Text = "";
@@ -1424,25 +1450,90 @@ namespace Radijske_Postaje
 
         private void Btn_Insert_K_Click(object sender, EventArgs e)
         {
+            if (Lbl_User_L.Text == "Niste prijavljeni")
+            {
+                MessageBox.Show("Morate biti prijavljeni");
+            }
+            else if (Lbl_User_L.Text != "Niste prijavljeni")
+            {
+                int posta = Convert.ToInt32(textBox8.Text);
+                string ime = textBox9.Text;
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                {
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM insertanje_krajev('" + posta + "', '" + ime + "')", con);
+                    com.ExecuteNonQuery();
+                    con.Close();
+                }
+                textBox8.Clear();
+                textBox9.Clear();
 
+                kraji.Add(posta + '|' + ime);
+                listBox3.Items.Clear();
+                foreach (string item in kraji)
+                {
+                    listBox3.Items.Add(item);
+                }
+            }
         }
 
         private void Btn_Update_K_Click(object sender, EventArgs e)
         {
-            string posta = Convert.ToString(textBox8.Text);
-            string ime = textBox9.Text;
-            using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+            if (Lbl_User_L.Text == "Niste prijavljeni")
             {
-                con.Open();
-                NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM updatanje_krajev(id kraja, '" + posta + "', '" + ime + "') ", con);
-                com.ExecuteNonQuery();
-                con.Close();
+                MessageBox.Show("Morate biti prijavljeni");
             }
+            else if (Lbl_User_L.Text != "Niste prijavljeni")
+            {
+                IDkraja(id_k);
+                string posta = Convert.ToString(textBox8.Text);
+                string ime = textBox9.Text;
+
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                {
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM updatanje_krajev('" + id_k + "', '" + posta + "', '" + ime + "') ", con);
+                    com.ExecuteNonQuery();
+                    con.Close();
+                }
+
+                /* da bodo ble spremembe vidne takoj v listboxu
+                 int i = listBox1.SelectedIndex;
+                        postaje.RemoveAt(i);
+                        listBox1.Items.Clear();
+                        postaje.Add(textBox1.Text + '|' + textBox2.Text + '|' + textBox3.Text + '|' + comboBox1.Text + '|' + comboBox2.Text);
+                        foreach (string item in postaje)
+                        {
+                            listBox1.Items.Add(item);
+                        }*/
+                textBox8.Clear();
+                textBox9.Clear();
+
+                Btn_Insert_K.Enabled = true;
+                Btn_Update_K.Enabled = false;
+                Btn_Delete_K.Enabled = false;
+            }
+
+
         }
 
         private void Btn_Delete_K_Click(object sender, EventArgs e)
         {
+            if (Lbl_User_L.Text == "Niste prijavljeni")
+            {
+                MessageBox.Show("Morate biti prijavljeni");
+            }
+            else if (Lbl_User_L.Text != "Niste prijavljeni")
+            {
+                if (listBox3.SelectedIndex >= 0)
+                {
+                    Btn_Insert_K.Enabled = true;
+                    Btn_Update_K.Enabled = false;
+                    Btn_Delete_K.Enabled = false;
 
+                    IDkraja(id_k);
+                }
+            }
         }
 
         private void Btn_Reg_K_Click(object sender, EventArgs e)
@@ -1555,9 +1646,9 @@ namespace Radijske_Postaje
             Btn_Delete_R.Enabled = true;
             if (listBox4.SelectedIndex >= 0)
             {
-                string allData = listBox4.Items[listBox4.SelectedIndex].ToString();
-                string[] data = allData.Split();
-                textBox10.Text = data[0];
+                textBox10.Text = listBox4.Items[listBox4.SelectedIndex].ToString();
+                /*string[] data = allData.Split();
+                textBox10.Text = data[0];*/
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
@@ -1580,9 +1671,9 @@ namespace Radijske_Postaje
             Btn_Delete_Z.Enabled = true;
             if (listBox5.SelectedIndex >= 0)
             {
-                string allData = listBox5.Items[listBox5.SelectedIndex].ToString();
-                string[] data = allData.Split();
-                textBox11.Text = data[0];
+                textBox11.Text = listBox5.Items[listBox5.SelectedIndex].ToString();
+                /*string[] data = allData.Split();
+                textBox11.Text = data[0];*/
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
@@ -1600,17 +1691,84 @@ namespace Radijske_Postaje
 
         private void Btn_Insert_R_Click(object sender, EventArgs e)
         {
+            if (Lbl_User_L.Text == "Niste prijavljeni")
+            {
+                MessageBox.Show("Morate biti prijavljeni");
+            }
+            else if (Lbl_User_L.Text != "Niste prijavljeni")
+            {
+                string ime = textBox10.Text;
 
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                {
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM insertanje_regije('" + ime +"')", con);
+                    com.ExecuteNonQuery();
+                    con.Close();
+                }
+
+                regije.Add(ime);
+                listBox4.Items.Clear();
+                foreach (string item in regije)
+                {
+                    listBox4.Items.Add(item);
+                }
+                textBox10.Clear();
+            }
         }
 
         private void Btn_Update_R_Click(object sender, EventArgs e)
         {
+            if (Lbl_User_L.Text == "Niste prijavljeni")
+            {
+                MessageBox.Show("Morate biti prijavljeni");
+            }
+            else if (Lbl_User_L.Text != "Niste prijavljeni")
+            {
+                string ime = textBox10.Text;
+                IDregije(id_rg);
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                {
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM updatanje_regije('" + id_rg + "', '" + ime + "')", con);
+                    com.ExecuteNonQuery();
+                    con.Close();
+                }
+
+                /* da bodo ble spremembe vidne takoj v listboxu
+                 int i = listBox1.SelectedIndex;
+                        postaje.RemoveAt(i);
+                        listBox1.Items.Clear();
+                        postaje.Add(textBox1.Text + '|' + textBox2.Text + '|' + textBox3.Text + '|' + comboBox1.Text + '|' + comboBox2.Text);
+                        foreach (string item in postaje)
+                        {
+                            listBox1.Items.Add(item);
+                        }*/
+                Btn_Insert_R.Enabled = true;
+                Btn_Update_R.Enabled = false;
+                Btn_Delete_R.Enabled = false;
+                textBox10.Clear();
+            }
 
         }
 
         private void Btn_Delete_R_Click(object sender, EventArgs e)
         {
+            if (Lbl_User_L.Text == "Niste prijavljeni")
+            {
+                MessageBox.Show("Morate biti prijavljeni");
+            }
+            else if (Lbl_User_L.Text != "Niste prijavljeni")
+            {
+                if (listBox4.SelectedIndex >= 0)
+                {
+                    Btn_Insert_R.Enabled = true;
+                    Btn_Update_R.Enabled = false;
+                    Btn_Delete_R.Enabled = false;
 
+                    IDregije(id_rg);
+                }
+            }
         }
 
         private void Btn_Reg_R_Click(object sender, EventArgs e)
@@ -1670,17 +1828,103 @@ namespace Radijske_Postaje
 
         private void Btn_Insert_Z_Click(object sender, EventArgs e)
         {
+            if (Lbl_User_L.Text == "Niste prijavljeni")
+            {
+                MessageBox.Show("Morate biti prijavljeni");
+            }
+            else if (Lbl_User_L.Text != "Niste prijavljeni")
+            {
+                string ime = textBox11.Text;
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                {
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM insertanje_zvrsti('" + ime + "')", con);
+                    com.ExecuteNonQuery();
+                    con.Close();
+                }
 
+                zvrsti.Add(ime);
+                listBox5.Items.Clear();
+                foreach (string item in zvrsti)
+                {
+                    listBox5.Items.Add(item);
+                }
+
+                textBox11.Clear();
+            }
         }
 
         private void Btn_Update_Z_Click(object sender, EventArgs e)
         {
+            if (Lbl_User_L.Text == "Niste prijavljeni")
+            {
+                MessageBox.Show("Morate biti prijavljeni");
+            }
+            else if (Lbl_User_L.Text != "Niste prijavljeni")
+            {
+                string ime = textBox11.Text;
+                IDzvrsti(id_z);
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                {
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM updatanje_zvrsti('" + id_z + "', '" + ime + "')", con);
+                    com.ExecuteNonQuery();
+                    con.Close();
+                }
 
+                /* da bodo ble spremembe vidne takoj v listboxu 
+                   int i = listBox1.SelectedIndex;
+                        postaje.RemoveAt(i);
+                        listBox1.Items.Clear();
+                        postaje.Add(textBox1.Text + '|' + textBox2.Text + '|' + textBox3.Text + '|' + comboBox1.Text + '|' + comboBox2.Text);
+                        foreach (string item in postaje)
+                        {
+                            listBox1.Items.Add(item);
+                        }*/
+                textBox11.Clear();
+
+                Btn_Insert_Z.Enabled = true;
+                Btn_Update_Z.Enabled = false;
+                Btn_Delete_Z.Enabled = false;
+            }
         }
 
         private void Btn_Delete_Z_Click(object sender, EventArgs e)
         {
+            if (Lbl_User_L.Text == "Niste prijavljeni")
+            {
+                MessageBox.Show("Morate biti prijavljeni");
+            }
+            else if (Lbl_User_L.Text != "Niste prijavljeni")
+            {
+                if(listBox5.SelectedIndex >= 0)
+                {
+                    IDzvrsti(id_z);
+                    int i = listBox1.SelectedIndex;
+                    zvrsti.RemoveAt(i);
+                    listBox1.Items.Clear();
+                    foreach (string item in zvrsti)
+                    {
+                        listBox5.Items.Add(item);
+                    }
 
+                    using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                    {
+                        con.Open();
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM deletanje_zvrsti('" + id_z + "')", con);
+                        com.ExecuteNonQuery();
+                        con.Close();
+                    }
+
+                    Btn_Insert_Z.Enabled = true;
+                    Btn_Update_Z.Enabled = false;
+                    Btn_Delete_Z.Enabled = false;
+
+                    
+                }
+            }
+                
+            
         }
 
         private void Btn_Prijava_Z_Click(object sender, EventArgs e)

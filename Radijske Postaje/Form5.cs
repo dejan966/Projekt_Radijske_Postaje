@@ -33,7 +33,7 @@ namespace Radijske_Postaje
                 {
                     con.Open();
 
-                    NpgsqlCommand com = new NpgsqlCommand("UPDATE uporabniki SET geslo = '" + novoGeslo + "' WHERE (email = '" + mail + "')", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM new_pass ('" + mail + "' ,'" + novoGeslo + "')", con);
                     com.ExecuteNonQuery();
 
                     con.Close();

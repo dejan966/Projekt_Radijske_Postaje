@@ -206,6 +206,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Delete_K
             // 
+            this.Btn_Delete_K.Enabled = false;
             this.Btn_Delete_K.Location = new System.Drawing.Point(107, 265);
             this.Btn_Delete_K.Name = "Btn_Delete_K";
             this.Btn_Delete_K.Size = new System.Drawing.Size(83, 29);
@@ -216,6 +217,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Update_K
             // 
+            this.Btn_Update_K.Enabled = false;
             this.Btn_Update_K.Location = new System.Drawing.Point(155, 230);
             this.Btn_Update_K.Name = "Btn_Update_K";
             this.Btn_Update_K.Size = new System.Drawing.Size(83, 29);
@@ -832,6 +834,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Delete_R
             // 
+            this.Btn_Delete_R.Enabled = false;
             this.Btn_Delete_R.Location = new System.Drawing.Point(104, 227);
             this.Btn_Delete_R.Name = "Btn_Delete_R";
             this.Btn_Delete_R.Size = new System.Drawing.Size(83, 29);
@@ -842,6 +845,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Update_R
             // 
+            this.Btn_Update_R.Enabled = false;
             this.Btn_Update_R.Location = new System.Drawing.Point(152, 192);
             this.Btn_Update_R.Name = "Btn_Update_R";
             this.Btn_Update_R.Size = new System.Drawing.Size(83, 29);
@@ -943,6 +947,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Delete_Z
             // 
+            this.Btn_Delete_Z.Enabled = false;
             this.Btn_Delete_Z.Location = new System.Drawing.Point(118, 224);
             this.Btn_Delete_Z.Name = "Btn_Delete_Z";
             this.Btn_Delete_Z.Size = new System.Drawing.Size(83, 29);
@@ -953,6 +958,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Update_Z
             // 
+            this.Btn_Update_Z.Enabled = false;
             this.Btn_Update_Z.Location = new System.Drawing.Point(166, 189);
             this.Btn_Update_Z.Name = "Btn_Update_Z";
             this.Btn_Update_Z.Size = new System.Drawing.Size(83, 29);
