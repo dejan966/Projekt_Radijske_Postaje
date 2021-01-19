@@ -85,7 +85,7 @@ namespace Radijske_Postaje
                     {
 
                         con.Open();
-                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM reg_prijava ('" + ime + "','" + priimek + "', '" + spol + "' , '" + starost + "' ,'" + mail + "', '" + pass + "' , '" + kraj + "')", con);
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM registracija('" + ime + "','" + priimek + "', '" + spol + "' , '" + starost + "' ,'" + mail + "', '" + pass + "' , '" + kraj + "')", con);
                         NpgsqlDataReader reader = com.ExecuteReader();
                         if(reader.HasRows)
                         {
@@ -96,15 +96,17 @@ namespace Radijske_Postaje
                                 {
                                     MessageBox.Show("Uporabnik s tem mailom že obstaja");
                                 }
+                                else if(email != mail)
+                                {
+                                    b = new Form4();
+                                    Hide();
+                                    b.Show();
+                                }
                             }
                             
                         }
-                        else if(!reader.HasRows)
-                        {
-                            b = new Form4();
-                            Hide();
-                            b.Show();
-                        }    
+                         
+                           
                         con.Close();
                     }
                 }

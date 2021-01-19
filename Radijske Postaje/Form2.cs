@@ -623,6 +623,7 @@ namespace Radijske_Postaje
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             Btn_Insert.Enabled = false;
             if (richTextBox1.Text == "Opis")
                 richTextBox1.Clear();
@@ -770,6 +771,7 @@ namespace Radijske_Postaje
 
         private void Btn_Update_Click(object sender, EventArgs e)
         {
+            int i = listBox1.SelectedIndex;
             Opis(r_opis);
             splStran(r_splStran);
             YT(r_yt);
@@ -800,6 +802,7 @@ namespace Radijske_Postaje
                         con.Close();
                     }
 
+                    listBox1.SetSelected(i, false);
                     /* problem pri itemu ko je cist zgori
                        da bodo ble spremembe vidne takoj v listboxu
                     int i = listBox1.SelectedIndex;
@@ -829,6 +832,7 @@ namespace Radijske_Postaje
 
         private void Btn_Delete_Click(object sender, EventArgs e)
         {
+
             if (Lbl_User.Text == "Niste prijavljeni")
             {
                 MessageBox.Show("Morate biti prijavljeni");
@@ -845,6 +849,7 @@ namespace Radijske_Postaje
                         listBox1.Items.Add(item);
                     }
 
+                    listBox1.SetSelected(i, false);
                     Btn_Insert.Enabled = true;
                     textBox1.ReadOnly = false;
                     textBox2.ReadOnly = false;
@@ -1007,6 +1012,7 @@ namespace Radijske_Postaje
 
         private void Btn_Update_L_Click(object sender, EventArgs e)
         {
+            int i = listBox2.SelectedIndex;
             //Opis_L(l_opis);
             IDstudija(id_l);
             if (Lbl_User_L.Text == "Niste prijavljeni")
@@ -1027,7 +1033,7 @@ namespace Radijske_Postaje
                     com.ExecuteNonQuery();
                     con.Close();
                 }
-
+                listBox2.SetSelected(i, false);
                 /*int i = listBox1.SelectedIndex;
                  *da bodo ble spremembe vidne takoj v listboxu
                     postaje.RemoveAt(i);
@@ -1066,6 +1072,7 @@ namespace Radijske_Postaje
                     Btn_Update_L.Enabled = false;
                     Btn_Delete_L.Enabled = false;
                     textBox7.ReadOnly = false;
+                    listBox2.SetSelected(i, false);
 
                     IDstudija(id_l);
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
@@ -1262,6 +1269,7 @@ namespace Radijske_Postaje
 
         private void Btn_Update_K_Click(object sender, EventArgs e)
         {
+            int i = listBox3.SelectedIndex;
             if (Lbl_User_L.Text == "Niste prijavljeni")
             {
                 MessageBox.Show("Morate biti prijavljeni");
@@ -1279,7 +1287,7 @@ namespace Radijske_Postaje
                     com.ExecuteNonQuery();
                     con.Close();
                 }
-
+                listBox3.SetSelected(i, false);
                 /* da bodo ble spremembe vidne takoj v listboxu
                  int i = listBox1.SelectedIndex;
                         postaje.RemoveAt(i);
@@ -1322,6 +1330,7 @@ namespace Radijske_Postaje
                     {
                         listBox3.Items.Add(item);
                     }
+                    listBox3.SetSelected(i, false);
 
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
@@ -1551,6 +1560,7 @@ namespace Radijske_Postaje
 
         private void Btn_Update_R_Click(object sender, EventArgs e)
         {
+            int i = listBox4.SelectedIndex;
             if (Lbl_User_L.Text == "Niste prijavljeni")
             {
                 MessageBox.Show("Morate biti prijavljeni");
@@ -1566,7 +1576,7 @@ namespace Radijske_Postaje
                     com.ExecuteNonQuery();
                     con.Close();
                 }
-
+                listBox4.SetSelected(i, false);
                 /* da bodo ble spremembe vidne takoj v listboxu
                  int i = listBox1.SelectedIndex;
                         postaje.RemoveAt(i);
@@ -1606,7 +1616,8 @@ namespace Radijske_Postaje
                     {
                         listBox4.Items.Add(item);
                     }
-                    using(NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                    listBox4.SetSelected(i, false);
+                    using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
                         con.Open();
                         NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM deletanje_regij('" + id_rg + "')", con);
@@ -1738,6 +1749,7 @@ namespace Radijske_Postaje
 
         private void Btn_Update_Z_Click(object sender, EventArgs e)
         {
+            int i = listBox5.SelectedIndex;
             if (Lbl_User_L.Text == "Niste prijavljeni")
             {
                 MessageBox.Show("Morate biti prijavljeni");
@@ -1753,7 +1765,7 @@ namespace Radijske_Postaje
                     com.ExecuteNonQuery();
                     con.Close();
                 }
-
+                listBox5.SetSelected(i, false);
                 /* da bodo ble spremembe vidne takoj v listboxu 
                    int i = listBox1.SelectedIndex;
                         postaje.RemoveAt(i);
@@ -1789,7 +1801,7 @@ namespace Radijske_Postaje
                     {
                         listBox5.Items.Add(item);
                     }
-
+                    listBox5.SetSelected(i, false);
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
                         con.Open();
