@@ -514,7 +514,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Reg
             // 
-            this.Btn_Reg.Location = new System.Drawing.Point(465, 92);
+            this.Btn_Reg.Location = new System.Drawing.Point(465, 105);
             this.Btn_Reg.Name = "Btn_Reg";
             this.Btn_Reg.Size = new System.Drawing.Size(94, 29);
             this.Btn_Reg.TabIndex = 63;
@@ -524,7 +524,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Prijava
             // 
-            this.Btn_Prijava.Location = new System.Drawing.Point(638, 92);
+            this.Btn_Prijava.Location = new System.Drawing.Point(640, 105);
             this.Btn_Prijava.Name = "Btn_Prijava";
             this.Btn_Prijava.Size = new System.Drawing.Size(77, 29);
             this.Btn_Prijava.TabIndex = 62;
@@ -534,7 +534,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Odjava
             // 
-            this.Btn_Odjava.Location = new System.Drawing.Point(744, 52);
+            this.Btn_Odjava.Location = new System.Drawing.Point(774, 69);
             this.Btn_Odjava.Name = "Btn_Odjava";
             this.Btn_Odjava.Size = new System.Drawing.Size(90, 31);
             this.Btn_Odjava.TabIndex = 61;
@@ -559,6 +559,7 @@ namespace Radijske_Postaje
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(202, 24);
             this.comboBox2.TabIndex = 59;
+            this.comboBox2.Click += new System.EventHandler(this.comboBox2_Click);
             this.comboBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox2_KeyDown);
             // 
             // comboBox1
@@ -568,13 +569,14 @@ namespace Radijske_Postaje
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(202, 24);
             this.comboBox1.TabIndex = 58;
+            this.comboBox1.Click += new System.EventHandler(this.comboBox1_Click);
             this.comboBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
             // 
             // Lbl_User
             // 
             this.Lbl_User.AutoSize = true;
             this.Lbl_User.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Lbl_User.Location = new System.Drawing.Point(514, 54);
+            this.Lbl_User.Location = new System.Drawing.Point(520, 39);
             this.Lbl_User.Name = "Lbl_User";
             this.Lbl_User.Size = new System.Drawing.Size(56, 24);
             this.Lbl_User.TabIndex = 57;
@@ -804,7 +806,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Odjava_R
             // 
-            this.Btn_Odjava_R.Location = new System.Drawing.Point(733, 74);
+            this.Btn_Odjava_R.Location = new System.Drawing.Point(781, 99);
             this.Btn_Odjava_R.Name = "Btn_Odjava_R";
             this.Btn_Odjava_R.Size = new System.Drawing.Size(83, 29);
             this.Btn_Odjava_R.TabIndex = 15;
@@ -814,7 +816,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Prijava_R
             // 
-            this.Btn_Prijava_R.Location = new System.Drawing.Point(668, 120);
+            this.Btn_Prijava_R.Location = new System.Drawing.Point(688, 139);
             this.Btn_Prijava_R.Name = "Btn_Prijava_R";
             this.Btn_Prijava_R.Size = new System.Drawing.Size(83, 29);
             this.Btn_Prijava_R.TabIndex = 14;
@@ -824,7 +826,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Reg_R
             // 
-            this.Btn_Reg_R.Location = new System.Drawing.Point(517, 120);
+            this.Btn_Reg_R.Location = new System.Drawing.Point(517, 139);
             this.Btn_Reg_R.Name = "Btn_Reg_R";
             this.Btn_Reg_R.Size = new System.Drawing.Size(104, 29);
             this.Btn_Reg_R.TabIndex = 13;
@@ -887,7 +889,7 @@ namespace Radijske_Postaje
             // 
             this.Lbl_User_R.AutoSize = true;
             this.Lbl_User_R.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Lbl_User_R.Location = new System.Drawing.Point(545, 64);
+            this.Lbl_User_R.Location = new System.Drawing.Point(495, 48);
             this.Lbl_User_R.Name = "Lbl_User_R";
             this.Lbl_User_R.Size = new System.Drawing.Size(57, 24);
             this.Lbl_User_R.TabIndex = 3;
@@ -979,7 +981,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Odjava_Z
             // 
-            this.Btn_Odjava_Z.Location = new System.Drawing.Point(756, 81);
+            this.Btn_Odjava_Z.Location = new System.Drawing.Point(768, 91);
             this.Btn_Odjava_Z.Name = "Btn_Odjava_Z";
             this.Btn_Odjava_Z.Size = new System.Drawing.Size(83, 29);
             this.Btn_Odjava_Z.TabIndex = 15;
@@ -989,7 +991,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Prijava_Z
             // 
-            this.Btn_Prijava_Z.Location = new System.Drawing.Point(691, 127);
+            this.Btn_Prijava_Z.Location = new System.Drawing.Point(692, 140);
             this.Btn_Prijava_Z.Name = "Btn_Prijava_Z";
             this.Btn_Prijava_Z.Size = new System.Drawing.Size(83, 29);
             this.Btn_Prijava_Z.TabIndex = 14;
@@ -999,7 +1001,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Reg_Z
             // 
-            this.Btn_Reg_Z.Location = new System.Drawing.Point(540, 127);
+            this.Btn_Reg_Z.Location = new System.Drawing.Point(539, 140);
             this.Btn_Reg_Z.Name = "Btn_Reg_Z";
             this.Btn_Reg_Z.Size = new System.Drawing.Size(104, 29);
             this.Btn_Reg_Z.TabIndex = 13;
@@ -1030,7 +1032,7 @@ namespace Radijske_Postaje
             // 
             this.Lbl_User_Z.AutoSize = true;
             this.Lbl_User_Z.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Lbl_User_Z.Location = new System.Drawing.Point(549, 81);
+            this.Lbl_User_Z.Location = new System.Drawing.Point(465, 51);
             this.Lbl_User_Z.Name = "Lbl_User_Z";
             this.Lbl_User_Z.Size = new System.Drawing.Size(57, 24);
             this.Lbl_User_Z.TabIndex = 4;

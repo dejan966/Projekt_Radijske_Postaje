@@ -389,223 +389,26 @@ namespace Radijske_Postaje
             }
             else if(Lbl_User.Text != "Niste prijavljeni")
             {
-                if (textBox1.Text == "Naslov" && textBox2.Text == "Frekvenca" && textBox3.Text == "Jezik")
+                if (textBox1.Text == "Naslov" || textBox2.Text == "Frekvenca" || textBox3.Text == "Jezik")
                 {
                     MessageBox.Show("Morate vnesti vsaj to kar je označeno z zvezdico");
                 }
-                else if (textBox1.Text != "Naslov" && textBox2.Text != "Frekvenca" && textBox3.Text != "Jezik")
+                else if(textBox1.Text != "Naslov" || textBox2.Text != "Frekvenca" || textBox3.Text != "Jezik")
                 {
-                    comboBox4.Items.Add(naslov);
-                    comboBox4.Text = naslov;
-                    if (richTextBox1.Text == "Opis" && textBox4.Text == "Spletna stran" && textBox5.Text == "Youtube" && textBox6.Text == "Twitter")
+                    string opis = richTextBox1.Text;
+                    string stran = textBox4.Text;
+                    string yt = textBox5.Text;
+                    string tw = textBox6.Text;
+
+                    using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
+                        con.Open();
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM insertanje_postaj ('" + naslov + "', '" + opis + "', '" + frekvenca + "', '" + jezik + "', '" + stran + "', '" + yt + "', '" + tw + "', '" + zvrst + "', '" + regija + "')", con);
 
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, frekvenca, jezik, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + frekvenca + "', '" + jezik + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
+                        com.ExecuteNonQuery();
+                        con.Close();
                     }
-                    else if (textBox4.Text == "Spletna stran" && textBox5.Text == "Youtube" && textBox6.Text == "Twitter" && richTextBox1.Text != "Opis")
-                    {
-                        string opis = richTextBox1.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
 
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + opis + "', '" + frekvenca + "', '" + jezik + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (richTextBox1.Text == "Opis" && textBox5.Text == "Youtube" && textBox6.Text == "Twitter" && textBox4.Text != "Spletna stran")
-                    {
-                        string stran = textBox4.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, frekvenca, jezik, spletna_stran, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + frekvenca + "', '" + jezik + "', '" + stran + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (richTextBox1.Text == "Opis" && textBox4.Text == "Spletna stran" && textBox6.Text == "Twitter" && textBox5.Text != "Youtube")
-                    {
-                        string yt = textBox5.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, frekvenca, jezik, yt_link, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + frekvenca + "', '" + jezik + "', '" + yt + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (richTextBox1.Text == "Opis" && textBox4.Text == "Spletna stran" && textBox5.Text == "Youtube" && textBox6.Text != "Twitter")
-                    {
-                        string twitter = textBox6.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, frekvenca, jezik, twitter_link, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + frekvenca + "', '" + jezik + "', '" + twitter + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (richTextBox1.Text == "Opis" && textBox6.Text == "Twitter" && textBox4.Text != "Spletna stran" && textBox5.Text != "Youtube")
-                    {
-                        string stran = textBox4.Text;
-                        string yt = textBox5.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, frekvenca, jezik, spletna_stran, yt_link, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + frekvenca + "', '" + jezik + "', '" + stran + "', '" + yt + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (textBox4.Text == "Spletna stran" && richTextBox1.Text == "Opis" && textBox5.Text != "Youtube" && textBox6.Text != "Twitter")
-                    {
-                        string yt = textBox5.Text;
-                        string twitter = textBox6.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, frekvenca, jezik, yt_link, twitter_link, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + frekvenca + "', '" + jezik + "', '" + yt + "', '" + twitter + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (textBox4.Text == "Spletna stran" && textBox5.Text == "Youtube" && richTextBox1.Text != "Opis" && textBox6.Text != "Twitter")
-                    {
-                        string opis = richTextBox1.Text;
-                        string twitter = textBox6.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, twitter_link, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + opis + "', '" + frekvenca + "', '" + jezik + "', '" + twitter + "',(SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (richTextBox1.Text == "Opis" && textBox5.Text == "Youtube" && textBox4.Text != "Spletna stran" && textBox6.Text != "Twitter")
-                    {
-                        string stran = textBox4.Text;
-                        string twitter = textBox6.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, frekvenca, jezik, spletna_stran, twitter_link, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + frekvenca + "', '" + jezik + "', '" + stran + "', '" + twitter + "',(SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (richTextBox1.Text != "Opis" && textBox5.Text != "Youtube" && textBox4.Text == "Spletna stran" && textBox6.Text == "Twitter")
-                    {
-                        string opis = richTextBox1.Text;
-                        string yt = textBox5.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, yt_link, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + opis + "', '" + frekvenca + "', '" + jezik + "', '" + yt + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (textBox6.Text == "Twitter" && textBox5.Text == "Youtube" && textBox4.Text != "Spletna stran" && richTextBox1.Text != "Opis")
-                    {
-                        string stran = textBox4.Text;
-                        string opis = richTextBox1.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, spletna_stran, zvrst_id, regija_id) VALUES ('" + naslov + "','" + opis + "', '" + frekvenca + "', '" + jezik + "', '" + stran + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (textBox6.Text != "Twitter" && textBox5.Text != "Youtube" && textBox4.Text != "Spletna stran" && richTextBox1.Text == "Opis")
-                    {
-                        string stran = textBox4.Text;
-                        string yt = textBox5.Text;
-                        string twitter = textBox6.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, frekvenca, jezik, spletna_stran, yt_link, twitter_link, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + frekvenca + "', '" + jezik + "', '" + stran + "', '" + yt + "', '" + twitter + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (textBox6.Text != "Twitter" && textBox5.Text != "Youtube" && textBox4.Text == "Spletna stran" && richTextBox1.Text != "Opis")
-                    {
-                        string opis = richTextBox1.Text;
-                        string yt = textBox5.Text;
-                        string twitter = textBox6.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, yt_link, twitter_link, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + opis + "', '" + frekvenca + "', '" + jezik + "', '" + yt + "', '" + twitter + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (textBox6.Text != "Twitter" && textBox5.Text == "Youtube" && textBox4.Text != "Spletna stran" && richTextBox1.Text != "Opis")
-                    {
-                        string opis = richTextBox1.Text;
-                        string stran = textBox4.Text;
-                        string twitter = textBox6.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, spletna_stran, twitter_link, zvrst_id, regija_id) VALUES ('" + naslov + "',  '" + opis + "','" + frekvenca + "', '" + jezik + "', '" + stran + "', '" + twitter + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (textBox6.Text == "Twitter" && textBox5.Text != "Youtube" && textBox4.Text != "Spletna stran" && richTextBox1.Text != "Opis")
-                    {
-                        string opis = richTextBox1.Text;
-                        string stran = textBox4.Text;
-                        string yt = textBox5.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, spletna_stran, yt_link, zvrst_id, regija_id) VALUES ('" + naslov + "',  '" + opis + "','" + frekvenca + "', '" + jezik + "', '" + stran + "', '" + yt + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    else if (richTextBox1.Text != "Opis" && textBox4.Text != "Spletna stran" && textBox5.Text != "Youtube" && textBox6.Text != "Twitter")
-                    {
-                        string opis = richTextBox1.Text;
-                        string stran = textBox4.Text;
-                        string yt = textBox5.Text;
-                        string twitter = textBox6.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, spletna_stran, yt_link, twitter_link, zvrst_id, regija_id) VALUES ('" + naslov + "', '" + opis + "', '" + frekvenca + "', '" + jezik + "', '" + stran + "', '" + yt + "', '" + twitter + "', (SELECT id FROM zvrsti WHERE (ime = '" + zvrst + "')), (SELECT id FROM regije WHERE (ime = '" + regija + "')))", con);
-
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
                     postaje.Add(naslov + '|' + frekvenca + '|' + jezik + '|' + zvrst + '|' + regija);
                     listBox1.Items.Clear();
                     foreach (string item in postaje)
@@ -621,6 +424,7 @@ namespace Radijske_Postaje
                     textBox5.Clear();
                     textBox6.Clear();
                 }
+                
             }
         }
 
@@ -644,6 +448,7 @@ namespace Radijske_Postaje
             Btn_Reg_R.Visible = false;
             Btn_Reg_Z.Visible = false;
 
+            //label1.Font.Bold.ToString();
             comboBox1.Text = "rock";
             comboBox2.Text = "Gorenjska";
             comboBox3.Text = "Adlešiči";
@@ -716,6 +521,7 @@ namespace Radijske_Postaje
                     string r_ime = reader.GetString(4);
                     
                     comboBox4.Items.Add(naslov);
+                    comboBox4.Text = naslov;
 
                     postaje.Add(naslov + '|' + frekvenca + '|' + jezik + '|' + z_ime + '|' + r_ime);
                     listBox1.Items.Clear();
@@ -767,7 +573,7 @@ namespace Radijske_Postaje
                         listBox5.Items.Add(item);
                     }
                 }
-                reader.Close();
+                
                 con2.Close();
             }
 
@@ -864,41 +670,48 @@ namespace Radijske_Postaje
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT rp.opis FROM radijske_postaje rp INNER JOIN zvrsti z ON z.id = rp.zvrst_id INNER JOIN regije r ON r.id = rp.regija_id WHERE (rp.naslov = '" + textBox1.Text + "') AND (rp.frekvenca = '" + textBox2.Text + "') AND (rp.jezik = '" + textBox3.Text + "') AND (z.ime = '" + comboBox1.Text + "') AND (r.ime = '" + comboBox2.Text + "') AND (rp.opis IS NOT NULL)", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_opis_postaj('" + textBox1.Text + "', '" + textBox2.Text + "', '" + textBox3.Text + "','" + comboBox1.Text + "','" + comboBox2.Text + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
                     if (reader.HasRows)
                     {
                         while(reader.Read())
                         {
                             string opis = reader.GetString(0);
-                            Opis(opis);
-                            richTextBox1.Text = opis;
+                            if(opis != "")
+                            {
+                                Opis(opis);
+                                richTextBox1.Text = opis;
+                            }
+                            else if(opis == "")
+                            {
+                                richTextBox1.Clear();
+                            }
                         }
                     }
-                    else if (!reader.HasRows)
-                    {
-                        richTextBox1.Clear();
-                    }
+                    
                     con.Close();
                 }
 
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT rp.spletna_stran FROM radijske_postaje rp INNER JOIN zvrsti z ON z.id = rp.zvrst_id INNER JOIN regije r ON r.id = rp.regija_id WHERE (rp.naslov = '" + textBox1.Text + "') AND (rp.frekvenca = '" + textBox2.Text + "') AND (rp.jezik = '" + textBox3.Text + "') AND (z.ime = '" + comboBox1.Text + "') AND (r.ime = '" + comboBox2.Text + "') AND (rp.spletna_stran IS NOT NULL)", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_stran_postaj('" + textBox1.Text + "', '" + textBox2.Text + "', '" + textBox3.Text + "','" + comboBox1.Text + "','" + comboBox2.Text + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
                     if (reader.HasRows)
                     {
                         while (reader.Read())
                         {
                             string stran = reader.GetString(0);
-                            splStran(stran);
-                            textBox4.Text = stran;
+                            if(stran != "")
+                            {
+                                splStran(stran);
+                                textBox4.Text = stran;
+                            }
+                            else if(stran == "")
+                            {
+                                textBox4.Clear();
+                            }
                         }
-                    }
-                    else if (!reader.HasRows)
-                    {
-                        textBox4.Clear();
                     }
                     con.Close();
                 }
@@ -906,41 +719,49 @@ namespace Radijske_Postaje
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT rp.yt_link FROM radijske_postaje rp INNER JOIN zvrsti z ON z.id = rp.zvrst_id INNER JOIN regije r ON r.id = rp.regija_id WHERE (rp.naslov = '" + textBox1.Text + "') AND (rp.frekvenca = '" + textBox2.Text + "') AND (rp.jezik = '" + textBox3.Text + "') AND (z.ime = '" + comboBox1.Text + "') AND (r.ime = '" + comboBox2.Text + "') AND (rp.yt_link IS NOT NULL)", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_yt_postaj('" + textBox1.Text + "', '" + textBox2.Text + "', '" + textBox3.Text + "','" + comboBox1.Text + "','" + comboBox2.Text + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
                     if (reader.HasRows)
                     {
                         while (reader.Read())
                         {
                             string yt = reader.GetString(0);
-                            YT(yt);
-                            textBox5.Text = yt;
+                            if(yt != "")
+                            {
+                                YT(yt);
+                                textBox5.Text = yt;
+                            }
+                            else if(yt == "")
+                            {
+                                textBox5.Clear();
+                            }
                         }
                     }
-                    else if (!reader.HasRows)
-                    {
-                        textBox5.Clear();
-                    }
+                    
                     con.Close();
                 }
 
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT rp.twitter_link FROM radijske_postaje rp INNER JOIN zvrsti z ON z.id = rp.zvrst_id INNER JOIN regije r ON r.id = rp.regija_id WHERE (rp.naslov = '" + textBox1.Text + "') AND (rp.frekvenca = '" + textBox2.Text + "') AND (rp.jezik = '" + textBox3.Text + "') AND (z.ime = '" + comboBox1.Text + "') AND (r.ime = '" + comboBox2.Text + "') AND (rp.twitter_link IS NOT NULL)", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_tw_postaj('" + textBox1.Text + "', '" + textBox2.Text + "', '" + textBox3.Text + "','" + comboBox1.Text + "','" + comboBox2.Text + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
                     if (reader.HasRows)
                     {
                         while (reader.Read())
                         {
                             string twitter = reader.GetString(0);
-                            TW(twitter);
-                            textBox6.Text = twitter;
+                            if(twitter != "")
+                            {
+                                TW(twitter);
+                                textBox6.Text = twitter;
+                            }
+                            else if(twitter == "")
+                            {
+                                textBox6.Clear();
+                            }
+                            
                         }
-                    }
-                    else if (!reader.HasRows)
-                    {
-                        textBox6.Clear();
                     }
                     con.Close();
                 }
@@ -974,29 +795,8 @@ namespace Radijske_Postaje
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
                         con.Open();
-                        if (richTextBox1.Text != "Opis" && richTextBox1.Text != "")
-                        {
-                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET opis = '" + richTextBox1.Text + "', zvrst_id = (SELECT id FROM zvrsti WHERE (ime = '" + comboBox1.Text + "')), regija_id =(SELECT id FROM regije WHERE (ime = '" + comboBox2.Text + "'))  WHERE (id = '" + id_r + "')", con);
-                            com2.ExecuteNonQuery();
-                        }
-
-                        if (textBox4.Text != "Spletna stran" && textBox4.Text != "")
-                        {
-                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET spletna_stran = '" + textBox4.Text + "',zvrst_id = (SELECT id FROM zvrsti WHERE (ime = '" + comboBox1.Text + "')), regija_id =(SELECT id FROM regije WHERE (ime = '" + comboBox2.Text + "')) WHERE (id = '" + id_r + "')", con);
-                            com2.ExecuteNonQuery();
-                        }
-
-                        if (textBox5.Text != "Youtube" && textBox5.Text != "")
-                        {
-                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET yt_link = '" + textBox5.Text + "',zvrst_id = (SELECT id FROM zvrsti WHERE (ime = '" + comboBox1.Text + "')), regija_id =(SELECT id FROM regije WHERE (ime = '" + comboBox2.Text + "')) WHERE (id = '" + id_r + "')", con);
-                            com2.ExecuteNonQuery();
-                        }
-
-                        if (textBox6.Text != "Twitter" && textBox6.Text != "")
-                        {
-                            NpgsqlCommand com2 = new NpgsqlCommand("UPDATE radijske_postaje SET twitter_link = '" + textBox6.Text + "',zvrst_id = (SELECT id FROM zvrsti WHERE (ime = '" + comboBox1.Text + "')), regija_id =(SELECT id FROM regije WHERE (ime = '" + comboBox2.Text + "')) WHERE (id = '" + id_r + "')", con);
-                            com2.ExecuteNonQuery();
-                        }
+                        NpgsqlCommand com2 = new NpgsqlCommand("SELECT * FROM updatanje_postaj ('" + id_r + "', '" + richTextBox1.Text + "', '" + textBox4.Text + "', '" + textBox5.Text + "', '" + textBox6.Text + "','" + comboBox1.Text + "','" + comboBox2.Text + "')", con);
+                        com2.ExecuteNonQuery();
                         con.Close();
                     }
 
@@ -1018,8 +818,7 @@ namespace Radijske_Postaje
                     textBox4.Clear();
                     textBox5.Clear();
                     textBox6.Clear();
-                    comboBox1.Text = "";
-                    comboBox2.Text = "";
+                    
 
                 }
                 else
@@ -1079,9 +878,7 @@ namespace Radijske_Postaje
                                     foreach (string item in studiji)
                                     {
                                         listBox2.Items.Add(item);
-                                    }
-
-                                    
+                                    } 
                                 }
                                 
                             }
@@ -1106,8 +903,7 @@ namespace Radijske_Postaje
                     textBox4.Clear();
                     textBox5.Clear();
                     textBox6.Clear();
-                    comboBox1.Text = "";
-                    comboBox2.Text = "";
+                    
                 }
             } 
         }
@@ -1171,9 +967,7 @@ namespace Radijske_Postaje
 
         private void Btn_Insert_L_Click(object sender, EventArgs e)
         {
-            string s_ime = textBox7.Text;
-            string kraj = comboBox3.Text;
-            string r_postaja = comboBox4.Text;
+            
             if (Lbl_User_L.Text == "Niste prijavljeni")
             {
                 MessageBox.Show("Morate biti prijavljeni");
@@ -1186,31 +980,18 @@ namespace Radijske_Postaje
                 }
                 else if(textBox7.Text != "Ime" || textBox7.Text != "")
                 {
-                    if (richTextBox2.Text == "Opis" || richTextBox2.Text == "")
+                    string s_ime = textBox7.Text;
+                    string s_opis = richTextBox2.Text;
+                    string kraj = comboBox3.Text;
+                    string r_postaja = comboBox4.Text;
+                    using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO lokalni_studiji (ime, kraj_id, radijska_postaja_id) VALUES ('" + s_ime + "', (SELECT id FROM kraji WHERE (ime = '" + kraj + "')), (SELECT id FROM radijske_postaje WHERE (naslov = '" + r_postaja + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
+                        con.Open();
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM insertanje_studijev('" + s_ime + "', '" + s_opis + "', '" + kraj + "','" + r_postaja + "')", con);
+                        com.ExecuteNonQuery();
+                        con.Close();
                     }
-                    else if (richTextBox2.Text != "Opis" || richTextBox2.Text != "")
-                    {
-                        string opis_L = richTextBox2.Text;
-                        using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                        {
-                            con.Open();
-                            NpgsqlCommand com = new NpgsqlCommand("INSERT INTO lokalni_studiji (ime, opis, kraj_id, radijska_postaja_id) VALUES ('" + s_ime + "', '" + opis_L + "', (SELECT id FROM kraji WHERE (ime = '" + kraj + "')), (SELECT id FROM radijske_postaje WHERE (naslov = '" + r_postaja + "')))", con);
-                            com.ExecuteNonQuery();
-                            con.Close();
-                        }
-                        textBox7.Clear();
-                        richTextBox2.Clear();
-                        comboBox3.Text = "";
-                        comboBox4.Text = "";
-                    }
+
                     studiji.Add(s_ime + '|' + kraj + '|' + r_postaja);
                     listBox2.Items.Clear();
                     foreach (string item in studiji)
@@ -1221,8 +1002,7 @@ namespace Radijske_Postaje
                 
             }
             textBox7.Clear();
-            comboBox3.Text = "";
-            comboBox4.Text = "";
+            richTextBox2.Clear();
         }
 
         private void Btn_Update_L_Click(object sender, EventArgs e)
@@ -1260,8 +1040,7 @@ namespace Radijske_Postaje
 
                 textBox7.Clear();
                 richTextBox2.Clear();
-                comboBox3.Text = "";
-                comboBox4.Text = "";
+                
             }
                 
         }
@@ -1283,7 +1062,7 @@ namespace Radijske_Postaje
                     {
                         listBox2.Items.Add(item);
                     }
-                    Btn_Insert.Enabled = true;
+                    Btn_Insert_L.Enabled = true;
                     Btn_Update_L.Enabled = false;
                     Btn_Delete_L.Enabled = false;
                     textBox7.ReadOnly = false;
@@ -1292,14 +1071,13 @@ namespace Radijske_Postaje
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
                         con.Open();
-                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM deletanje_studijev('" + id_l + "')", con);
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM deletanje_studija('" + id_l + "')", con);
                         com.ExecuteNonQuery();
                         con.Close();
                     }
                     textBox7.Clear();
                     richTextBox2.Clear();
-                    comboBox3.Text = "";
-                    comboBox4.Text = "";
+                    
                 }
             }
                 
@@ -1337,21 +1115,26 @@ namespace Radijske_Postaje
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT l.opis FROM lokalni_studiji l INNER JOIN kraji k ON l.kraj_id = k.id INNER JOIN radijske_postaje rp ON l.radijska_postaja_id = rp.id WHERE (k.ime = '" + comboBox3.Text + "') AND (rp.naslov = '" + comboBox4.Text + "') AND (l.opis IS NOT NULL)", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_opis_studijev ('" + textBox7.Text + "', '" + comboBox3.Text + "', '" + comboBox4.Text + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
                     if (reader.HasRows)
                     {
                         while (reader.Read())
                         {
                             string Opis_l = reader.GetString(0);
-                            Opis_L(Opis_l);
-                            richTextBox2.Text = Opis_l;
+                            
+                            if (Opis_l != "")
+                            {
+                                Opis_L(Opis_l);
+                                richTextBox2.Text = Opis_l;
+                            }
+                            else if (Opis_l == "")
+                            {
+                                richTextBox2.Clear();
+                            }
                         }
                     }
-                    else if (!reader.HasRows)
-                    {
-                        richTextBox2.Clear();
-                    }
+                    
                     con.Close();
                 }
 
@@ -1532,6 +1315,55 @@ namespace Radijske_Postaje
                     Btn_Delete_K.Enabled = false;
 
                     IDkraja(id_k);
+                    int i = listBox3.SelectedIndex;
+                    kraji.RemoveAt(i);
+                    listBox3.Items.Clear();
+                    foreach (string item in kraji)
+                    {
+                        listBox3.Items.Add(item);
+                    }
+
+                    using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                    {
+                        con.Open();
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM deletanje_kraja('" + id_k + "')", con);
+                        NpgsqlDataReader reader = com.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                string Lime = reader.GetString(0);
+                                string Kime = reader.GetString(1);
+                                string Pime = reader.GetString(2);
+
+                                string skupaj = Lime + '|' + Kime + '|' + Pime;
+
+                                var studio = studiji.Single(r => r.Equals(skupaj));
+
+                                if (studio != null)
+                                {
+                                    studiji.Remove(studio);
+
+                                    listBox2.Items.Clear();
+                                    foreach (string item in studiji)
+                                    {
+                                        listBox2.Items.Add(item);
+                                    }
+                                }
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                    {
+                        con.Open();
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM deletanje_krajev('" + id_k + "')", con);
+                        com.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    textBox8.Clear();
+                    textBox9.Clear();
                 }
             }
         }
@@ -1767,6 +1599,56 @@ namespace Radijske_Postaje
                     Btn_Delete_R.Enabled = false;
 
                     IDregije(id_rg);
+                    int i = listBox4.SelectedIndex;
+                    regije.RemoveAt(i);
+                    listBox4.Items.Clear();
+                    foreach (string item in regije)
+                    {
+                        listBox4.Items.Add(item);
+                    }
+                    using(NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                    {
+                        con.Open();
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM deletanje_regij('" + id_rg + "')", con);
+                        NpgsqlDataReader reader = com.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                string naslov = reader.GetString(0);
+                                string frekvenca = reader.GetString(1);
+                                string jezik = reader.GetString(2);
+                                string z_ime = reader.GetString(3);
+                                string r_ime = reader.GetString(4);
+
+                                string skupaj = naslov + '|' + frekvenca + '|' + jezik + '|' + z_ime + '|' + r_ime;
+
+                                var postaja = postaje.Single(r => r.Equals(skupaj));
+
+                                if (postaja != null)
+                                {
+                                    postaje.Remove(postaja);
+
+                                    listBox1.Items.Clear();
+                                    foreach (string item in postaje)
+                                    {
+                                        listBox1.Items.Add(item);
+                                    }
+                                }
+                                
+                            }
+                        }
+                        con.Close();
+                    }
+
+                    using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                    {
+                        con.Open();
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM deletanje_regije('" + id_rg + "')", con);
+                        com.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    textBox10.Clear();
                 }
             }
         }
@@ -1900,12 +1782,46 @@ namespace Radijske_Postaje
                 if(listBox5.SelectedIndex >= 0)
                 {
                     IDzvrsti(id_z);
-                    int i = listBox1.SelectedIndex;
+                    int i = listBox5.SelectedIndex;
                     zvrsti.RemoveAt(i);
-                    listBox1.Items.Clear();
+                    listBox5.Items.Clear();
                     foreach (string item in zvrsti)
                     {
                         listBox5.Items.Add(item);
+                    }
+
+                    using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                    {
+                        con.Open();
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM deletanje_vrste('" + id_z + "')", con);
+                        NpgsqlDataReader reader = com.ExecuteReader();
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                string naslov = reader.GetString(0);
+                                string frekvenca = reader.GetString(1);
+                                string jezik = reader.GetString(2);
+                                string z_ime = reader.GetString(3);
+                                string r_ime = reader.GetString(4);
+
+                                string skupaj = naslov + '|' + frekvenca + '|' + jezik + '|' + z_ime + '|' + r_ime;
+
+                                var postaja = postaje.Single(r => r.Equals(skupaj));
+
+                                if (postaja != null)
+                                {
+                                    postaje.Remove(postaja);
+
+                                    listBox1.Items.Clear();
+                                    foreach (string item in postaje)
+                                    {
+                                        listBox1.Items.Add(item);
+                                    }
+                                }
+                            }
+                        }
+                        con.Close();
                     }
 
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
@@ -1920,11 +1836,9 @@ namespace Radijske_Postaje
                     Btn_Update_Z.Enabled = false;
                     Btn_Delete_Z.Enabled = false;
 
-                    
+                    textBox11.Clear();
                 }
-            }
-                
-            
+            }                          
         }
 
         private void Btn_Prijava_Z_Click(object sender, EventArgs e)
@@ -1993,6 +1907,74 @@ namespace Radijske_Postaje
             a.Show();
 
             Form1.ImeOsebe(u);
+        }
+
+        private void comboBox1_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+                textBox1.Text = "Naslov";
+
+            if (richTextBox1.Text == "")
+            {
+                richTextBox1.Text = "Opis";
+            }
+
+            if (textBox2.Text == "")
+                textBox2.Text = "Frekvenca";
+
+            if (textBox3.Text == "")
+            {
+                textBox3.Text = "Jezik";
+            }
+
+            if (textBox4.Text == "")
+            {
+                textBox4.Text = "Spletna stran";
+            }
+
+            if (textBox5.Text == "")
+            {
+                textBox5.Text = "Youtube";
+            }
+
+            if (textBox6.Text == "")
+            {
+                textBox6.Text = "Twitter";
+            }
+        }
+
+        private void comboBox2_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+                textBox1.Text = "Naslov";
+
+            if (richTextBox1.Text == "")
+            {
+                richTextBox1.Text = "Opis";
+            }
+
+            if (textBox2.Text == "")
+                textBox2.Text = "Frekvenca";
+
+            if (textBox3.Text == "")
+            {
+                textBox3.Text = "Jezik";
+            }
+
+            if (textBox4.Text == "")
+            {
+                textBox4.Text = "Spletna stran";
+            }
+
+            if (textBox5.Text == "")
+            {
+                textBox5.Text = "Youtube";
+            }
+
+            if (textBox6.Text == "")
+            {
+                textBox6.Text = "Twitter";
+            }
         }
 
         private void Btn_Prijava_Click(object sender, EventArgs e)

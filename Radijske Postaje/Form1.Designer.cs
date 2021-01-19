@@ -102,7 +102,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Urejanje
             // 
-            this.Btn_Urejanje.Location = new System.Drawing.Point(583, 416);
+            this.Btn_Urejanje.Location = new System.Drawing.Point(602, 416);
             this.Btn_Urejanje.Name = "Btn_Urejanje";
             this.Btn_Urejanje.Size = new System.Drawing.Size(95, 32);
             this.Btn_Urejanje.TabIndex = 8;

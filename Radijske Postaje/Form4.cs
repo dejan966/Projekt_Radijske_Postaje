@@ -53,10 +53,10 @@ namespace Radijske_Postaje
         {
             try
             {
-                string ime = "";
-                string priimek = "";
+                string ime = "sfg";
+                string priimek = "dsg";
                 int starost = 1;
-                string kraj = "";
+                string kraj = "sgdg";
                 char spol = 'M';
                 string email = textBox1.Text;
                 string pass = textBox2.Text;
