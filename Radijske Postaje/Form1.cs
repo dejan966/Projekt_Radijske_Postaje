@@ -13,17 +13,20 @@ namespace Radijske_Postaje
 {
     public partial class Form1 : Form
     {
+        
         static String mail;
         static String n;
         static String m;
         Form3 a;
         Form4 b;
         Form2 c;
-        
+        Form6 d;
         public Form1()
         {
             InitializeComponent(); 
         }
+
+        
 
         public static void ImeOsebe(String n1)
         {
@@ -115,5 +118,11 @@ namespace Radijske_Postaje
             }   
         }
 
+        private void Btn_Settings_Click(object sender, EventArgs e)
+        {
+            d = new Form6();
+            Hide();
+            d.Show();
+        }
     }
 }

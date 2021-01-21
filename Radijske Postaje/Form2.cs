@@ -802,6 +802,8 @@ namespace Radijske_Postaje
                         con.Close();
                     }
 
+                    
+
                     listBox1.SetSelected(i, false);
                     /* problem pri itemu ko je cist zgori
                        da bodo ble spremembe vidne takoj v listboxu
