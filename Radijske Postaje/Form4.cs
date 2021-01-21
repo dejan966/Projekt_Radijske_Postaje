@@ -23,31 +23,7 @@ namespace Radijske_Postaje
             InitializeComponent();
         }
 
-        /*public byte[] Hash(string data)
-        {
-            byte[] salt1 = new byte[8];
-            using (RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider())
-            {
-                rngCsp.GetBytes(salt1);
-            }
-            int myIterations = 1000;
-            Rfc2898DeriveBytes k1 = new Rfc2898DeriveBytes(data, salt1, myIterations);
-            return salt1;
-        }*/
-
-        /*public string PassHash(string data)
-        {
-            SHA1 sha = SHA1.Create();
-            byte[] hashdata = sha.ComputeHash(Encoding.Default.GetBytes(data));
-            StringBuilder returnValue = new StringBuilder();
-
-            for (int i = 0; i < hashdata.Length; i++)
-            {
-                returnValue.Append(hashdata[i].ToString());
-            }
-
-            return returnValue.ToString();
-        }*/
+        
 
         private void Btn_Login_Click(object sender, EventArgs e)
         {
@@ -57,20 +33,19 @@ namespace Radijske_Postaje
                 string email = textBox1.Text;
                 string pass = textBox2.Text;
 
-                //byte[] HashPass= Hash(pass);
-                //MessageBox.Show(Hgeslo);
-
+                string hash2 = Form3.PassHash(pass);
+                //MessageBox.Show(hash2);
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM login ('" + email + "', '" + pass + "')", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM login ('" + email + "', '" + hash2 + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
 
                     while (reader.Read())
                     {
                         string mail_b = reader.GetString(0);
                         string pass_b = reader.GetString(1);
-                        if (email == mail_b && pass == pass_b)
+                        if (email == mail_b && hash2 == pass_b)
                         {
                             Form1.ImeOsebe(email);
                             a = new Form1();

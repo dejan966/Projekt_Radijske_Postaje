@@ -22,24 +22,9 @@ namespace Radijske_Postaje
             InitializeComponent();
         }
 
-        public byte[] Hash(string data)
-        {
-            byte[] salt1 = new byte[8];
-            using (RNGCryptoServiceProvider rngCsp = new RNGCryptoServiceProvider())
-            {
-                rngCsp.GetBytes(salt1);
-            }
-            int myIterations = 1000;
-            Rfc2898DeriveBytes k1 = new Rfc2898DeriveBytes(data, salt1,myIterations);
-            Aes encAlg = Aes.Create();
-            encAlg.Key = k1.GetBytes(16);
-            MemoryStream encryptionStream = new MemoryStream();
-            CryptoStream encrypt = new CryptoStream(encryptionStream,encAlg.CreateEncryptor(), CryptoStreamMode.Write);
-            byte[] utfD1 = new System.Text.UTF8Encoding(false).GetBytes(data);
-            return utfD1;
-        }
+        
 
-        /*public string PassHash(string data)
+        public static string PassHash(string data)
         {
             SHA1 sha = SHA1.Create();
             byte[] hashdata = sha.ComputeHash(Encoding.Default.GetBytes(data));
@@ -51,7 +36,8 @@ namespace Radijske_Postaje
             }
 
             return returnValue.ToString();
-        }*/
+        }
+
 
         private void Form3_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -79,13 +65,12 @@ namespace Radijske_Postaje
                 if (radioButton1.Checked)
                 {
                     spol = 'M';
-                    //byte[] HashPass = Hash(pass);
-                    //MessageBox.Show(Hgeslo);
+                    string hash = PassHash(pass);
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
 
                         con.Open();
-                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM registracija('" + ime + "','" + priimek + "', '" + spol + "' , '" + starost + "' ,'" + mail + "', '" + pass + "' , '" + kraj + "')", con);
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM registracija('" + ime + "','" + priimek + "', '" + spol + "' , '" + starost + "' ,'" + mail + "', '" + hash + "' , '" + kraj + "')", con);
                         NpgsqlDataReader reader = com.ExecuteReader();
                         if(reader.HasRows)
                         {
@@ -114,11 +99,12 @@ namespace Radijske_Postaje
                 else if (radioButton2.Checked)
                 {
                     spol = 'Ž';
+                    string hash = PassHash(pass);
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                     {
 
                         con.Open();
-                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM reg_prijava ('" + ime + "','" + priimek + "', '" + spol + "' , '" + starost + "' ,'" + mail + "', '" + pass + "' , '" + kraj + "')", con);
+                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM reg_prijava ('" + ime + "','" + priimek + "', '" + spol + "' , '" + starost + "' ,'" + mail + "', '" + hash + "' , '" + kraj + "')", con);
                         NpgsqlDataReader reader = com.ExecuteReader();
                         if (reader.HasRows)
                         {
