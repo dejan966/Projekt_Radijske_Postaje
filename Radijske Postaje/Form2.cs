@@ -1005,8 +1005,7 @@ namespace Radijske_Postaje
                     {
                         listBox2.Items.Add(item);
                     }
-                }
-                
+                }              
             }
             textBox7.Clear();
             richTextBox2.Clear();
@@ -1049,8 +1048,7 @@ namespace Radijske_Postaje
                 textBox7.Clear();
                 richTextBox2.Clear();
                 
-            }
-                
+            }               
         }
 
         private void Btn_Delete_L_Click(object sender, EventArgs e)
@@ -1088,8 +1086,7 @@ namespace Radijske_Postaje
                     richTextBox2.Clear();
                     
                 }
-            }
-                
+            }               
         }
 
         private void Btn_Bck_L_Click(object sender, EventArgs e)
@@ -1167,8 +1164,7 @@ namespace Radijske_Postaje
             if(richTextBox2.Text == "Opis")
             {
                 richTextBox2.Clear();
-            }
-            
+            }          
         }
 
         private void comboBox3_Click(object sender, EventArgs e)
@@ -1306,8 +1302,6 @@ namespace Radijske_Postaje
                 Btn_Update_K.Enabled = false;
                 Btn_Delete_K.Enabled = false;
             }
-
-
         }
 
         private void Btn_Delete_K_Click(object sender, EventArgs e)
@@ -1478,8 +1472,7 @@ namespace Radijske_Postaje
                     }
                     con.Close();
                 }
-            }
-                
+            }               
         }
 
         private void listBox4_SelectedIndexChanged(object sender, EventArgs e)
@@ -1748,7 +1741,6 @@ namespace Radijske_Postaje
                 textBox11.Clear();
             }
         }
-
         private void Btn_Update_Z_Click(object sender, EventArgs e)
         {
             int i = listBox5.SelectedIndex;
@@ -1956,7 +1948,6 @@ namespace Radijske_Postaje
                 textBox6.Text = "Twitter";
             }
         }
-
         private void comboBox2_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == "")
@@ -2000,7 +1991,5 @@ namespace Radijske_Postaje
             Btn_Prijava.Visible = false;
             Btn_Reg.Visible = false;
         }
-
-
     }
 }

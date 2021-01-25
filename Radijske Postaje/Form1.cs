@@ -12,11 +12,15 @@ using Npgsql;
 namespace Radijske_Postaje
 {
     public partial class Form1 : Form
-    {
-        
+    {       
         static String mail;
         static String n;
         static String m;
+        static String o1;
+        static String o2;
+        static String f1;
+        static String f2;
+
         Form3 a;
         Form4 b;
         Form2 c;
@@ -26,7 +30,17 @@ namespace Radijske_Postaje
             InitializeComponent(); 
         }
 
-        
+        public static void Ozadje(string o1)
+        {
+            if(o1 != null)
+                o2 = o1;
+        }
+
+        public static void Pisava(string f1)
+        {
+            if (f1 != null)
+                f2 = f1;
+        }
 
         public static void ImeOsebe(String n1)
         {
@@ -72,6 +86,66 @@ namespace Radijske_Postaje
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Pisava(f2);
+            switch (f2)
+            {
+                case "Regular":
+                    label1.Font = new Font(label1.Font, FontStyle.Regular);
+                    label2.Font = new Font(label2.Font, FontStyle.Regular);
+                    f1 = f2;
+                    Form6.Pisava6(f1);
+                    break;
+
+                case "Bold":
+                    label1.Font = new Font(label1.Font, FontStyle.Bold);
+                    label2.Font = new Font(label2.Font, FontStyle.Bold);
+                    f1 = f2;
+                    Form6.Pisava6(f1);
+                    break;
+
+                case "Italic":
+                    label1.Font = new Font(label1.Font, FontStyle.Italic);
+                    label2.Font = new Font(label2.Font, FontStyle.Italic);
+                    f1 = f2;
+                    Form6.Pisava6(f1);
+                    break;
+
+                case "Underline":
+                    label1.Font = new Font(label1.Font, FontStyle.Underline);
+                    label2.Font = new Font(label2.Font, FontStyle.Underline);
+                    f1 = f2;
+                    Form6.Pisava6(f1);
+                    break;
+            }
+
+            Ozadje(o2);
+            switch (o2)
+            {
+                case "Rdeča":
+                    BackColor = Color.Red;
+                    o1 = o2;
+                    Form6.Ozadje6(o1);
+                    break;
+
+                case "Bela":
+                    BackColor = Control.DefaultBackColor;
+                    o1 = o2;
+                    Form6.Ozadje6(o1);
+                    break;
+
+                case "Oranžna":
+                    BackColor = Color.Orange;
+                    o1 = o2;
+                    Form6.Ozadje6(o1);
+                    break;
+
+                case "Rumena":
+                    BackColor = Color.Yellow;
+                    o1 = o2;
+                    Form6.Ozadje6(o1);
+                    break;
+            }
+
             ImeOsebe(mail);
             if (mail != null && mail != "")
             {
