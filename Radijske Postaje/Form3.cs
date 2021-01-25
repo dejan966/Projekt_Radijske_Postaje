@@ -151,9 +151,96 @@ namespace Radijske_Postaje
         private void Form3_Load(object sender, EventArgs e)
         {
             Pisava3(f3);
+            switch (f3)
+            {
+                case "Regular":
+                    label1.Font = new Font(label1.Font, FontStyle.Regular);
+                    label2.Font = new Font(label2.Font, FontStyle.Regular);
+                    label3.Font = new Font(label3.Font, FontStyle.Regular);
+                    label4.Font = new Font(label4.Font, FontStyle.Regular);
+                    label5.Font = new Font(label5.Font, FontStyle.Regular);
+                    label6.Font = new Font(label6.Font, FontStyle.Regular);
+                    label7.Font = new Font(label7.Font, FontStyle.Regular);
+                    label8.Font = new Font(label8.Font, FontStyle.Regular);
+                    Form6.Pisava6(f3);
+                    Form2.Pisava2(f3);
+                    Form1.Pisava(f3);
+                    break;
 
+                case "Italic":
+                    label1.Font = new Font(label1.Font, FontStyle.Italic);
+                    label2.Font = new Font(label2.Font, FontStyle.Italic);
+                    label3.Font = new Font(label3.Font, FontStyle.Italic);
+                    label4.Font = new Font(label4.Font, FontStyle.Italic);
+                    label5.Font = new Font(label5.Font, FontStyle.Italic);
+                    label6.Font = new Font(label6.Font, FontStyle.Italic);
+                    label7.Font = new Font(label7.Font, FontStyle.Italic);
+                    label8.Font = new Font(label8.Font, FontStyle.Italic);
+                    Form6.Pisava6(f3);
+                    Form2.Pisava2(f3);
+                    Form1.Pisava(f3);
+                    break;
+
+                case "Bold":
+                    label1.Font = new Font(label1.Font, FontStyle.Bold);
+                    label2.Font = new Font(label2.Font, FontStyle.Bold);
+                    label3.Font = new Font(label3.Font, FontStyle.Bold);
+                    label4.Font = new Font(label4.Font, FontStyle.Bold);
+                    label5.Font = new Font(label5.Font, FontStyle.Bold);
+                    label6.Font = new Font(label6.Font, FontStyle.Bold);
+                    label7.Font = new Font(label7.Font, FontStyle.Bold);
+                    label8.Font = new Font(label8.Font, FontStyle.Bold);
+                    Form6.Pisava6(f3);
+                    Form2.Pisava2(f3);
+                    Form1.Pisava(f3);
+                    break;
+
+                case "Underline":
+                    label1.Font = new Font(label1.Font, FontStyle.Underline);
+                    label2.Font = new Font(label2.Font, FontStyle.Underline);
+                    label3.Font = new Font(label3.Font, FontStyle.Underline);
+                    label4.Font = new Font(label4.Font, FontStyle.Underline);
+                    label5.Font = new Font(label5.Font, FontStyle.Underline);
+                    label6.Font = new Font(label6.Font, FontStyle.Underline);
+                    label7.Font = new Font(label7.Font, FontStyle.Underline);
+                    label8.Font = new Font(label8.Font, FontStyle.Underline);
+                    Form6.Pisava6(f3);
+                    Form2.Pisava2(f3);
+                    Form1.Pisava(f3);
+                    break;
+            }
 
             Ozadje3(o3);
+            switch (o3)
+            {
+                case "Rdeča":
+                    BackColor = Color.Red;
+                    Form6.Ozadje6(o3);
+                    Form2.Ozadje2(o3);
+                    Form1.Ozadje(o3);
+                    break;
+
+                case "Bela":
+                    BackColor = Control.DefaultBackColor;
+                    Form6.Ozadje6(o3);
+                    Form2.Ozadje2(o3);
+                    Form1.Ozadje(o3);
+                    break;
+
+                case "Oranžna":
+                    BackColor = Color.Orange;
+                    Form6.Ozadje6(o3);
+                    Form2.Ozadje2(o3);
+                    Form1.Ozadje(o3);
+                    break;
+
+                case "Rumena":
+                    BackColor = Color.Yellow;
+                    Form6.Ozadje6(o3);
+                    Form2.Ozadje2(o3);
+                    Form1.Ozadje(o3);
+                    break;
+            }
 
             comboBox1.Text = "Adlešiči";
             using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
