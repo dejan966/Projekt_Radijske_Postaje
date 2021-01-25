@@ -16,9 +16,7 @@ namespace Radijske_Postaje
         static String mail;
         static String n;
         static String m;
-        static String o1;
         static String o2;
-        static String f1;
         static String f2;
 
         Form3 a;
@@ -92,29 +90,33 @@ namespace Radijske_Postaje
                 case "Regular":
                     label1.Font = new Font(label1.Font, FontStyle.Regular);
                     label2.Font = new Font(label2.Font, FontStyle.Regular);
-                    f1 = f2;
-                    Form6.Pisava6(f1);
+                    Form6.Pisava6(f2);
+                    Form2.Pisava2(f2);
+                    Form3.Pisava3(f2);
                     break;
 
                 case "Bold":
                     label1.Font = new Font(label1.Font, FontStyle.Bold);
                     label2.Font = new Font(label2.Font, FontStyle.Bold);
-                    f1 = f2;
-                    Form6.Pisava6(f1);
+                    Form6.Pisava6(f2);
+                    Form2.Pisava2(f2);
+                    Form3.Pisava3(f2);
                     break;
 
                 case "Italic":
                     label1.Font = new Font(label1.Font, FontStyle.Italic);
                     label2.Font = new Font(label2.Font, FontStyle.Italic);
-                    f1 = f2;
-                    Form6.Pisava6(f1);
+                    Form6.Pisava6(f2);
+                    Form2.Pisava2(f2);
+                    Form3.Pisava3(f2);
                     break;
 
                 case "Underline":
                     label1.Font = new Font(label1.Font, FontStyle.Underline);
                     label2.Font = new Font(label2.Font, FontStyle.Underline);
-                    f1 = f2;
-                    Form6.Pisava6(f1);
+                    Form6.Pisava6(f2);
+                    Form2.Pisava2(f2);
+                    Form3.Pisava3(f2);
                     break;
             }
 
@@ -123,26 +125,30 @@ namespace Radijske_Postaje
             {
                 case "Rdeča":
                     BackColor = Color.Red;
-                    o1 = o2;
-                    Form6.Ozadje6(o1);
+                    Form6.Ozadje6(o2);
+                    Form2.Ozadje2(o2);
+                    Form3.Ozadje3(o2);
                     break;
 
                 case "Bela":
                     BackColor = Control.DefaultBackColor;
-                    o1 = o2;
-                    Form6.Ozadje6(o1);
+                    Form6.Ozadje6(o2);
+                    Form2.Ozadje2(o2);
+                    Form3.Ozadje3(o2);
                     break;
 
                 case "Oranžna":
                     BackColor = Color.Orange;
-                    o1 = o2;
-                    Form6.Ozadje6(o1);
+                    Form6.Ozadje6(o2);
+                    Form2.Ozadje2(o2);
+                    Form3.Ozadje3(o2);
                     break;
 
                 case "Rumena":
                     BackColor = Color.Yellow;
-                    o1 = o2;
-                    Form6.Ozadje6(o1);
+                    Form6.Ozadje6(o2);
+                    Form2.Ozadje2(o2);
+                    Form3.Ozadje3(o2);
                     break;
             }
 

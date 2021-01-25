@@ -17,12 +17,25 @@ namespace Radijske_Postaje
     {
         Form1 a;
         Form4 b;
+
+        static String o3;
+        static String f3;
         public Form3()
         {
             InitializeComponent();
         }
 
-        
+        public static void Ozadje3(string o)
+        {
+            if (o != null)
+                o3 = o;
+        }
+
+        public static void Pisava3(string f)
+        {
+            if (f != null)
+                f3 = f;
+        }
 
         public static string PassHash(string data)
         {
@@ -137,6 +150,11 @@ namespace Radijske_Postaje
 
         private void Form3_Load(object sender, EventArgs e)
         {
+            Pisava3(f3);
+
+
+            Ozadje3(o3);
+
             comboBox1.Text = "Adlešiči";
             using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
             {

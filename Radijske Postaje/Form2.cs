@@ -19,6 +19,8 @@ namespace Radijske_Postaje
 
         static String Ime, Priimek;
         static String u;
+        static String o2;
+        static String f2;
 
         string l_opis;
         string r_opis;
@@ -40,6 +42,18 @@ namespace Radijske_Postaje
         public Form2()
         {
             InitializeComponent();      
+        }
+
+        public static void Ozadje2(string o)
+        {
+            if (o != null)
+                o2 = o;
+        }
+
+        public static void Pisava2(string f)
+        {
+            if (f != null)
+                f2 = f;
         }
 
         public void Opis_L(string l)
@@ -430,6 +444,127 @@ namespace Radijske_Postaje
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            Pisava2(f2);
+            switch (f2)
+            {
+                case "Regular":
+                    label1.Font = new Font(label1.Font, FontStyle.Regular);
+                    Lbl_User.Font = new Font(Lbl_User.Font, FontStyle.Regular);
+                    label7.Font = new Font(label7.Font, FontStyle.Regular);
+                    Lbl_User_K.Font = new Font(Lbl_User_K.Font, FontStyle.Regular);
+                    label11.Font = new Font(label11.Font, FontStyle.Regular);
+                    Lbl_User_L.Font = new Font(Lbl_User_L.Font, FontStyle.Regular);
+                    label15.Font = new Font(label15.Font, FontStyle.Regular);
+                    Lbl_User_R.Font = new Font(Lbl_User_R.Font, FontStyle.Regular);
+                    label18.Font = new Font(label18.Font, FontStyle.Regular);
+                    Lbl_User_Z.Font = new Font(Lbl_User_Z.Font, FontStyle.Regular);
+                    Form1.Pisava(f2);
+                    Form6.Pisava6(f2);
+                    Form3.Pisava3(f2);
+                    break;
+
+                case "Italic":
+                    label1.Font = new Font(label1.Font, FontStyle.Italic);
+                    Lbl_User.Font = new Font(Lbl_User.Font, FontStyle.Italic);
+                    label7.Font = new Font(label7.Font, FontStyle.Italic);
+                    Lbl_User_K.Font = new Font(Lbl_User_K.Font, FontStyle.Italic);
+                    label11.Font = new Font(label11.Font, FontStyle.Italic);
+                    Lbl_User_L.Font = new Font(Lbl_User_L.Font, FontStyle.Italic);
+                    label15.Font = new Font(label15.Font, FontStyle.Italic);
+                    Lbl_User_R.Font = new Font(Lbl_User_R.Font, FontStyle.Italic);
+                    label18.Font = new Font(label18.Font, FontStyle.Italic);
+                    Lbl_User_Z.Font = new Font(Lbl_User_Z.Font, FontStyle.Italic);
+                    Form1.Pisava(f2);
+                    Form6.Pisava6(f2);
+                    Form3.Pisava3(f2);
+                    break;
+
+                case "Bold":
+                    label1.Font = new Font(label1.Font, FontStyle.Bold);
+                    Lbl_User.Font = new Font(Lbl_User.Font, FontStyle.Bold);
+                    label7.Font = new Font(label7.Font, FontStyle.Bold);
+                    Lbl_User_K.Font = new Font(Lbl_User_K.Font, FontStyle.Bold);
+                    label11.Font = new Font(label11.Font, FontStyle.Bold);
+                    Lbl_User_L.Font = new Font(Lbl_User_L.Font, FontStyle.Bold);
+                    label15.Font = new Font(label15.Font, FontStyle.Bold);
+                    Lbl_User_R.Font = new Font(Lbl_User_R.Font, FontStyle.Bold);
+                    label18.Font = new Font(label18.Font, FontStyle.Bold);
+                    Lbl_User_Z.Font = new Font(Lbl_User_Z.Font, FontStyle.Bold);
+                    Form1.Pisava(f2);
+                    Form6.Pisava6(f2);
+                    Form3.Pisava3(f2);
+                    break;
+
+                case "Underline":
+                    label1.Font = new Font(label1.Font, FontStyle.Underline);
+                    Lbl_User.Font = new Font(Lbl_User.Font, FontStyle.Underline);
+                    label7.Font = new Font(label7.Font, FontStyle.Underline);
+                    Lbl_User_K.Font = new Font(Lbl_User_K.Font, FontStyle.Underline);
+                    label11.Font = new Font(label11.Font, FontStyle.Underline);
+                    Lbl_User_L.Font = new Font(Lbl_User_L.Font, FontStyle.Underline);
+                    label15.Font = new Font(label15.Font, FontStyle.Underline);
+                    Lbl_User_R.Font = new Font(Lbl_User_R.Font, FontStyle.Underline);
+                    label18.Font = new Font(label18.Font, FontStyle.Underline);
+                    Lbl_User_Z.Font = new Font(Lbl_User_Z.Font, FontStyle.Underline);
+                    Form1.Pisava(f2);
+                    Form6.Pisava6(f2);
+                    Form3.Pisava3(f2);
+                    break;
+            }
+
+            Ozadje2(o2);
+            switch (o2)
+            {
+                case "Rdeča":
+                    BackColor = Color.Red;
+                    tabPage1.BackColor = Color.Red;
+                    tabPage2.BackColor = Color.Red;
+                    tabPage3.BackColor = Color.Red;
+                    tabPage4.BackColor = Color.Red;
+                    tabPage5.BackColor = Color.Red;
+
+                    Form1.Ozadje(o2);
+                    Form6.Ozadje6(o2);
+                    Form3.Ozadje3(o2);
+                    break;
+
+                case "Bela":
+                    BackColor = Control.DefaultBackColor;
+                    tabPage1.BackColor = Control.DefaultBackColor;
+                    tabPage2.BackColor = Control.DefaultBackColor;
+                    tabPage3.BackColor = Control.DefaultBackColor;
+                    tabPage4.BackColor = Control.DefaultBackColor;
+                    tabPage5.BackColor = Control.DefaultBackColor;
+                    Form1.Ozadje(o2);
+                    Form6.Ozadje6(o2);
+                    Form3.Ozadje3(o2);
+                    break;
+
+                case "Oranžna":
+                    BackColor = Color.Orange;
+                    tabPage1.BackColor = Color.Orange;
+                    tabPage2.BackColor = Color.Orange;
+                    tabPage3.BackColor = Color.Orange;
+                    tabPage4.BackColor = Color.Orange;
+                    tabPage5.BackColor = Color.Orange;
+                    Form1.Ozadje(o2);
+                    Form6.Ozadje6(o2);
+                    Form3.Ozadje3(o2);
+                    break;
+
+                case "Rumena":
+                    BackColor = Color.Yellow;
+                    tabPage1.BackColor = Color.Yellow;
+                    tabPage2.BackColor = Color.Yellow;
+                    tabPage3.BackColor = Color.Yellow;
+                    tabPage4.BackColor = Color.Yellow;
+                    tabPage5.BackColor = Color.Yellow;
+                    Form1.Ozadje(o2);
+                    Form6.Ozadje6(o2);
+                    Form3.Ozadje3(o2);
+                    break;
+            }
+
             Btn_Odjava.Visible = false;
             Btn_Odjava_L.Visible = false;
             Btn_Odjava_K.Visible = false;
