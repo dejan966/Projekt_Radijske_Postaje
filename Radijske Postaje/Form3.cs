@@ -162,9 +162,20 @@ namespace Radijske_Postaje
                     label6.Font = new Font(label6.Font, FontStyle.Regular);
                     label7.Font = new Font(label7.Font, FontStyle.Regular);
                     label8.Font = new Font(label8.Font, FontStyle.Regular);
+
+                    textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);
+                    textBox2.Font = new Font(textBox2.Font, FontStyle.Regular);
+                    textBox3.Font = new Font(textBox3.Font, FontStyle.Regular);
+                    textBox4.Font = new Font(textBox4.Font, FontStyle.Regular);
+                    textBox5.Font = new Font(textBox5.Font, FontStyle.Regular);
+                    comboBox1.Font = new Font(comboBox1.Font, FontStyle.Regular);
+                    radioButton1.Font = new Font(radioButton1.Font, FontStyle.Regular);
+                    radioButton2.Font = new Font(radioButton2.Font, FontStyle.Regular);
+
                     Form6.Pisava6(f3);
                     Form2.Pisava2(f3);
                     Form1.Pisava(f3);
+                    Form4.Pisava4(f3);
                     break;
 
                 case "Italic":
@@ -176,9 +187,20 @@ namespace Radijske_Postaje
                     label6.Font = new Font(label6.Font, FontStyle.Italic);
                     label7.Font = new Font(label7.Font, FontStyle.Italic);
                     label8.Font = new Font(label8.Font, FontStyle.Italic);
+
+                    textBox1.Font = new Font(textBox1.Font, FontStyle.Italic);
+                    textBox2.Font = new Font(textBox2.Font, FontStyle.Italic);
+                    textBox3.Font = new Font(textBox3.Font, FontStyle.Italic);
+                    textBox4.Font = new Font(textBox4.Font, FontStyle.Italic);
+                    textBox5.Font = new Font(textBox5.Font, FontStyle.Italic);
+                    comboBox1.Font = new Font(comboBox1.Font, FontStyle.Italic);
+                    radioButton1.Font = new Font(radioButton1.Font, FontStyle.Italic);
+                    radioButton2.Font = new Font(radioButton2.Font, FontStyle.Italic);
+
                     Form6.Pisava6(f3);
                     Form2.Pisava2(f3);
                     Form1.Pisava(f3);
+                    Form4.Pisava4(f3);
                     break;
 
                 case "Bold":
@@ -190,9 +212,20 @@ namespace Radijske_Postaje
                     label6.Font = new Font(label6.Font, FontStyle.Bold);
                     label7.Font = new Font(label7.Font, FontStyle.Bold);
                     label8.Font = new Font(label8.Font, FontStyle.Bold);
+
+                    textBox1.Font = new Font(textBox1.Font, FontStyle.Bold);
+                    textBox2.Font = new Font(textBox2.Font, FontStyle.Bold);
+                    textBox3.Font = new Font(textBox3.Font, FontStyle.Bold);
+                    textBox4.Font = new Font(textBox4.Font, FontStyle.Bold);
+                    textBox5.Font = new Font(textBox5.Font, FontStyle.Bold);
+                    comboBox1.Font = new Font(comboBox1.Font, FontStyle.Bold);
+                    radioButton1.Font = new Font(radioButton1.Font, FontStyle.Bold);
+                    radioButton2.Font = new Font(radioButton2.Font, FontStyle.Bold);
+
                     Form6.Pisava6(f3);
                     Form2.Pisava2(f3);
                     Form1.Pisava(f3);
+                    Form4.Pisava4(f3);
                     break;
 
                 case "Underline":
@@ -204,9 +237,20 @@ namespace Radijske_Postaje
                     label6.Font = new Font(label6.Font, FontStyle.Underline);
                     label7.Font = new Font(label7.Font, FontStyle.Underline);
                     label8.Font = new Font(label8.Font, FontStyle.Underline);
+
+                    textBox1.Font = new Font(textBox1.Font, FontStyle.Underline);
+                    textBox2.Font = new Font(textBox2.Font, FontStyle.Underline);
+                    textBox3.Font = new Font(textBox3.Font, FontStyle.Underline);
+                    textBox4.Font = new Font(textBox4.Font, FontStyle.Underline);
+                    textBox5.Font = new Font(textBox5.Font, FontStyle.Underline);
+                    comboBox1.Font = new Font(comboBox1.Font, FontStyle.Underline);
+                    radioButton1.Font = new Font(radioButton1.Font, FontStyle.Underline);
+                    radioButton2.Font = new Font(radioButton2.Font, FontStyle.Underline);
+
                     Form6.Pisava6(f3);
                     Form2.Pisava2(f3);
                     Form1.Pisava(f3);
+                    Form4.Pisava4(f3);
                     break;
             }
 
@@ -218,6 +262,7 @@ namespace Radijske_Postaje
                     Form6.Ozadje6(o3);
                     Form2.Ozadje2(o3);
                     Form1.Ozadje(o3);
+                    Form4.Ozadje4(o3);
                     break;
 
                 case "Bela":
@@ -225,6 +270,7 @@ namespace Radijske_Postaje
                     Form6.Ozadje6(o3);
                     Form2.Ozadje2(o3);
                     Form1.Ozadje(o3);
+                    Form4.Ozadje4(o3);
                     break;
 
                 case "Oranžna":
@@ -232,6 +278,7 @@ namespace Radijske_Postaje
                     Form6.Ozadje6(o3);
                     Form2.Ozadje2(o3);
                     Form1.Ozadje(o3);
+                    Form4.Ozadje4(o3);
                     break;
 
                 case "Rumena":
@@ -239,6 +286,7 @@ namespace Radijske_Postaje
                     Form6.Ozadje6(o3);
                     Form2.Ozadje2(o3);
                     Form1.Ozadje(o3);
+                    Form4.Ozadje4(o3);
                     break;
             }
 

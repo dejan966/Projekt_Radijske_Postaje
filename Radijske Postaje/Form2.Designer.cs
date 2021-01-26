@@ -447,6 +447,7 @@ namespace Radijske_Postaje
             this.comboBox4.Size = new System.Drawing.Size(176, 24);
             this.comboBox4.TabIndex = 4;
             this.comboBox4.Click += new System.EventHandler(this.comboBox4_Click);
+            this.comboBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox4_KeyDown);
             // 
             // comboBox3
             // 
@@ -456,6 +457,7 @@ namespace Radijske_Postaje
             this.comboBox3.Size = new System.Drawing.Size(176, 24);
             this.comboBox3.TabIndex = 3;
             this.comboBox3.Click += new System.EventHandler(this.comboBox3_Click);
+            this.comboBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox3_KeyDown);
             // 
             // label7
             // 

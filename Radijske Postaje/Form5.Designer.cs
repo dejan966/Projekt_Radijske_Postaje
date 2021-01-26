@@ -87,6 +87,7 @@ namespace Radijske_Postaje
             this.Name = "Form5";
             this.Text = "Resetiranje Gesla";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form5_FormClosed);
+            this.Load += new System.EventHandler(this.Form5_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

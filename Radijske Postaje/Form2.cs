@@ -458,9 +458,31 @@ namespace Radijske_Postaje
                     Lbl_User_R.Font = new Font(Lbl_User_R.Font, FontStyle.Regular);
                     label18.Font = new Font(label18.Font, FontStyle.Regular);
                     Lbl_User_Z.Font = new Font(Lbl_User_Z.Font, FontStyle.Regular);
+
+                    richTextBox1.Font = new Font(richTextBox1.Font, FontStyle.Regular);
+                    //listBox1.Font = new Font(listBox1.Font, FontStyle.Regular);
+                    textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);
+                    textBox2.Font = new Font(textBox2.Font, FontStyle.Regular);
+                    textBox3.Font = new Font(textBox3.Font, FontStyle.Regular);
+                    textBox4.Font = new Font(textBox4.Font, FontStyle.Regular);
+                    textBox5.Font = new Font(textBox5.Font, FontStyle.Regular);
+                    textBox6.Font = new Font(textBox6.Font, FontStyle.Regular);
+                    textBox7.Font = new Font(textBox7.Font, FontStyle.Regular);
+                    textBox8.Font = new Font(textBox8.Font, FontStyle.Regular);
+                    textBox9.Font = new Font(textBox9.Font, FontStyle.Regular);
+                    textBox10.Font = new Font(textBox10.Font, FontStyle.Regular);
+                    textBox11.Font = new Font(textBox11.Font, FontStyle.Regular);
+
+                    comboBox1.Font = new Font(comboBox1.Font, FontStyle.Regular);
+                    comboBox2.Font = new Font(comboBox2.Font, FontStyle.Regular);
+                    comboBox3.Font = new Font(comboBox3.Font, FontStyle.Regular);
+                    comboBox4.Font = new Font(comboBox4.Font, FontStyle.Regular);
+
                     Form1.Pisava(f2);
                     Form6.Pisava6(f2);
                     Form3.Pisava3(f2);
+                    Form4.Pisava4(f2);
+                    Form5.Pisava5(f2);
                     break;
 
                 case "Italic":
@@ -474,9 +496,30 @@ namespace Radijske_Postaje
                     Lbl_User_R.Font = new Font(Lbl_User_R.Font, FontStyle.Italic);
                     label18.Font = new Font(label18.Font, FontStyle.Italic);
                     Lbl_User_Z.Font = new Font(Lbl_User_Z.Font, FontStyle.Italic);
+
+                    richTextBox1.Font = new Font(richTextBox1.Font, FontStyle.Italic);
+                    textBox1.Font = new Font(textBox1.Font, FontStyle.Italic);
+                    textBox2.Font = new Font(textBox2.Font, FontStyle.Italic);
+                    textBox3.Font = new Font(textBox3.Font, FontStyle.Italic);
+                    textBox4.Font = new Font(textBox4.Font, FontStyle.Italic);
+                    textBox5.Font = new Font(textBox5.Font, FontStyle.Italic);
+                    textBox6.Font = new Font(textBox6.Font, FontStyle.Italic);
+                    textBox7.Font = new Font(textBox7.Font, FontStyle.Italic);
+                    textBox8.Font = new Font(textBox8.Font, FontStyle.Italic);
+                    textBox9.Font = new Font(textBox9.Font, FontStyle.Italic);
+                    textBox10.Font = new Font(textBox10.Font, FontStyle.Italic);
+                    textBox11.Font = new Font(textBox11.Font, FontStyle.Italic);
+
+                    comboBox1.Font = new Font(comboBox1.Font, FontStyle.Italic);
+                    comboBox2.Font = new Font(comboBox2.Font, FontStyle.Italic);
+                    comboBox3.Font = new Font(comboBox3.Font, FontStyle.Italic);
+                    comboBox4.Font = new Font(comboBox4.Font, FontStyle.Italic);
+
                     Form1.Pisava(f2);
                     Form6.Pisava6(f2);
                     Form3.Pisava3(f2);
+                    Form4.Pisava4(f2);
+                    Form5.Pisava5(f2);
                     break;
 
                 case "Bold":
@@ -490,9 +533,30 @@ namespace Radijske_Postaje
                     Lbl_User_R.Font = new Font(Lbl_User_R.Font, FontStyle.Bold);
                     label18.Font = new Font(label18.Font, FontStyle.Bold);
                     Lbl_User_Z.Font = new Font(Lbl_User_Z.Font, FontStyle.Bold);
+
+                    richTextBox1.Font = new Font(richTextBox1.Font, FontStyle.Bold);
+                    textBox1.Font = new Font(textBox1.Font, FontStyle.Bold);
+                    textBox2.Font = new Font(textBox2.Font, FontStyle.Bold);
+                    textBox3.Font = new Font(textBox3.Font, FontStyle.Bold);
+                    textBox4.Font = new Font(textBox4.Font, FontStyle.Bold);
+                    textBox5.Font = new Font(textBox5.Font, FontStyle.Bold);
+                    textBox6.Font = new Font(textBox6.Font, FontStyle.Bold);
+                    textBox7.Font = new Font(textBox7.Font, FontStyle.Bold);
+                    textBox8.Font = new Font(textBox8.Font, FontStyle.Bold);
+                    textBox9.Font = new Font(textBox9.Font, FontStyle.Bold);
+                    textBox10.Font = new Font(textBox10.Font, FontStyle.Bold);
+                    textBox11.Font = new Font(textBox11.Font, FontStyle.Bold);
+
+                    comboBox1.Font = new Font(comboBox1.Font, FontStyle.Bold);
+                    comboBox2.Font = new Font(comboBox2.Font, FontStyle.Bold);
+                    comboBox3.Font = new Font(comboBox3.Font, FontStyle.Bold);
+                    comboBox4.Font = new Font(comboBox4.Font, FontStyle.Bold);
+
                     Form1.Pisava(f2);
                     Form6.Pisava6(f2);
                     Form3.Pisava3(f2);
+                    Form4.Pisava4(f2);
+                    Form5.Pisava5(f2);
                     break;
 
                 case "Underline":
@@ -506,9 +570,31 @@ namespace Radijske_Postaje
                     Lbl_User_R.Font = new Font(Lbl_User_R.Font, FontStyle.Underline);
                     label18.Font = new Font(label18.Font, FontStyle.Underline);
                     Lbl_User_Z.Font = new Font(Lbl_User_Z.Font, FontStyle.Underline);
+
+                    richTextBox1.Font = new Font(richTextBox1.Font, FontStyle.Underline);
+                    textBox1.Font = new Font(textBox1.Font, FontStyle.Underline);
+                    textBox2.Font = new Font(textBox2.Font, FontStyle.Underline);
+                    textBox3.Font = new Font(textBox3.Font, FontStyle.Underline);
+                    textBox4.Font = new Font(textBox4.Font, FontStyle.Underline);
+                    textBox5.Font = new Font(textBox5.Font, FontStyle.Underline);
+                    textBox6.Font = new Font(textBox6.Font, FontStyle.Underline);
+                    textBox7.Font = new Font(textBox7.Font, FontStyle.Underline);
+                    textBox8.Font = new Font(textBox8.Font, FontStyle.Underline);
+                    textBox9.Font = new Font(textBox9.Font, FontStyle.Underline);
+                    textBox10.Font = new Font(textBox10.Font, FontStyle.Underline);
+                    textBox11.Font = new Font(textBox11.Font, FontStyle.Underline);
+
+                    comboBox1.Font = new Font(comboBox1.Font, FontStyle.Underline);
+                    comboBox2.Font = new Font(comboBox2.Font, FontStyle.Underline);
+                    comboBox3.Font = new Font(comboBox3.Font, FontStyle.Underline);
+                    comboBox4.Font = new Font(comboBox4.Font, FontStyle.Underline);
+
                     Form1.Pisava(f2);
                     Form6.Pisava6(f2);
                     Form3.Pisava3(f2);
+                    Form4.Pisava4(f2);
+                    Form5.Pisava5(f2);
+
                     break;
             }
 
@@ -516,7 +602,7 @@ namespace Radijske_Postaje
             switch (o2)
             {
                 case "Rdeča":
-                    BackColor = Color.Red;
+                    //BackColor = Color.Red;
                     tabPage1.BackColor = Color.Red;
                     tabPage2.BackColor = Color.Red;
                     tabPage3.BackColor = Color.Red;
@@ -526,10 +612,12 @@ namespace Radijske_Postaje
                     Form1.Ozadje(o2);
                     Form6.Ozadje6(o2);
                     Form3.Ozadje3(o2);
+                    Form4.Ozadje4(o2);
+                    Form5.Ozadje5(o2);
                     break;
 
                 case "Bela":
-                    BackColor = Control.DefaultBackColor;
+                    //BackColor = Control.DefaultBackColor;
                     tabPage1.BackColor = Control.DefaultBackColor;
                     tabPage2.BackColor = Control.DefaultBackColor;
                     tabPage3.BackColor = Control.DefaultBackColor;
@@ -538,10 +626,12 @@ namespace Radijske_Postaje
                     Form1.Ozadje(o2);
                     Form6.Ozadje6(o2);
                     Form3.Ozadje3(o2);
+                    Form4.Ozadje4(o2);
+                    Form5.Ozadje5(o2);
                     break;
 
                 case "Oranžna":
-                    BackColor = Color.Orange;
+                    //BackColor = Color.Orange;
                     tabPage1.BackColor = Color.Orange;
                     tabPage2.BackColor = Color.Orange;
                     tabPage3.BackColor = Color.Orange;
@@ -550,10 +640,12 @@ namespace Radijske_Postaje
                     Form1.Ozadje(o2);
                     Form6.Ozadje6(o2);
                     Form3.Ozadje3(o2);
+                    Form4.Ozadje4(o2);
+                    Form5.Ozadje5(o2);
                     break;
 
                 case "Rumena":
-                    BackColor = Color.Yellow;
+                    //BackColor = Color.Yellow;
                     tabPage1.BackColor = Color.Yellow;
                     tabPage2.BackColor = Color.Yellow;
                     tabPage3.BackColor = Color.Yellow;
@@ -562,6 +654,8 @@ namespace Radijske_Postaje
                     Form1.Ozadje(o2);
                     Form6.Ozadje6(o2);
                     Form3.Ozadje3(o2);
+                    Form4.Ozadje4(o2);
+                    Form5.Ozadje5(o2);
                     break;
             }
 
@@ -583,12 +677,10 @@ namespace Radijske_Postaje
             Btn_Reg_R.Visible = false;
             Btn_Reg_Z.Visible = false;
 
-            //label1.Font.Bold.ToString();
             comboBox1.Text = "rock";
             comboBox2.Text = "Gorenjska";
             comboBox3.Text = "Adlešiči";
-            //comboBox4.Text = "";
-
+            
             User(Ime, Priimek);
             if (Ime == null && Priimek == null || Ime == "" && Priimek == "")
             {
@@ -2115,6 +2207,16 @@ namespace Radijske_Postaje
             {
                 textBox6.Text = "Twitter";
             }
+        }
+
+        private void comboBox3_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.SuppressKeyPress = true;
+        }
+
+        private void comboBox4_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.SuppressKeyPress = true;
         }
 
         private void Btn_Prijava_Click(object sender, EventArgs e)
