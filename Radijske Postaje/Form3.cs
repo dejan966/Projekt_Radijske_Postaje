@@ -304,5 +304,11 @@ namespace Radijske_Postaje
                 con.Close();
             }
         }
+
+        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // comboBox1 readonly
+            e.SuppressKeyPress = true;
+        }
     }
 }
