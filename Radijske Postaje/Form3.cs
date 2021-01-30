@@ -298,7 +298,7 @@ namespace Radijske_Postaje
                 NpgsqlDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
-                    string ime = reader.GetString(1);
+                    string ime = reader.GetString(0);
                     comboBox1.Items.Add(ime);
                 }
                 con.Close();

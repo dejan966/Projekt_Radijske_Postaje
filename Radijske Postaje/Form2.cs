@@ -470,7 +470,7 @@ namespace Radijske_Postaje
                 }
             }
             
-            Pisava2(f2);
+            //Pisava2(f2);
             switch (f2)
             {
                 case "Regular":
@@ -624,7 +624,7 @@ namespace Radijske_Postaje
                     break;
             }
 
-            Ozadje2(o2);
+            //Ozadje2(o2);
             switch (o2)
             {
                 case "Rdeča":
@@ -794,12 +794,12 @@ namespace Radijske_Postaje
                 NpgsqlDataReader reader = com.ExecuteReader();
                 while (reader.Read())
                 {
-                    int posta = reader.GetInt32(0);
-                    string ime = reader.GetString(1);
-                    comboBox3.Items.Add(ime);
+                    string kraj = reader.GetString(0);
+                    int posta = reader.GetInt32(1);
                     
-                    //mal še poglej
-                    kraji.Add(posta + '|' + ime);
+                    comboBox3.Items.Add(kraj);
+                    
+                    kraji.Add(kraj + '|' + posta);
                     listBox3.Items.Clear();
                     foreach (string item in kraji)
                     {
@@ -1064,18 +1064,16 @@ namespace Radijske_Postaje
                         com2.ExecuteNonQuery();
                         con.Close();
                     }
-
-                    listBox1.SetSelected(i, false);
-                    /* problem pri itemu ko je cist zgori
-                       da bodo ble spremembe vidne takoj v listboxu
-                    int i = listBox1.SelectedIndex;
+                   
                     postaje.RemoveAt(i);
                     listBox1.Items.Clear();
                     postaje.Add(textBox1.Text + '|' + textBox2.Text + '|' + textBox3.Text + '|' + comboBox1.Text + '|' + comboBox2.Text);
                     foreach (string item in postaje)
                     {
                         listBox1.Items.Add(item);
-                    }*/
+                    }
+
+                    listBox1.SetSelected(i, false);
 
                     richTextBox1.Clear();
                     textBox1.Clear();
@@ -1084,8 +1082,6 @@ namespace Radijske_Postaje
                     textBox4.Clear();
                     textBox5.Clear();
                     textBox6.Clear();
-                    
-
                 }
                 else
                     MessageBox.Show("Morate nekaj spremeniti");
@@ -1104,7 +1100,6 @@ namespace Radijske_Postaje
                 if (listBox1.SelectedIndex >= 0)
                 {
                     int i = listBox1.SelectedIndex;
-                    //listBox1.SetSelected(i, false);
                     postaje.RemoveAt(i);
                     listBox1.Items.Clear();
                     foreach (string item in postaje)
@@ -1112,7 +1107,6 @@ namespace Radijske_Postaje
                         listBox1.Items.Add(item);
                     }
 
-                    
                     Btn_Insert.Enabled = true;
                     textBox1.ReadOnly = false;
                     textBox2.ReadOnly = false;
@@ -1129,7 +1123,7 @@ namespace Radijske_Postaje
                         if (reader.HasRows)
                         {                          
                             while (reader.Read())
-                            {
+                            {                              
                                 string Lime = reader.GetString(0);
                                 string Kime = reader.GetString(1);
                                 string Pime = reader.GetString(2);
@@ -1177,21 +1171,20 @@ namespace Radijske_Postaje
                     textBox3.Clear();
                     textBox4.Clear();
                     textBox5.Clear();
-                    textBox6.Clear();
-                    
+                    textBox6.Clear();    
                 }
             } 
         }
 
         private void comboBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            // comboBox1 is readonly
+            // comboBox1 readonly
             e.SuppressKeyPress = true;
         }
 
         private void comboBox2_KeyDown(object sender, KeyEventArgs e)
         {
-            // comboBox2 is readonly
+            // comboBox2 readonly
             e.SuppressKeyPress = true;
         }
 
@@ -1302,20 +1295,19 @@ namespace Radijske_Postaje
                     com.ExecuteNonQuery();
                     con.Close();
                 }
+
+                studiji.RemoveAt(i);
+                listBox2.Items.Clear();
+                studiji.Add(textBox7.Text + '|' + comboBox3.Text + '|' + comboBox4.Text);
+                foreach (string item in studiji)
+                {
+                    listBox2.Items.Add(item);
+                }
+
                 listBox2.SetSelected(i, false);
-                /*int i = listBox1.SelectedIndex;
-                 *da bodo ble spremembe vidne takoj v listboxu
-                    postaje.RemoveAt(i);
-                    listBox1.Items.Clear();
-                    postaje.Add(textBox1.Text + '|' + textBox2.Text + '|' + textBox3.Text + '|' + comboBox1.Text + '|' + comboBox2.Text);
-                    foreach (string item in postaje)
-                    {
-                        listBox1.Items.Add(item);
-                    }*/
 
                 textBox7.Clear();
                 richTextBox2.Clear();
-                
             }               
         }
 
@@ -1512,8 +1504,9 @@ namespace Radijske_Postaje
             }
             else if (Lbl_User_L.Text != "Niste prijavljeni")
             {
-                int posta = Convert.ToInt32(textBox8.Text);
-                string ime = textBox9.Text;
+                string ime = textBox8.Text;
+                int posta = Convert.ToInt32(textBox9.Text);
+                
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
@@ -1524,7 +1517,7 @@ namespace Radijske_Postaje
                 textBox8.Clear();
                 textBox9.Clear();
 
-                kraji.Add(posta + '|' + ime);
+                kraji.Add(ime + '|' + posta);
                 listBox3.Items.Clear();
                 foreach (string item in kraji)
                 {
@@ -1543,9 +1536,10 @@ namespace Radijske_Postaje
             else if (Lbl_User_L.Text != "Niste prijavljeni")
             {
                 IDkraja(id_k);
-                string posta = Convert.ToString(textBox8.Text);
-                string ime = textBox9.Text;
 
+                string ime = textBox8.Text;
+                string posta = Convert.ToString(textBox9.Text);
+                
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
@@ -1553,16 +1547,17 @@ namespace Radijske_Postaje
                     com.ExecuteNonQuery();
                     con.Close();
                 }
+
+                kraji.RemoveAt(i);
+                listBox3.Items.Clear();
+                kraji.Add(textBox8.Text + '|' + textBox9.Text);
+                foreach (string item in kraji)
+                {
+                    listBox3.Items.Add(item);
+                }
+
                 listBox3.SetSelected(i, false);
-                /* da bodo ble spremembe vidne takoj v listboxu
-                 int i = listBox1.SelectedIndex;
-                        postaje.RemoveAt(i);
-                        listBox1.Items.Clear();
-                        postaje.Add(textBox1.Text + '|' + textBox2.Text + '|' + textBox3.Text + '|' + comboBox1.Text + '|' + comboBox2.Text);
-                        foreach (string item in postaje)
-                        {
-                            listBox1.Items.Add(item);
-                        }*/
+
                 textBox8.Clear();
                 textBox9.Clear();
 
@@ -1698,7 +1693,7 @@ namespace Radijske_Postaje
         private void textBox8_Click(object sender, EventArgs e)
         {
             if (textBox9.Text == "")
-                textBox9.Text = "Ime";
+                textBox9.Text = "Pošta";
 
             textBox8.Clear();
         }
@@ -1706,8 +1701,8 @@ namespace Radijske_Postaje
         private void textBox9_Click(object sender, EventArgs e)
         {
             if(textBox8.Text == "")
-                textBox8.Text = "Pošta";
-            
+                textBox8.Text = "Ime";
+
             textBox9.Clear();
         }
 
@@ -1731,7 +1726,7 @@ namespace Radijske_Postaje
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
-                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_id_krajev ('" + textBox8.Text + "', '" + textBox9.Text + "')", con);
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM return_id_krajev ('" + textBox9.Text + "', '" + textBox8.Text + "')", con);
                     NpgsqlDataReader reader = com.ExecuteReader();
                     while (reader.Read())
                     {
@@ -1839,16 +1834,17 @@ namespace Radijske_Postaje
                     com.ExecuteNonQuery();
                     con.Close();
                 }
+
+                regije.RemoveAt(i);
+                listBox4.Items.Clear();
+                regije.Add(textBox10.Text);
+                foreach (string item in regije)
+                {
+                    listBox4.Items.Add(item);
+                }
+
                 listBox4.SetSelected(i, false);
-                /* da bodo ble spremembe vidne takoj v listboxu
-                 int i = listBox1.SelectedIndex;
-                        postaje.RemoveAt(i);
-                        listBox1.Items.Clear();
-                        postaje.Add(textBox1.Text + '|' + textBox2.Text + '|' + textBox3.Text + '|' + comboBox1.Text + '|' + comboBox2.Text);
-                        foreach (string item in postaje)
-                        {
-                            listBox1.Items.Add(item);
-                        }*/
+                
                 Btn_Insert_R.Enabled = true;
                 Btn_Update_R.Enabled = false;
                 Btn_Delete_R.Enabled = false;
@@ -2027,16 +2023,17 @@ namespace Radijske_Postaje
                     com.ExecuteNonQuery();
                     con.Close();
                 }
+
+                zvrsti.RemoveAt(i);
+                listBox5.Items.Clear();
+                zvrsti.Add(textBox11.Text);
+                foreach (string item in zvrsti)
+                {
+                    listBox5.Items.Add(item);
+                }
+
                 listBox5.SetSelected(i, false);
-                /* da bodo ble spremembe vidne takoj v listboxu 
-                   int i = listBox1.SelectedIndex;
-                        postaje.RemoveAt(i);
-                        listBox1.Items.Clear();
-                        postaje.Add(textBox1.Text + '|' + textBox2.Text + '|' + textBox3.Text + '|' + comboBox1.Text + '|' + comboBox2.Text);
-                        foreach (string item in postaje)
-                        {
-                            listBox1.Items.Add(item);
-                        }*/
+                
                 textBox11.Clear();
 
                 Btn_Insert_Z.Enabled = true;

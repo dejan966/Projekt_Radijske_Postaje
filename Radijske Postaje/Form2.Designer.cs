@@ -242,7 +242,7 @@ namespace Radijske_Postaje
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(152, 22);
             this.textBox9.TabIndex = 6;
-            this.textBox9.Text = "Ime";
+            this.textBox9.Text = "Pošta";
             this.textBox9.Click += new System.EventHandler(this.textBox9_Click);
             // 
             // textBox8
@@ -251,7 +251,7 @@ namespace Radijske_Postaje
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(152, 22);
             this.textBox8.TabIndex = 5;
-            this.textBox8.Text = "Pošta";
+            this.textBox8.Text = "Ime";
             this.textBox8.Click += new System.EventHandler(this.textBox8_Click);
             // 
             // listBox3
@@ -268,7 +268,7 @@ namespace Radijske_Postaje
             // 
             this.Lbl_User_K.AutoSize = true;
             this.Lbl_User_K.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Lbl_User_K.Location = new System.Drawing.Point(515, 60);
+            this.Lbl_User_K.Location = new System.Drawing.Point(515, 71);
             this.Lbl_User_K.Name = "Lbl_User_K";
             this.Lbl_User_K.Size = new System.Drawing.Size(57, 24);
             this.Lbl_User_K.TabIndex = 3;
@@ -578,7 +578,7 @@ namespace Radijske_Postaje
             // 
             this.Lbl_User.AutoSize = true;
             this.Lbl_User.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Lbl_User.Location = new System.Drawing.Point(520, 39);
+            this.Lbl_User.Location = new System.Drawing.Point(517, 69);
             this.Lbl_User.Name = "Lbl_User";
             this.Lbl_User.Size = new System.Drawing.Size(56, 24);
             this.Lbl_User.TabIndex = 57;
@@ -891,7 +891,7 @@ namespace Radijske_Postaje
             // 
             this.Lbl_User_R.AutoSize = true;
             this.Lbl_User_R.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Lbl_User_R.Location = new System.Drawing.Point(495, 48);
+            this.Lbl_User_R.Location = new System.Drawing.Point(502, 100);
             this.Lbl_User_R.Name = "Lbl_User_R";
             this.Lbl_User_R.Size = new System.Drawing.Size(57, 24);
             this.Lbl_User_R.TabIndex = 3;
@@ -1034,7 +1034,7 @@ namespace Radijske_Postaje
             // 
             this.Lbl_User_Z.AutoSize = true;
             this.Lbl_User_Z.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Lbl_User_Z.Location = new System.Drawing.Point(465, 51);
+            this.Lbl_User_Z.Location = new System.Drawing.Point(484, 92);
             this.Lbl_User_Z.Name = "Lbl_User_Z";
             this.Lbl_User_Z.Size = new System.Drawing.Size(57, 24);
             this.Lbl_User_Z.TabIndex = 4;
