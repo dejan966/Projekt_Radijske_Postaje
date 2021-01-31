@@ -393,6 +393,7 @@ namespace Radijske_Postaje
             string jezik = textBox3.Text;
             string zvrst = comboBox1.Text;
             string regija = comboBox2.Text;
+
             /*if (richTextBox1.Text == "Opis")
                 richTextBox1.Clear();
 
@@ -445,6 +446,8 @@ namespace Radijske_Postaje
                     textBox4.Clear();
                     textBox5.Clear();
                     textBox6.Clear();
+
+                    comboBox4.Items.Add(naslov);
                 }
                 
             }
@@ -505,10 +508,6 @@ namespace Radijske_Postaje
                     comboBox4.Font = new Font(comboBox4.Font, FontStyle.Regular);
 
                     Form1.Pisava(f2);
-                    Form6.Pisava6(f2);
-                    Form3.Pisava3(f2);
-                    Form4.Pisava4(f2);
-                    Form5.Pisava5(f2);
                     break;
 
                 case "Italic":
@@ -542,10 +541,6 @@ namespace Radijske_Postaje
                     comboBox4.Font = new Font(comboBox4.Font, FontStyle.Italic);
 
                     Form1.Pisava(f2);
-                    Form6.Pisava6(f2);
-                    Form3.Pisava3(f2);
-                    Form4.Pisava4(f2);
-                    Form5.Pisava5(f2);
                     break;
 
                 case "Bold":
@@ -579,10 +574,6 @@ namespace Radijske_Postaje
                     comboBox4.Font = new Font(comboBox4.Font, FontStyle.Bold);
 
                     Form1.Pisava(f2);
-                    Form6.Pisava6(f2);
-                    Form3.Pisava3(f2);
-                    Form4.Pisava4(f2);
-                    Form5.Pisava5(f2);
                     break;
 
                 case "Underline":
@@ -616,30 +607,21 @@ namespace Radijske_Postaje
                     comboBox4.Font = new Font(comboBox4.Font, FontStyle.Underline);
 
                     Form1.Pisava(f2);
-                    Form6.Pisava6(f2);
-                    Form3.Pisava3(f2);
-                    Form4.Pisava4(f2);
-                    Form5.Pisava5(f2);
-
                     break;
             }
 
             //Ozadje2(o2);
             switch (o2)
             {
-                case "Rdeča":
+                case "Pink":
                     //BackColor = Color.Red;
-                    tabPage1.BackColor = Color.Red;
-                    tabPage2.BackColor = Color.Red;
-                    tabPage3.BackColor = Color.Red;
-                    tabPage4.BackColor = Color.Red;
-                    tabPage5.BackColor = Color.Red;
+                    tabPage1.BackColor = Color.HotPink;
+                    tabPage2.BackColor = Color.HotPink;
+                    tabPage3.BackColor = Color.HotPink;
+                    tabPage4.BackColor = Color.HotPink;
+                    tabPage5.BackColor = Color.HotPink;
 
                     Form1.Ozadje(o2);
-                    Form6.Ozadje6(o2);
-                    Form3.Ozadje3(o2);
-                    Form4.Ozadje4(o2);
-                    Form5.Ozadje5(o2);
                     break;
 
                 case "Bela":
@@ -650,10 +632,6 @@ namespace Radijske_Postaje
                     tabPage4.BackColor = Control.DefaultBackColor;
                     tabPage5.BackColor = Control.DefaultBackColor;
                     Form1.Ozadje(o2);
-                    Form6.Ozadje6(o2);
-                    Form3.Ozadje3(o2);
-                    Form4.Ozadje4(o2);
-                    Form5.Ozadje5(o2);
                     break;
 
                 case "Oranžna":
@@ -664,10 +642,6 @@ namespace Radijske_Postaje
                     tabPage4.BackColor = Color.Orange;
                     tabPage5.BackColor = Color.Orange;
                     Form1.Ozadje(o2);
-                    Form6.Ozadje6(o2);
-                    Form3.Ozadje3(o2);
-                    Form4.Ozadje4(o2);
-                    Form5.Ozadje5(o2);
                     break;
 
                 case "Rumena":
@@ -678,10 +652,6 @@ namespace Radijske_Postaje
                     tabPage4.BackColor = Color.Yellow;
                     tabPage5.BackColor = Color.Yellow;
                     Form1.Ozadje(o2);
-                    Form6.Ozadje6(o2);
-                    Form3.Ozadje3(o2);
-                    Form4.Ozadje4(o2);
-                    Form5.Ozadje5(o2);
                     break;
             }
 
@@ -1523,6 +1493,7 @@ namespace Radijske_Postaje
                 {
                     listBox3.Items.Add(item);
                 }
+                comboBox3.Items.Add(ime);
             }
         }
 
@@ -1813,6 +1784,8 @@ namespace Radijske_Postaje
                     listBox4.Items.Add(item);
                 }
                 textBox10.Clear();
+
+                comboBox2.Items.Add(ime);
             }
         }
 
@@ -2003,6 +1976,7 @@ namespace Radijske_Postaje
                 }
 
                 textBox11.Clear();
+                comboBox1.Items.Add(ime);
             }
         }
         private void Btn_Update_Z_Click(object sender, EventArgs e)

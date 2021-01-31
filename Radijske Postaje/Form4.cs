@@ -175,8 +175,8 @@ namespace Radijske_Postaje
 
             switch (o4)
             {
-                case "Rdeča":
-                    BackColor = Color.Red;
+                case "Pink":
+                    BackColor = Color.HotPink;
                     Form6.Ozadje6(o4);
                     Form2.Ozadje2(o4);
                     Form1.Ozadje(o4);

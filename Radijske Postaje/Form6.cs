@@ -68,8 +68,8 @@ namespace Radijske_Postaje
 
             switch (o2)
             {
-                case "Rdeča":
-                    BackColor = Color.Red;
+                case "Pink":
+                    BackColor = Color.HotPink;
                     break;
 
                 case "Bela":
@@ -166,8 +166,8 @@ namespace Radijske_Postaje
         {
             switch (Convert.ToString(comboBox2.SelectedItem))
             {
-                case "Rdeča":
-                    BackColor = Color.Red;
+                case "Pink":
+                    BackColor = Color.HotPink;
                     o = Convert.ToString(comboBox2.SelectedItem);
                     Form1.Ozadje(o);
                     break;

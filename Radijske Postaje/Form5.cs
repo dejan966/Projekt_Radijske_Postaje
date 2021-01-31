@@ -120,8 +120,8 @@ namespace Radijske_Postaje
                     Form4.Ozadje4(o5);
                     break;
 
-                case "Rdeča":
-                    BackColor = Color.Red;
+                case "Pink":
+                    BackColor = Color.HotPink;
 
                     Form4.Ozadje4(o5);
                     break;

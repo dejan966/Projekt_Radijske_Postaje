@@ -257,8 +257,8 @@ namespace Radijske_Postaje
             Ozadje3(o3);
             switch (o3)
             {
-                case "Rdeča":
-                    BackColor = Color.Red;
+                case "Pink":
+                    BackColor = Color.HotPink;
                     Form6.Ozadje6(o3);
                     Form2.Ozadje2(o3);
                     Form1.Ozadje(o3);
@@ -290,7 +290,7 @@ namespace Radijske_Postaje
                     break;
             }
 
-            comboBox1.Text = "Adlešiči";
+            
             using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
             {
                 con.Open();
@@ -300,6 +300,7 @@ namespace Radijske_Postaje
                 {
                     string ime = reader.GetString(0);
                     comboBox1.Items.Add(ime);
+                    comboBox1.Text = "Adlešiči";
                 }
                 con.Close();
             }

@@ -176,7 +176,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Odjava_K
             // 
-            this.Btn_Odjava_K.Location = new System.Drawing.Point(735, 70);
+            this.Btn_Odjava_K.Location = new System.Drawing.Point(735, 60);
             this.Btn_Odjava_K.Name = "Btn_Odjava_K";
             this.Btn_Odjava_K.Size = new System.Drawing.Size(83, 29);
             this.Btn_Odjava_K.TabIndex = 12;
@@ -186,7 +186,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Prijava_K
             // 
-            this.Btn_Prijava_K.Location = new System.Drawing.Point(670, 116);
+            this.Btn_Prijava_K.Location = new System.Drawing.Point(670, 106);
             this.Btn_Prijava_K.Name = "Btn_Prijava_K";
             this.Btn_Prijava_K.Size = new System.Drawing.Size(83, 29);
             this.Btn_Prijava_K.TabIndex = 11;
@@ -196,7 +196,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Reg_K
             // 
-            this.Btn_Reg_K.Location = new System.Drawing.Point(519, 116);
+            this.Btn_Reg_K.Location = new System.Drawing.Point(519, 106);
             this.Btn_Reg_K.Name = "Btn_Reg_K";
             this.Btn_Reg_K.Size = new System.Drawing.Size(104, 29);
             this.Btn_Reg_K.TabIndex = 10;
@@ -268,7 +268,7 @@ namespace Radijske_Postaje
             // 
             this.Lbl_User_K.AutoSize = true;
             this.Lbl_User_K.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Lbl_User_K.Location = new System.Drawing.Point(515, 71);
+            this.Lbl_User_K.Location = new System.Drawing.Point(515, 61);
             this.Lbl_User_K.Name = "Lbl_User_K";
             this.Lbl_User_K.Size = new System.Drawing.Size(57, 24);
             this.Lbl_User_K.TabIndex = 3;
@@ -369,7 +369,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Odjava_L
             // 
-            this.Btn_Odjava_L.Location = new System.Drawing.Point(743, 70);
+            this.Btn_Odjava_L.Location = new System.Drawing.Point(743, 48);
             this.Btn_Odjava_L.Name = "Btn_Odjava_L";
             this.Btn_Odjava_L.Size = new System.Drawing.Size(75, 30);
             this.Btn_Odjava_L.TabIndex = 12;
@@ -379,7 +379,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Prijava_L
             // 
-            this.Btn_Prijava_L.Location = new System.Drawing.Point(666, 116);
+            this.Btn_Prijava_L.Location = new System.Drawing.Point(666, 94);
             this.Btn_Prijava_L.Name = "Btn_Prijava_L";
             this.Btn_Prijava_L.Size = new System.Drawing.Size(75, 30);
             this.Btn_Prijava_L.TabIndex = 11;
@@ -389,7 +389,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Reg_L
             // 
-            this.Btn_Reg_L.Location = new System.Drawing.Point(468, 116);
+            this.Btn_Reg_L.Location = new System.Drawing.Point(468, 94);
             this.Btn_Reg_L.Name = "Btn_Reg_L";
             this.Btn_Reg_L.Size = new System.Drawing.Size(102, 30);
             this.Btn_Reg_L.TabIndex = 10;
@@ -401,7 +401,7 @@ namespace Radijske_Postaje
             // 
             this.Lbl_User_L.AutoSize = true;
             this.Lbl_User_L.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Lbl_User_L.Location = new System.Drawing.Point(514, 73);
+            this.Lbl_User_L.Location = new System.Drawing.Point(514, 51);
             this.Lbl_User_L.Name = "Lbl_User_L";
             this.Lbl_User_L.Size = new System.Drawing.Size(56, 24);
             this.Lbl_User_L.TabIndex = 9;
@@ -808,7 +808,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Odjava_R
             // 
-            this.Btn_Odjava_R.Location = new System.Drawing.Point(781, 99);
+            this.Btn_Odjava_R.Location = new System.Drawing.Point(781, 58);
             this.Btn_Odjava_R.Name = "Btn_Odjava_R";
             this.Btn_Odjava_R.Size = new System.Drawing.Size(83, 29);
             this.Btn_Odjava_R.TabIndex = 15;
@@ -818,7 +818,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Prijava_R
             // 
-            this.Btn_Prijava_R.Location = new System.Drawing.Point(688, 139);
+            this.Btn_Prijava_R.Location = new System.Drawing.Point(688, 98);
             this.Btn_Prijava_R.Name = "Btn_Prijava_R";
             this.Btn_Prijava_R.Size = new System.Drawing.Size(83, 29);
             this.Btn_Prijava_R.TabIndex = 14;
@@ -828,7 +828,7 @@ namespace Radijske_Postaje
             // 
             // Btn_Reg_R
             // 
-            this.Btn_Reg_R.Location = new System.Drawing.Point(517, 139);
+            this.Btn_Reg_R.Location = new System.Drawing.Point(517, 98);
             this.Btn_Reg_R.Name = "Btn_Reg_R";
             this.Btn_Reg_R.Size = new System.Drawing.Size(104, 29);
             this.Btn_Reg_R.TabIndex = 13;
@@ -891,7 +891,7 @@ namespace Radijske_Postaje
             // 
             this.Lbl_User_R.AutoSize = true;
             this.Lbl_User_R.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Lbl_User_R.Location = new System.Drawing.Point(502, 100);
+            this.Lbl_User_R.Location = new System.Drawing.Point(502, 59);
             this.Lbl_User_R.Name = "Lbl_User_R";
             this.Lbl_User_R.Size = new System.Drawing.Size(57, 24);
             this.Lbl_User_R.TabIndex = 3;
