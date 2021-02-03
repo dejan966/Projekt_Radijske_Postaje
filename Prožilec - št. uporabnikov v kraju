@@ -1,0 +1,25 @@
+ALTER TABLE kraji
+ADD COLUMN st_uporabnikov INT DEFAULT 0 NOT NULL;
+
+UPDATE kraji k
+SET st_uporabnikov = (SELECT COUNT(*) FROM uporabniki WHERE (kraj_id = k.id));
+
+CREATE TRIGGER stevilo_uporabnikov
+AFTER INSERT OR DELETE ON uporabniki FOR EACH ROW
+EXECUTE PROCEDURE prestej_uporabnike();
+
+CREATE OR REPLACE FUNCTION prestej_uporabnike()
+RETURNS TRIGGER AS
+$$
+BEGIN
+IF (tg_op = 'DELETE') THEN
+UPDATE kraji k SET st_uporabnikov=st_uporabnikov -1
+WHERE id=OLD.kraj_id;
+END IF;
+IF (tg_op = 'INSERT') THEN
+UPDATE kraji k SET st_uporabnikov=st_uporabnikov +1
+WHERE id=NEW.kraj_id;
+END IF;
+RETURN NULL;
+END
+$$ LANGUAGE 'plpgsql';
