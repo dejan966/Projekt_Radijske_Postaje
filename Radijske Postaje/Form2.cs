@@ -394,18 +394,6 @@ namespace Radijske_Postaje
             string zvrst = comboBox1.Text;
             string regija = comboBox2.Text;
 
-            /*if (richTextBox1.Text == "Opis")
-                richTextBox1.Clear();
-
-            if(textBox4.Text == "Spletna stran")
-                textBox4.Clear();
-
-            if(textBox5.Text == "Youtube")
-                textBox5.Clear();
-
-            if(textBox6.Text == "Twitter")
-                textBox6.Clear();*/
-
             if(Lbl_User.Text == "Niste prijavljeni")
             {
                 MessageBox.Show("Morate biti prijavljeni");
@@ -455,7 +443,6 @@ namespace Radijske_Postaje
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            //Mail(u_mail);
             if (u_mail != null && u_mail != "")
             {
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
@@ -473,7 +460,6 @@ namespace Radijske_Postaje
                 }
             }
             
-            //Pisava2(f2);
             switch (f2)
             {
                 case "Regular":
@@ -489,7 +475,6 @@ namespace Radijske_Postaje
                     Lbl_User_Z.Font = new Font(Lbl_User_Z.Font, FontStyle.Regular);
 
                     richTextBox1.Font = new Font(richTextBox1.Font, FontStyle.Regular);
-                    //listBox1.Font = new Font(listBox1.Font, FontStyle.Regular);
                     textBox1.Font = new Font(textBox1.Font, FontStyle.Regular);
                     textBox2.Font = new Font(textBox2.Font, FontStyle.Regular);
                     textBox3.Font = new Font(textBox3.Font, FontStyle.Regular);
@@ -610,11 +595,9 @@ namespace Radijske_Postaje
                     break;
             }
 
-            //Ozadje2(o2);
             switch (o2)
             {
                 case "Pink":
-                    //BackColor = Color.Red;
                     tabPage1.BackColor = Color.HotPink;
                     tabPage2.BackColor = Color.HotPink;
                     tabPage3.BackColor = Color.HotPink;
@@ -625,7 +608,6 @@ namespace Radijske_Postaje
                     break;
 
                 case "Bela":
-                    //BackColor = Control.DefaultBackColor;
                     tabPage1.BackColor = Control.DefaultBackColor;
                     tabPage2.BackColor = Control.DefaultBackColor;
                     tabPage3.BackColor = Control.DefaultBackColor;
@@ -635,7 +617,6 @@ namespace Radijske_Postaje
                     break;
 
                 case "Oranžna":
-                    //BackColor = Color.Orange;
                     tabPage1.BackColor = Color.Orange;
                     tabPage2.BackColor = Color.Orange;
                     tabPage3.BackColor = Color.Orange;
@@ -645,7 +626,6 @@ namespace Radijske_Postaje
                     break;
 
                 case "Rumena":
-                    //BackColor = Color.Yellow;
                     tabPage1.BackColor = Color.Yellow;
                     tabPage2.BackColor = Color.Yellow;
                     tabPage3.BackColor = Color.Yellow;
@@ -656,22 +636,8 @@ namespace Radijske_Postaje
             }
 
             Btn_Odjava.Visible = false;
-            Btn_Odjava_L.Visible = false;
-            Btn_Odjava_K.Visible = false;
-            Btn_Odjava_R.Visible = false;
-            Btn_Odjava_Z.Visible = false;
-
             Btn_Prijava.Visible = false;
-            Btn_Prijava_L.Visible = false;
-            Btn_Prijava_K.Visible = false;
-            Btn_Prijava_R.Visible = false;
-            Btn_Prijava_Z.Visible = false;
-
             Btn_Reg.Visible = false;
-            Btn_Reg_L.Visible = false;
-            Btn_Reg_K.Visible = false;
-            Btn_Reg_R.Visible = false;
-            Btn_Reg_Z.Visible = false;
 
             comboBox1.Text = "rock";
             comboBox2.Text = "Gorenjska";
@@ -698,24 +664,12 @@ namespace Radijske_Postaje
                 Lbl_User_Z.Text = "Prijavljeni ste kot " + Ime + " " + Priimek;
 
                 Btn_Odjava.Visible = true;
-                Btn_Odjava_L.Visible = true;
-                Btn_Odjava_K.Visible = true;
-                Btn_Odjava_R.Visible = true;
-                Btn_Odjava_Z.Visible = true;
             }
             if (Lbl_User.Text == "Niste prijavljeni" && Lbl_User_L.Text=="Niste prijavljeni" && Lbl_User_K.Text == "Niste prijavljeni" && Lbl_User_R.Text == "Niste prijavljeni" && Lbl_User_Z.Text == "Niste prijavljeni")
             {
                 Btn_Prijava.Visible = true;
-                Btn_Prijava_L.Visible = true;
-                Btn_Prijava_K.Visible = true;
-                Btn_Prijava_R.Visible = true;
-                Btn_Prijava_Z.Visible = true;
 
                 Btn_Reg.Visible = true;
-                Btn_Reg_L.Visible = true;
-                Btn_Reg_K.Visible = true;
-                Btn_Reg_R.Visible = true;
-                Btn_Reg_Z.Visible = true;
 
                 u_mail = "";
                 Form1.ImeOsebe(u_mail);
@@ -723,11 +677,7 @@ namespace Radijske_Postaje
 
             else if (Lbl_User.Text == "Prijavljeni ste kot " + Ime + " " + Priimek && Lbl_User_L.Text == "Prijavljeni ste kot " + Ime + " " + Priimek && Lbl_User_K.Text == "Prijavljeni ste kot " + Ime + " " + Priimek && Lbl_User_R.Text == "Prijavljeni ste kot " + Ime + " " + Priimek && Lbl_User_Z.Text == "Prijavljeni ste kot " + Ime + " " + Priimek)
             {
-                Btn_Odjava_L.Visible = true;
                 Btn_Odjava.Visible = true;
-                Btn_Odjava_K.Visible = true;
-                Btn_Odjava_R.Visible = true;
-                Btn_Odjava_Z.Visible = true;
             }
 
             using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
@@ -840,8 +790,6 @@ namespace Radijske_Postaje
                 }
                 con.Close();
             }
-
-            
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1148,22 +1096,21 @@ namespace Radijske_Postaje
 
         private void comboBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            // comboBox1 readonly
             e.SuppressKeyPress = true;
         }
 
         private void comboBox2_KeyDown(object sender, KeyEventArgs e)
         {
-            // comboBox2 readonly
             e.SuppressKeyPress = true;
         }
 
         private void Btn_Bck_Click(object sender, EventArgs e)
         {
-            a = new Form1();
-            Hide();
+            if (a == null)
+                a = new Form1();
+
             a.Show();
-            
+            Hide();
             Form1.ImeOsebe(u_mail);
         }
 
@@ -1178,29 +1125,16 @@ namespace Radijske_Postaje
             Lbl_User_Z.Text = "Niste prijavljeni";
 
             Btn_Odjava.Visible = false;
-            Btn_Odjava_L.Visible = false;
-            Btn_Odjava_K.Visible = false;
-            Btn_Odjava_R.Visible = false;
-            Btn_Odjava_Z.Visible = false;
-
             Btn_Prijava.Visible = true;
-            Btn_Prijava_L.Visible = true;
-            Btn_Prijava_K.Visible = true;
-            Btn_Prijava_R.Visible = true;
-            Btn_Prijava_Z.Visible = true;
-
             Btn_Reg.Visible = true;
-            Btn_Reg_L.Visible = true;
-            Btn_Reg_K.Visible = true;
-            Btn_Reg_R.Visible = true;
-            Btn_Reg_Z.Visible = true;
         }
 
         private void Btn_Reg_Click(object sender, EventArgs e)
         {
-            c = new Form3();
             Hide();
-            c.Show();
+            c = new Form3();
+            c.ShowDialog();
+            Close();
         }
 
         private void Btn_Insert_L_Click(object sender, EventArgs e)
@@ -1245,7 +1179,7 @@ namespace Radijske_Postaje
         private void Btn_Update_L_Click(object sender, EventArgs e)
         {
             int i = listBox2.SelectedIndex;
-            //Opis_L(l_opis);
+
             IDstudija(id_l);
             if (Lbl_User_L.Text == "Niste prijavljeni")
             {
@@ -1302,7 +1236,6 @@ namespace Radijske_Postaje
                     Btn_Update_L.Enabled = false;
                     Btn_Delete_L.Enabled = false;
                     textBox7.ReadOnly = false;
-                    //listBox2.SetSelected(i, false);
 
                     IDstudija(id_l);
                     using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
@@ -1321,10 +1254,11 @@ namespace Radijske_Postaje
 
         private void Btn_Bck_L_Click(object sender, EventArgs e)
         {
-            a = new Form1();
-            Hide();
-            a.Show();
+            if (a == null)
+                a = new Form1();
 
+            a.Show();
+            Hide();
             Form1.ImeOsebe(u_mail);
         }
 
@@ -1411,53 +1345,6 @@ namespace Radijske_Postaje
             {
                 richTextBox2.Text = "Opis";
             }
-        }
-
-        private void Btn_Odjava_L_Click(object sender, EventArgs e)
-        {
-            u_mail = "";
-            Form1.ImeOsebe(u_mail);
-
-            Lbl_User.Text = "Niste prijavljeni";
-            Lbl_User_L.Text = "Niste prijavljeni";
-            Lbl_User_K.Text = "Niste prijavljeni";
-            Lbl_User_R.Text = "Niste prijavljeni";
-            Lbl_User_Z.Text = "Niste prijavljeni";
-
-            Btn_Odjava.Visible = false;
-            Btn_Odjava_L.Visible = false;
-            Btn_Odjava_K.Visible = false;
-            Btn_Odjava_R.Visible = false;
-            Btn_Odjava_Z.Visible = false;
-
-            Btn_Prijava.Visible = true;
-            Btn_Prijava_L.Visible = true;
-            Btn_Prijava_K.Visible = true;
-            Btn_Prijava_R.Visible = true;
-            Btn_Prijava_Z.Visible = true;
-
-            Btn_Reg.Visible = true;
-            Btn_Reg_L.Visible = true;
-            Btn_Reg_K.Visible = true;
-            Btn_Reg_R.Visible = true;
-            Btn_Reg_Z.Visible = true;
-        }
-
-        private void Btn_Prijava_L_Click(object sender, EventArgs e)
-        {
-            b = new Form4();
-            Hide();
-            b.Show();
-            Btn_Odjava_L.Visible = true;
-            Btn_Prijava_L.Visible = false;
-            Btn_Reg_L.Visible = false;
-        }
-
-        private void Btn_Reg_L_Click(object sender, EventArgs e)
-        {
-            c = new Form3();
-            Hide();
-            c.Show();
         }
 
         private void textBox7_Click(object sender, EventArgs e)
@@ -1607,54 +1494,6 @@ namespace Radijske_Postaje
             }
         }
 
-        private void Btn_Reg_K_Click(object sender, EventArgs e)
-        {
-            c = new Form3();
-            Hide();
-            c.Show();
-        }
-
-        private void Btn_Prijava_K_Click(object sender, EventArgs e)
-        {
-            b = new Form4();
-            Hide();
-            b.Show();
-
-            Btn_Odjava_K.Visible = true;
-            Btn_Prijava_K.Visible = false;
-            Btn_Reg_K.Visible = false;
-        }
-
-        private void Btn_Odjava_K_Click(object sender, EventArgs e)
-        {
-            u_mail = "";
-            Form1.ImeOsebe(u_mail);
-
-            Lbl_User.Text = "Niste prijavljeni";
-            Lbl_User_L.Text = "Niste prijavljeni";
-            Lbl_User_K.Text = "Niste prijavljeni";
-            Lbl_User_R.Text = "Niste prijavljeni";
-            Lbl_User_Z.Text = "Niste prijavljeni";
-
-            Btn_Odjava.Visible = false;
-            Btn_Odjava_L.Visible = false;
-            Btn_Odjava_K.Visible = false;
-            Btn_Odjava_R.Visible = false;
-            Btn_Odjava_Z.Visible = false;
-
-            Btn_Prijava.Visible = true;
-            Btn_Prijava_L.Visible = true;
-            Btn_Prijava_K.Visible = true;
-            Btn_Prijava_R.Visible = true;
-            Btn_Prijava_Z.Visible = true;
-
-            Btn_Reg.Visible = true;
-            Btn_Reg_L.Visible = true;
-            Btn_Reg_K.Visible = true;
-            Btn_Reg_R.Visible = true;
-            Btn_Reg_Z.Visible = true;
-        }
-
         private void textBox10_Click(object sender, EventArgs e)
         {
             if(textBox10.Text == "Ime")
@@ -1742,8 +1581,7 @@ namespace Radijske_Postaje
             if (listBox5.SelectedIndex >= 0)
             {
                 textBox11.Text = listBox5.Items[listBox5.SelectedIndex].ToString();
-                /*string[] data = allData.Split();
-                textBox11.Text = data[0];*/
+
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
@@ -1895,61 +1733,7 @@ namespace Radijske_Postaje
                 }
             }
         }
-
-        private void Btn_Reg_R_Click(object sender, EventArgs e)
-        {
-            c = new Form3();
-            Hide();
-            c.Show();
-        }
-
-        private void Btn_Prijava_R_Click(object sender, EventArgs e)
-        {
-            b = new Form4();
-            Hide();
-            b.Show();
-
-            Btn_Odjava_R.Visible = true;
-            Btn_Prijava_R.Visible = false;
-            Btn_Reg_R.Visible = false;
-        }
-
-        private void Btn_Odjava_R_Click(object sender, EventArgs e)
-        {
-            u_mail = "";
-            Form1.ImeOsebe(u_mail);
-
-            Lbl_User.Text = "Niste prijavljeni";
-            Lbl_User_L.Text = "Niste prijavljeni";
-            Lbl_User_K.Text = "Niste prijavljeni";
-            Lbl_User_R.Text = "Niste prijavljeni";
-            Lbl_User_Z.Text = "Niste prijavljeni";
-
-            Btn_Odjava.Visible = false;
-            Btn_Odjava_L.Visible = false;
-            Btn_Odjava_K.Visible = false;
-            Btn_Odjava_R.Visible = false;
-            Btn_Odjava_Z.Visible = false;
-
-            Btn_Prijava.Visible = true;
-            Btn_Prijava_L.Visible = true;
-            Btn_Prijava_K.Visible = true;
-            Btn_Prijava_R.Visible = true;
-            Btn_Prijava_Z.Visible = true;
-
-            Btn_Reg.Visible = true;
-            Btn_Reg_L.Visible = true;
-            Btn_Reg_K.Visible = true;
-            Btn_Reg_R.Visible = true;
-            Btn_Reg_Z.Visible = true;
-        }
-
-        private void Btn_Reg_Z_Click(object sender, EventArgs e)
-        {
-            c = new Form3();
-            Hide();
-            c.Show();
-        }
+        
 
         private void Btn_Insert_Z_Click(object sender, EventArgs e)
         {
@@ -2086,71 +1870,33 @@ namespace Radijske_Postaje
             }                          
         }
 
-        private void Btn_Prijava_Z_Click(object sender, EventArgs e)
-        {
-            b = new Form4();
-            Hide();
-            b.Show();
-
-            Btn_Odjava_Z.Visible = true;
-            Btn_Prijava_Z.Visible = false;
-            Btn_Reg_Z.Visible = false;
-        }
-
-        private void Btn_Odjava_Z_Click(object sender, EventArgs e)
-        {
-            u_mail = "";
-            Form1.ImeOsebe(u_mail);
-
-            Lbl_User.Text = "Niste prijavljeni";
-            Lbl_User_L.Text = "Niste prijavljeni";
-            Lbl_User_K.Text = "Niste prijavljeni";
-            Lbl_User_R.Text = "Niste prijavljeni";
-            Lbl_User_Z.Text = "Niste prijavljeni";
-
-            Btn_Odjava.Visible = false;
-            Btn_Odjava_L.Visible = false;
-            Btn_Odjava_K.Visible = false;
-            Btn_Odjava_R.Visible = false;
-            Btn_Odjava_Z.Visible = false;
-
-            Btn_Prijava.Visible = true;
-            Btn_Prijava_L.Visible = true;
-            Btn_Prijava_K.Visible = true;
-            Btn_Prijava_R.Visible = true;
-            Btn_Prijava_Z.Visible = true;
-
-            Btn_Reg.Visible = true;
-            Btn_Reg_L.Visible = true;
-            Btn_Reg_K.Visible = true;
-            Btn_Reg_R.Visible = true;
-            Btn_Reg_Z.Visible = true;
-        }
-
         private void Btn_Bck_K_Click(object sender, EventArgs e)
         {
-            a = new Form1();
-            Hide();
-            a.Show();
+            if (a == null)
+                a = new Form1();
 
+            a.Show();
+            Hide();
             Form1.ImeOsebe(u_mail);
         }
 
         private void Btn_Bck_R_Click(object sender, EventArgs e)
         {
-            a = new Form1();
-            Hide();
-            a.Show();
+            if (a == null)
+                a = new Form1();
 
+            a.Show();
+            Hide();
             Form1.ImeOsebe(u_mail);
         }
 
         private void Btn_Bck_Z_Click(object sender, EventArgs e)
         {
-            a = new Form1();
-            Hide();
-            a.Show();
+            if (a == null)
+                a = new Form1();
 
+            a.Show();
+            Hide();
             Form1.ImeOsebe(u_mail);
         }
 
@@ -2233,9 +1979,11 @@ namespace Radijske_Postaje
 
         private void Btn_Prijava_Click(object sender, EventArgs e)
         {
-            b = new Form4();
             Hide();
-            b.Show();
+            b = new Form4();
+            b.ShowDialog();
+            Close();
+
             Btn_Odjava.Visible = true;
             Btn_Prijava.Visible = false;
             Btn_Reg.Visible = false;

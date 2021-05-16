@@ -46,14 +46,18 @@ namespace Radijske_Postaje
         }
         private void Btn_Reg_Click(object sender, EventArgs e)
         {
-            a = new Form3();
+            if(a == null)
+                a = new Form3();
+            
             Hide();
             a.Show();
         }
 
         private void Btn_Login_Click(object sender, EventArgs e)
         {
-            b = new Form4();
+            if(b==null)
+                b = new Form4();
+
             Hide();
             b.Show();
         }
@@ -76,8 +80,10 @@ namespace Radijske_Postaje
 
         private void Btn_Urejanje_Click(object sender, EventArgs e)
         {
-            c = new Form2();
-            Hide();
+            if(c==null)
+                c = new Form2();
+            
+            Hide();            
             c.Show();
             Form2.User(n, m);
         }
@@ -216,7 +222,9 @@ namespace Radijske_Postaje
 
         private void Btn_Settings_Click(object sender, EventArgs e)
         {
-            d = new Form6();
+            if(d==null)
+                d = new Form6();
+
             Hide();
             d.Show();
         }

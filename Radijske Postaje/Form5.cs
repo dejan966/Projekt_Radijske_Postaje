@@ -55,7 +55,9 @@ namespace Radijske_Postaje
 
                     con.Close();
                 }
-                a = new Form4();
+                if(a==null)
+                    a = new Form4();
+
                 a.Show();
                 Hide();
             }
@@ -71,7 +73,9 @@ namespace Radijske_Postaje
 
         private void Btn_Back_Click(object sender, EventArgs e)
         {
-            a = new Form4();
+            if(a == null)
+                a = new Form4();
+
             a.Show();
             Hide();
         }

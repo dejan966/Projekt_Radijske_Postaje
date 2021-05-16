@@ -41,12 +41,10 @@ namespace Radijske_Postaje
         {
             try
             {
-                
                 string email = textBox1.Text;
                 string pass = textBox2.Text;
-
                 string hash2 = Form3.PassHash(pass);
-                //MessageBox.Show(hash2);
+
                 using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
                 {
                     con.Open();
@@ -60,9 +58,10 @@ namespace Radijske_Postaje
                         if (email == mail_b && hash2 == pass_b)
                         {
                             Form1.ImeOsebe(email);
-                            a = new Form1();
                             Hide();
-                            a.Show();
+                            a = new Form1();
+                            a.ShowDialog();
+                            Close();
                         }
                         else
                             MessageBox.Show("Napačno geslo ali mail");
@@ -88,8 +87,8 @@ namespace Radijske_Postaje
                 string m = textBox1.Text;
                 Form5.Mail(m);
                 c = new Form5();
-                Hide();
-                c.Show();
+                c.ShowDialog();
+                Close();
             }
             
         }
@@ -101,9 +100,11 @@ namespace Radijske_Postaje
 
         private void Btn_Back_Click(object sender, EventArgs e)
         {
-            a = new Form1();
-            Hide();
+            if (a == null)
+                a = new Form1();
+
             a.Show();
+            Hide();
         }
 
         private void Form4_Load(object sender, EventArgs e)

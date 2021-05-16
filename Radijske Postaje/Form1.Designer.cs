@@ -93,7 +93,7 @@ namespace Radijske_Postaje
             // 
             // pictureBox1
             // 
-            this.pictureBox1.ImageLocation = "C:\\Srednja šola\\4.letnik\\Mušič\\na daljvo\\Mini projekt\\slika.jpg";
+            this.pictureBox1.ImageLocation = "C:\\Srednja šola\\4.letnik\\Mušič\\Projekt - Radijske postaje\\slika.jpg";
             this.pictureBox1.Location = new System.Drawing.Point(45, 135);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(605, 275);

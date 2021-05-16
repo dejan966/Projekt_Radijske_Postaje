@@ -33,9 +33,6 @@ namespace Radijske_Postaje
             this.Btn_Bck_K = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.Btn_Odjava_K = new System.Windows.Forms.Button();
-            this.Btn_Prijava_K = new System.Windows.Forms.Button();
-            this.Btn_Reg_K = new System.Windows.Forms.Button();
             this.Btn_Delete_K = new System.Windows.Forms.Button();
             this.Btn_Update_K = new System.Windows.Forms.Button();
             this.Btn_Insert_K = new System.Windows.Forms.Button();
@@ -51,9 +48,6 @@ namespace Radijske_Postaje
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.Btn_Bck_L = new System.Windows.Forms.Button();
-            this.Btn_Odjava_L = new System.Windows.Forms.Button();
-            this.Btn_Prijava_L = new System.Windows.Forms.Button();
-            this.Btn_Reg_L = new System.Windows.Forms.Button();
             this.Lbl_User_L = new System.Windows.Forms.Label();
             this.Btn_Delete_L = new System.Windows.Forms.Button();
             this.Btn_Update_L = new System.Windows.Forms.Button();
@@ -91,9 +85,6 @@ namespace Radijske_Postaje
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.Btn_Bck_R = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
-            this.Btn_Odjava_R = new System.Windows.Forms.Button();
-            this.Btn_Prijava_R = new System.Windows.Forms.Button();
-            this.Btn_Reg_R = new System.Windows.Forms.Button();
             this.Btn_Delete_R = new System.Windows.Forms.Button();
             this.Btn_Update_R = new System.Windows.Forms.Button();
             this.Btn_Insert_R = new System.Windows.Forms.Button();
@@ -107,9 +98,6 @@ namespace Radijske_Postaje
             this.Btn_Delete_Z = new System.Windows.Forms.Button();
             this.Btn_Update_Z = new System.Windows.Forms.Button();
             this.Btn_Insert_Z = new System.Windows.Forms.Button();
-            this.Btn_Odjava_Z = new System.Windows.Forms.Button();
-            this.Btn_Prijava_Z = new System.Windows.Forms.Button();
-            this.Btn_Reg_Z = new System.Windows.Forms.Button();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.listBox5 = new System.Windows.Forms.ListBox();
             this.Lbl_User_Z = new System.Windows.Forms.Label();
@@ -127,9 +115,6 @@ namespace Radijske_Postaje
             this.tabPage3.Controls.Add(this.Btn_Bck_K);
             this.tabPage3.Controls.Add(this.label20);
             this.tabPage3.Controls.Add(this.label17);
-            this.tabPage3.Controls.Add(this.Btn_Odjava_K);
-            this.tabPage3.Controls.Add(this.Btn_Prijava_K);
-            this.tabPage3.Controls.Add(this.Btn_Reg_K);
             this.tabPage3.Controls.Add(this.Btn_Delete_K);
             this.tabPage3.Controls.Add(this.Btn_Update_K);
             this.tabPage3.Controls.Add(this.Btn_Insert_K);
@@ -173,36 +158,6 @@ namespace Radijske_Postaje
             this.label17.Size = new System.Drawing.Size(13, 17);
             this.label17.TabIndex = 15;
             this.label17.Text = "*";
-            // 
-            // Btn_Odjava_K
-            // 
-            this.Btn_Odjava_K.Location = new System.Drawing.Point(735, 60);
-            this.Btn_Odjava_K.Name = "Btn_Odjava_K";
-            this.Btn_Odjava_K.Size = new System.Drawing.Size(83, 29);
-            this.Btn_Odjava_K.TabIndex = 12;
-            this.Btn_Odjava_K.Text = "Odjava";
-            this.Btn_Odjava_K.UseVisualStyleBackColor = true;
-            this.Btn_Odjava_K.Click += new System.EventHandler(this.Btn_Odjava_K_Click);
-            // 
-            // Btn_Prijava_K
-            // 
-            this.Btn_Prijava_K.Location = new System.Drawing.Point(670, 106);
-            this.Btn_Prijava_K.Name = "Btn_Prijava_K";
-            this.Btn_Prijava_K.Size = new System.Drawing.Size(83, 29);
-            this.Btn_Prijava_K.TabIndex = 11;
-            this.Btn_Prijava_K.Text = "Prijava";
-            this.Btn_Prijava_K.UseVisualStyleBackColor = true;
-            this.Btn_Prijava_K.Click += new System.EventHandler(this.Btn_Prijava_K_Click);
-            // 
-            // Btn_Reg_K
-            // 
-            this.Btn_Reg_K.Location = new System.Drawing.Point(519, 106);
-            this.Btn_Reg_K.Name = "Btn_Reg_K";
-            this.Btn_Reg_K.Size = new System.Drawing.Size(104, 29);
-            this.Btn_Reg_K.TabIndex = 10;
-            this.Btn_Reg_K.Text = "Registracija";
-            this.Btn_Reg_K.UseVisualStyleBackColor = true;
-            this.Btn_Reg_K.Click += new System.EventHandler(this.Btn_Reg_K_Click);
             // 
             // Btn_Delete_K
             // 
@@ -293,9 +248,6 @@ namespace Radijske_Postaje
             this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.Btn_Bck_L);
-            this.tabPage2.Controls.Add(this.Btn_Odjava_L);
-            this.tabPage2.Controls.Add(this.Btn_Prijava_L);
-            this.tabPage2.Controls.Add(this.Btn_Reg_L);
             this.tabPage2.Controls.Add(this.Lbl_User_L);
             this.tabPage2.Controls.Add(this.Btn_Delete_L);
             this.tabPage2.Controls.Add(this.Btn_Update_L);
@@ -366,36 +318,6 @@ namespace Radijske_Postaje
             this.Btn_Bck_L.Text = "Nazaj";
             this.Btn_Bck_L.UseVisualStyleBackColor = true;
             this.Btn_Bck_L.Click += new System.EventHandler(this.Btn_Bck_L_Click);
-            // 
-            // Btn_Odjava_L
-            // 
-            this.Btn_Odjava_L.Location = new System.Drawing.Point(743, 48);
-            this.Btn_Odjava_L.Name = "Btn_Odjava_L";
-            this.Btn_Odjava_L.Size = new System.Drawing.Size(75, 30);
-            this.Btn_Odjava_L.TabIndex = 12;
-            this.Btn_Odjava_L.Text = "Odjava";
-            this.Btn_Odjava_L.UseVisualStyleBackColor = true;
-            this.Btn_Odjava_L.Click += new System.EventHandler(this.Btn_Odjava_L_Click);
-            // 
-            // Btn_Prijava_L
-            // 
-            this.Btn_Prijava_L.Location = new System.Drawing.Point(666, 94);
-            this.Btn_Prijava_L.Name = "Btn_Prijava_L";
-            this.Btn_Prijava_L.Size = new System.Drawing.Size(75, 30);
-            this.Btn_Prijava_L.TabIndex = 11;
-            this.Btn_Prijava_L.Text = "Prijava";
-            this.Btn_Prijava_L.UseVisualStyleBackColor = true;
-            this.Btn_Prijava_L.Click += new System.EventHandler(this.Btn_Prijava_L_Click);
-            // 
-            // Btn_Reg_L
-            // 
-            this.Btn_Reg_L.Location = new System.Drawing.Point(468, 94);
-            this.Btn_Reg_L.Name = "Btn_Reg_L";
-            this.Btn_Reg_L.Size = new System.Drawing.Size(102, 30);
-            this.Btn_Reg_L.TabIndex = 10;
-            this.Btn_Reg_L.Text = "Registracija";
-            this.Btn_Reg_L.UseVisualStyleBackColor = true;
-            this.Btn_Reg_L.Click += new System.EventHandler(this.Btn_Reg_L_Click);
             // 
             // Lbl_User_L
             // 
@@ -769,9 +691,6 @@ namespace Radijske_Postaje
             // 
             this.tabPage4.Controls.Add(this.Btn_Bck_R);
             this.tabPage4.Controls.Add(this.label12);
-            this.tabPage4.Controls.Add(this.Btn_Odjava_R);
-            this.tabPage4.Controls.Add(this.Btn_Prijava_R);
-            this.tabPage4.Controls.Add(this.Btn_Reg_R);
             this.tabPage4.Controls.Add(this.Btn_Delete_R);
             this.tabPage4.Controls.Add(this.Btn_Update_R);
             this.tabPage4.Controls.Add(this.Btn_Insert_R);
@@ -805,36 +724,6 @@ namespace Radijske_Postaje
             this.label12.Size = new System.Drawing.Size(13, 17);
             this.label12.TabIndex = 16;
             this.label12.Text = "*";
-            // 
-            // Btn_Odjava_R
-            // 
-            this.Btn_Odjava_R.Location = new System.Drawing.Point(781, 58);
-            this.Btn_Odjava_R.Name = "Btn_Odjava_R";
-            this.Btn_Odjava_R.Size = new System.Drawing.Size(83, 29);
-            this.Btn_Odjava_R.TabIndex = 15;
-            this.Btn_Odjava_R.Text = "Odjava";
-            this.Btn_Odjava_R.UseVisualStyleBackColor = true;
-            this.Btn_Odjava_R.Click += new System.EventHandler(this.Btn_Odjava_R_Click);
-            // 
-            // Btn_Prijava_R
-            // 
-            this.Btn_Prijava_R.Location = new System.Drawing.Point(688, 98);
-            this.Btn_Prijava_R.Name = "Btn_Prijava_R";
-            this.Btn_Prijava_R.Size = new System.Drawing.Size(83, 29);
-            this.Btn_Prijava_R.TabIndex = 14;
-            this.Btn_Prijava_R.Text = "Prijava";
-            this.Btn_Prijava_R.UseVisualStyleBackColor = true;
-            this.Btn_Prijava_R.Click += new System.EventHandler(this.Btn_Prijava_R_Click);
-            // 
-            // Btn_Reg_R
-            // 
-            this.Btn_Reg_R.Location = new System.Drawing.Point(517, 98);
-            this.Btn_Reg_R.Name = "Btn_Reg_R";
-            this.Btn_Reg_R.Size = new System.Drawing.Size(104, 29);
-            this.Btn_Reg_R.TabIndex = 13;
-            this.Btn_Reg_R.Text = "Registracija";
-            this.Btn_Reg_R.UseVisualStyleBackColor = true;
-            this.Btn_Reg_R.Click += new System.EventHandler(this.Btn_Reg_R_Click);
             // 
             // Btn_Delete_R
             // 
@@ -915,9 +804,6 @@ namespace Radijske_Postaje
             this.tabPage5.Controls.Add(this.Btn_Delete_Z);
             this.tabPage5.Controls.Add(this.Btn_Update_Z);
             this.tabPage5.Controls.Add(this.Btn_Insert_Z);
-            this.tabPage5.Controls.Add(this.Btn_Odjava_Z);
-            this.tabPage5.Controls.Add(this.Btn_Prijava_Z);
-            this.tabPage5.Controls.Add(this.Btn_Reg_Z);
             this.tabPage5.Controls.Add(this.textBox11);
             this.tabPage5.Controls.Add(this.listBox5);
             this.tabPage5.Controls.Add(this.Lbl_User_Z);
@@ -980,36 +866,6 @@ namespace Radijske_Postaje
             this.Btn_Insert_Z.Text = "Vnesi";
             this.Btn_Insert_Z.UseVisualStyleBackColor = true;
             this.Btn_Insert_Z.Click += new System.EventHandler(this.Btn_Insert_Z_Click);
-            // 
-            // Btn_Odjava_Z
-            // 
-            this.Btn_Odjava_Z.Location = new System.Drawing.Point(768, 91);
-            this.Btn_Odjava_Z.Name = "Btn_Odjava_Z";
-            this.Btn_Odjava_Z.Size = new System.Drawing.Size(83, 29);
-            this.Btn_Odjava_Z.TabIndex = 15;
-            this.Btn_Odjava_Z.Text = "Odjava";
-            this.Btn_Odjava_Z.UseVisualStyleBackColor = true;
-            this.Btn_Odjava_Z.Click += new System.EventHandler(this.Btn_Odjava_Z_Click);
-            // 
-            // Btn_Prijava_Z
-            // 
-            this.Btn_Prijava_Z.Location = new System.Drawing.Point(692, 140);
-            this.Btn_Prijava_Z.Name = "Btn_Prijava_Z";
-            this.Btn_Prijava_Z.Size = new System.Drawing.Size(83, 29);
-            this.Btn_Prijava_Z.TabIndex = 14;
-            this.Btn_Prijava_Z.Text = "Prijava";
-            this.Btn_Prijava_Z.UseVisualStyleBackColor = true;
-            this.Btn_Prijava_Z.Click += new System.EventHandler(this.Btn_Prijava_Z_Click);
-            // 
-            // Btn_Reg_Z
-            // 
-            this.Btn_Reg_Z.Location = new System.Drawing.Point(539, 140);
-            this.Btn_Reg_Z.Name = "Btn_Reg_Z";
-            this.Btn_Reg_Z.Size = new System.Drawing.Size(104, 29);
-            this.Btn_Reg_Z.TabIndex = 13;
-            this.Btn_Reg_Z.Text = "Registracija";
-            this.Btn_Reg_Z.UseVisualStyleBackColor = true;
-            this.Btn_Reg_Z.Click += new System.EventHandler(this.Btn_Reg_Z_Click);
             // 
             // textBox11
             // 
@@ -1088,9 +944,6 @@ namespace Radijske_Postaje
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button Btn_Bck_L;
-        private System.Windows.Forms.Button Btn_Odjava_L;
-        private System.Windows.Forms.Button Btn_Prijava_L;
-        private System.Windows.Forms.Button Btn_Reg_L;
         private System.Windows.Forms.Label Lbl_User_L;
         private System.Windows.Forms.Button Btn_Delete_L;
         private System.Windows.Forms.Button Btn_Update_L;
@@ -1127,9 +980,6 @@ namespace Radijske_Postaje
         private System.Windows.Forms.TabControl tab;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.Button Btn_Odjava_K;
-        private System.Windows.Forms.Button Btn_Prijava_K;
-        private System.Windows.Forms.Button Btn_Reg_K;
         private System.Windows.Forms.Button Btn_Delete_K;
         private System.Windows.Forms.Button Btn_Update_K;
         private System.Windows.Forms.Button Btn_Insert_K;
@@ -1137,9 +987,6 @@ namespace Radijske_Postaje
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.ListBox listBox3;
         private System.Windows.Forms.Label Lbl_User_K;
-        private System.Windows.Forms.Button Btn_Odjava_R;
-        private System.Windows.Forms.Button Btn_Prijava_R;
-        private System.Windows.Forms.Button Btn_Reg_R;
         private System.Windows.Forms.Button Btn_Delete_R;
         private System.Windows.Forms.Button Btn_Update_R;
         private System.Windows.Forms.Button Btn_Insert_R;
@@ -1150,9 +997,6 @@ namespace Radijske_Postaje
         private System.Windows.Forms.Button Btn_Delete_Z;
         private System.Windows.Forms.Button Btn_Update_Z;
         private System.Windows.Forms.Button Btn_Insert_Z;
-        private System.Windows.Forms.Button Btn_Odjava_Z;
-        private System.Windows.Forms.Button Btn_Prijava_Z;
-        private System.Windows.Forms.Button Btn_Reg_Z;
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.ListBox listBox5;
         private System.Windows.Forms.Label Lbl_User_Z;

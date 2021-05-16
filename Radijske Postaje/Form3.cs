@@ -59,9 +59,11 @@ namespace Radijske_Postaje
 
         private void Btn_Back_Click(object sender, EventArgs e)
         {
-            a = new Form1();
-            Hide();
+            if(a==null)
+                a = new Form1();
+
             a.Show();
+            Hide();
         }
 
         private void Btn_Reg_Click(object sender, EventArgs e)
@@ -74,72 +76,41 @@ namespace Radijske_Postaje
                 string mail = textBox4.Text;
                 string pass = textBox5.Text;
                 string kraj = comboBox1.Text;
-                char spol;
+                char spol = 'z';
                 if (radioButton1.Checked)
-                {
                     spol = 'M';
-                    string hash = PassHash(pass);
-                    using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
-                    {
-
-                        con.Open();
-                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM registracija('" + ime + "','" + priimek + "', '" + spol + "' , '" + starost + "' ,'" + mail + "', '" + hash + "' , '" + kraj + "')", con);
-                        NpgsqlDataReader reader = com.ExecuteReader();
-                        if(reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                string email = reader.GetString(0);
-                                if (email == mail)
-                                {
-                                    MessageBox.Show("Uporabnik s tem mailom že obstaja");
-                                }
-                                else if(email != mail)
-                                {
-                                    b = new Form4();
-                                    Hide();
-                                    b.Show();
-                                }
-                            }
-                            
-                        }
-                         
-                           
-                        con.Close();
-                    }
-                }
-                    
                 else if (radioButton2.Checked)
-                {
                     spol = 'Ž';
-                    string hash = PassHash(pass);
-                    using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+
+                string hash = PassHash(pass);
+                using (NpgsqlConnection con = new NpgsqlConnection("Server=dumbo.db.elephantsql.com; User Id=ejdvbvlw;" + "Password=oLgUkOCXPTKG_2bvDFB1NnSPgp3tcDxj; Database=ejdvbvlw;"))
+                {
+
+                    con.Open();
+                    NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM registracija('" + ime + "','" + priimek + "', '" + spol + "' , '" + starost + "' ,'" + mail + "', '" + hash + "' , '" + kraj + "')", con);
+                    NpgsqlDataReader reader = com.ExecuteReader();
+                    if (reader.HasRows)
                     {
-
-                        con.Open();
-                        NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM reg_prijava ('" + ime + "','" + priimek + "', '" + spol + "' , '" + starost + "' ,'" + mail + "', '" + hash + "' , '" + kraj + "')", con);
-                        NpgsqlDataReader reader = com.ExecuteReader();
-                        if (reader.HasRows)
+                        while (reader.Read())
                         {
-                            while (reader.Read())
+                            string email = reader.GetString(0);
+                            if (email == mail)
                             {
-                                string email = reader.GetString(0);
-                                if (email == mail)
-                                {
-                                    MessageBox.Show("Uporabnik s tem mailom že obstaja");
-                                }
+                                MessageBox.Show("Uporabnik s tem mailom že obstaja");
                             }
+                            else if (email != mail)
+                            {
+                                if(b==null)
+                                    b = new Form4();
 
+                                Hide();
+                                
+                                b.Show();
+                            }
                         }
-                        else if (!reader.HasRows)
-                        {
-                            b = new Form4();
-                            Hide();
-                            b.Show();
-                        }
-                        con.Close();
                     }
-                }  
+                    con.Close();
+                }
             }
             catch (FormatException ex)
             {

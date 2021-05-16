@@ -195,10 +195,11 @@ namespace Radijske_Postaje
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            a = new Form1();
-            Hide();
+            if (a == null)
+                a = new Form1();
+
             a.Show();
+            Hide();
             //Form1.Ozadje(o);
             //Form1.Pisava(f);
         }
