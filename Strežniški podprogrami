@@ -1,0 +1,579 @@
+//kraji
+CREATE OR REPLACE FUNCTION return_vsi_kraji()
+RETURNS TABLE (
+ime VARCHAR(100),
+posta INT
+) AS $$
+BEGIN
+RETURN QUERY
+SELECT k.ime, k.postna_st
+FROM kraji AS k;
+END
+$$ LANGUAGE 'plpgsql';
+
+//id kraja
+CREATE OR REPLACE FUNCTION return_id_krajev(posta int, k_ime varchar(100))
+RETURNS INTEGER AS
+$$
+DECLARE
+k_id int;
+BEGIN
+SELECT INTO k_id id FROM kraji WHERE (postna_st = posta) AND (ime = k_ime);
+RETURN k_id;
+END
+$$ LANGUAGE 'plpgsql';
+
+//insertanje krajev
+CREATE OR REPLACE FUNCTION insertanje_krajev(k_posta int, k_ime varchar(100))
+RETURNS void 
+AS $$
+BEGIN
+INSERT INTO kraji(postna_st, ime) VALUES (k_posta, k_ime);
+END
+$$ LANGUAGE 'plpgsql';
+
+//updatanje krajev
+CREATE OR REPLACE FUNCTION updatanje_krajev(k_id int, posta int, k_ime varchar(100))
+RETURNS void AS
+$$
+BEGIN
+UPDATE kraji SET postna_st = posta, ime = k_ime WHERE (id = k_id);
+END
+$$ LANGUAGE 'plpgsql';
+
+//deletanje kraja
+CREATE OR REPLACE FUNCTION deletanje_kraja(k_id int)
+RETURNS TABLE(
+l_ime varchar(100),
+k_ime varchar(100),
+rp_ime varchar(100)
+)
+AS
+$$
+BEGIN
+RETURN QUERY
+SELECT l.ime,k.ime,rp.naslov FROM lokalni_studiji AS l INNER JOIN kraji AS k ON l.kraj_id = k.id INNER JOIN radijske_postaje AS rp ON l.radijska_postaja_id = rp.id WHERE (l.kraj_id = k_id);
+DELETE FROM lokalni_studiji WHERE kraj_id = k_id;
+END
+$$ LANGUAGE 'plpgsql';
+
+//deletanje krajev
+CREATE OR REPLACE FUNCTION deletanje_krajev(k_id int)
+RETURNS void AS
+$$
+BEGIN
+DELETE FROM kraji WHERE (id = k_id);
+END
+$$ LANGUAGE 'plpgsql';
+
+//radijske postaje
+CREATE OR REPLACE FUNCTION return_vse_postaje()
+RETURNS TABLE (
+rp_ime VARCHAR(100),
+rp_frekvenca VARCHAR(100),
+rp_jezik VARCHAR(100),
+z_ime VARCHAR(100),
+r_ime VARCHAR(100)
+) AS $$
+BEGIN
+RETURN QUERY
+SELECT rp.naslov , rp.frekvenca, rp.jezik, z.ime, r.ime
+FROM radijske_postaje AS rp INNER JOIN zvrsti AS z ON rp.zvrst_id = z.id INNER JOIN regije AS r ON rp.regija_id = r.id;
+END 
+$$ LANGUAGE 'plpgsql';
+
+//id postaje
+CREATE OR REPLACE FUNCTION return_id_postaje(rp_ime varchar(100), rp_frekvenca varchar(100), rp_jezik varchar(100), zvrst varchar(100), regija varchar(100))
+RETURNS INTEGER
+AS $$
+DECLARE
+id_r int;
+BEGIN
+SELECT INTO id_r rp.id FROM radijske_postaje AS rp INNER JOIN zvrsti AS z ON rp.zvrst_id = z.id INNER JOIN regije AS r ON rp.regija_id = r.id WHERE (rp.naslov = rp_ime) AND (rp.frekvenca = rp_frekvenca) AND (rp.jezik = rp_jezik) AND (z.ime = zvrst) AND (r.ime = regija);
+RETURN id_r;
+END
+$$ LANGUAGE 'plpgsql';
+
+// update logi
+CREATE OR REPLACE FUNCTION logi_radijske_postaje(id_r int, id_u int)
+RETURNS void AS
+$$
+BEGIN
+INSERT INTO radijske_postaje_update_logi(radijska_postaja_id, uporabnik_id, datum) VALUES (id_r, id_u, now()::timestamp(0));
+END
+$$ LANGUAGE 'plpgsql';
+
+//deletanje update logov
+CREATE OR REPLACE FUNCTION deletanje_logov(r_id int)
+RETURNS void AS
+$$
+BEGIN
+DELETE FROM radijske_postaje_update_logi WHERE radijska_postaja_id = r_id;
+END
+$$ LANGUAGE 'plpgsql';
+
+//opis postaje
+CREATE OR REPLACE FUNCTION return_opis_postaj(r_ime varchar(100), r_frekvenca varchar(100),  r_jezik varchar(100), zvrst varchar(100), regija varchar(100))
+RETURNS TEXT
+AS $$
+DECLARE
+opis_r text;
+BEGIN
+SELECT INTO opis_r rp.opis FROM radijske_postaje AS rp INNER JOIN zvrsti AS z ON rp.zvrst_id = z.id INNER JOIN regije AS r ON rp.regija_id = r.id WHERE (rp.naslov = r_ime) AND (rp.frekvenca = r_frekvenca) AND (rp.jezik = r_jezik) AND (z.ime = zvrst) AND (r.ime = regija) AND (rp.opis IS NOT NULL);
+IF(opis_r IS NULL) THEN
+opis_r = '';
+END IF;
+RETURN opis_r;
+END
+$$ LANGUAGE 'plpgsql';
+
+//spletna stran postaje
+CREATE OR REPLACE FUNCTION return_stran_postaj(r_ime varchar(100), r_frekvenca varchar(100), r_jezik varchar(100), zvrst varchar(100), regija varchar(100))
+RETURNS VARCHAR
+AS $$
+DECLARE
+stran_r varchar(100);
+BEGIN
+SELECT INTO stran_r rp.spletna_stran FROM radijske_postaje AS rp INNER JOIN zvrsti AS z ON rp.zvrst_id = z.id INNER JOIN regije AS r ON rp.regija_id = r.id WHERE (rp.naslov = r_ime) AND (rp.frekvenca = r_frekvenca) AND (rp.jezik = r_jezik) AND (z.ime = zvrst) AND (r.ime = regija) AND (rp.spletna_stran IS NOT NULL);
+IF(stran_r IS NULL) THEN
+stran_r = '';
+END IF;
+RETURN stran_r;
+END
+$$ LANGUAGE 'plpgsql';
+
+//yt postaj
+CREATE OR REPLACE FUNCTION return_yt_postaj(r_ime varchar(100), r_frekvenca varchar(100), r_jezik varchar(100), zvrst varchar(100), regija varchar(100))
+RETURNS VARCHAR
+AS $$
+DECLARE
+yt_r varchar(100);
+BEGIN
+SELECT INTO yt_r rp.yt_link FROM radijske_postaje AS rp INNER JOIN zvrsti AS z ON rp.zvrst_id = z.id INNER JOIN regije AS r ON rp.regija_id = r.id WHERE (rp.naslov = r_ime) AND (rp.frekvenca = r_frekvenca) AND (rp.jezik = r_jezik) AND (z.ime = zvrst) AND (r.ime = regija) AND (rp.yt_link IS NOT NULL);
+IF(yt_r IS NULL) THEN
+yt_r = '';
+END IF;
+RETURN yt_r;
+END
+$$ LANGUAGE 'plpgsql';
+
+//twitter postaj
+CREATE OR REPLACE FUNCTION return_tw_postaj(r_ime varchar(100), r_frekvenca varchar(100),  r_jezik varchar(100), zvrst varchar(100), regija varchar(100))
+RETURNS VARCHAR
+AS $$
+DECLARE
+tw_r varchar(100);
+BEGIN
+SELECT INTO tw_r rp.twitter_link FROM radijske_postaje AS rp INNER JOIN zvrsti AS z ON rp.zvrst_id = z.id INNER JOIN regije AS r ON rp.regija_id = r.id WHERE (rp.naslov = r_ime) AND (rp.frekvenca = r_frekvenca) AND (rp.jezik = r_jezik) AND (z.ime = zvrst) AND (r.ime = regija) AND (rp.twitter_link IS NOT NULL);
+IF(tw_r IS NULL) THEN
+tw_r = '';
+END IF;
+RETURN tw_r;
+END
+$$ LANGUAGE 'plpgsql';
+
+//insertanje postaj
+CREATE OR REPLACE FUNCTION insertanje_postaj(ime_r varchar(100), r_opis text, r_frekvenca varchar(100), r_jezik varchar(100), stran varchar(100), yt varchar(100), twitter varchar(100), zvrst varchar(100), regija varchar(100))
+RETURNS void AS
+$$
+BEGIN
+IF(r_opis = 'Opis') AND (stran = 'Spletna stran') AND (yt = 'Youtube') AND (twitter = 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, frekvenca, jezik, zvrst_id, regija_id) VALUES (ime_r, r_frekvenca, r_jezik, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (stran= 'Spletna stran') AND (yt = 'Youtube') AND (twitter = 'Twitter') AND (r_opis != 'Opis') THEN
+INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, zvrst_id, regija_id) VALUES (ime_r, r_opis, r_frekvenca, r_jezik, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis = 'Opis') AND (stran != 'Spletna stran') AND (yt = 'Youtube') AND (twitter = 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, frekvenca, jezik, spletna_stran, zvrst_id, regija_id) VALUES (ime_r, r_frekvenca, r_jezik, stran, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis = 'Opis') AND (stran = 'Spletna stran') AND (yt != 'Youtube') AND (twitter = 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, frekvenca, jezik, yt_link, zvrst_id, regija_id) VALUES (ime_r, r_frekvenca, r_jezik, yt, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis = 'Opis') AND (stran = 'Spletna stran') AND (yt = 'Youtube') AND (twitter != 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, frekvenca, jezik, twitter_link, zvrst_id, regija_id) VALUES (ime_r, r_frekvenca, r_jezik, twitter, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis = 'Opis') AND (stran != 'Spletna stran') AND (yt != 'Youtube') AND (twitter = 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, frekvenca, jezik, spletna_stran, yt_link, zvrst_id, regija_id) VALUES (ime_r, r_frekvenca, r_jezik, stran, yt, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis = 'Opis') AND (stran = 'Spletna stran') AND (yt != 'Youtube') AND (twitter != 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, frekvenca, jezik, yt_link, twitter_link, zvrst_id, regija_id) VALUES (ime_r, r_frekvenca, r_jezik, yt, twitter, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis != 'Opis') AND (stran = 'Spletna stran') AND (yt = 'Youtube') AND (twitter != 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, twitter_link, zvrst_id, regija_id) VALUES (ime_r, r_opis, r_frekvenca, r_jezik, twitter,(SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis = 'Opis') AND (stran != 'Spletna stran') AND (yt = 'Youtube') AND (twitter != 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, frekvenca, jezik, spletna_stran, twitter_link, zvrst_id, regija_id) VALUES (ime_r, r_frekvenca, r_jezik, stran, twitter, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis != 'Opis') AND (stran = 'Spletna stran') AND (yt != 'Youtube') AND (twitter = 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov,opis, frekvenca, jezik, yt_link, zvrst_id, regija_id) VALUES (ime_r, r_opis, r_frekvenca, r_jezik, yt, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis != 'Opis') AND (stran != 'Spletna stran') AND (yt = 'Youtube') AND (twitter = 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, spletna_stran, zvrst_id, regija_id) VALUES (ime_r, r_opis, r_frekvenca, r_jezik, stran, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis = 'Opis') AND (stran != 'Spletna stran') AND (yt != 'Youtube') AND (twitter != 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, frekvenca, jezik, spletna_stran, yt_link, twitter_link, zvrst_id, regija_id) VALUES (ime_r, r_frekvenca, r_jezik, stran, yt, twitter, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis != 'Opis') AND (stran = 'Spletna stran') AND (yt != 'Youtube') AND (twitter != 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, yt_link, twitter_link, zvrst_id, regija_id) VALUES (ime_r, r_opis, r_frekvenca, r_jezik, yt, twitter, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis != 'Opis') AND (stran != 'Spletna stran') AND (yt = 'Youtube') AND (twitter != 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov,opis, frekvenca, jezik, spletna_stran, twitter_link, zvrst_id, regija_id) VALUES (ime_r, r_opis, r_frekvenca, r_jezik, stran, twitter, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+IF (r_opis != 'Opis') AND (stran != 'Spletna stran') AND (yt != 'Youtube') AND (twitter = 'Twitter') THEN
+INSERT INTO radijske_postaje (naslov, opis, frekvenca, jezik, spletna_stran, yt_link, zvrst_id, regija_id) VALUES (ime_r, r_opis, r_frekvenca, r_jezik, stran, twitter, (SELECT id FROM zvrsti WHERE ime = zvrst), (SELECT id FROM regije WHERE ime = regija));
+END IF;
+END
+$$ LANGUAGE 'plpgsql';
+
+//updatanje postaj
+CREATE OR REPLACE FUNCTION updatanje_postaj(r_id int, r_opis text, r_stran varchar(100), r_yt varchar(100), r_twitter varchar(100), zvrst varchar(100), regija varchar(100))
+RETURNS void AS
+$$
+BEGIN
+IF(r_opis != '') AND (r_opis!='Opis') THEN
+UPDATE radijske_postaje SET opis = r_opis, zvrst_id = (SELECT id FROM zvrsti WHERE ime = zvrst), regija_id = (SELECT id FROM regije WHERE ime = regija) WHERE id = r_id;
+END IF;
+IF(r_stran != '') AND (r_stran !='Spletna stran') THEN
+UPDATE radijske_postaje SET spletna_stran = r_stran, zvrst_id = (SELECT id FROM zvrsti WHERE ime = zvrst), regija_id = (SELECT id FROM regije WHERE ime = regija) WHERE id = r_id;
+END IF;
+IF(r_yt != '') AND (r_yt !='Youtube') THEN
+UPDATE radijske_postaje SET yt_link = r_yt, zvrst_id = (SELECT id FROM zvrsti WHERE ime = zvrst), regija_id = (SELECT id FROM regije WHERE ime = regija) WHERE id = r_id;
+END IF;
+IF(r_twitter != '') AND (r_twitter !='Twitter') THEN
+UPDATE radijske_postaje SET twitter_link = r_twitter, zvrst_id = (SELECT id FROM zvrsti WHERE ime = zvrst), regija_id = (SELECT id FROM regije WHERE ime = regija) WHERE id = r_id;
+END IF;
+END
+$$ LANGUAGE 'plpgsql';
+
+//deletanje postaj
+CREATE OR REPLACE FUNCTION deletanje_postaj(r_id int)
+RETURNS void AS
+$$
+BEGIN
+DELETE FROM radijske_postaje WHERE id = r_id;
+END
+$$ LANGUAGE 'plpgsql';
+
+//zvrsti
+CREATE OR REPLACE FUNCTION return_vse_zvrsti()
+RETURNS TABLE (
+ime VARCHAR(100)
+) AS $$
+BEGIN
+RETURN QUERY
+SELECT z.ime
+FROM zvrsti AS z;
+END
+$$ LANGUAGE 'plpgsql';
+
+//id zvrsti
+CREATE OR REPLACE FUNCTION return_id_zvrsti(z_ime varchar(100))
+RETURNS INTEGER AS
+$$
+DECLARE
+z_id int;
+BEGIN
+SELECT INTO z_id id FROM zvrsti WHERE (ime = z_ime);
+RETURN z_id;
+END
+$$ LANGUAGE 'plpgsql';
+
+//insertanje zvrsti
+CREATE OR REPLACE FUNCTION insertanje_zvrsti(ime_z varchar(100))
+RETURNS void
+AS $$
+BEGIN
+INSERT INTO zvrsti(ime) VALUES (ime_z);
+END
+$$ LANGUAGE 'plpgsql';
+
+//updatanje zvrsti
+CREATE OR REPLACE FUNCTION updatanje_zvrsti(id_z int, ime_z varchar(100))
+RETURNS void
+AS $$
+BEGIN
+UPDATE zvrsti SET ime = ime_z WHERE id = id_z;
+END
+$$ LANGUAGE 'plpgsql';
+
+//deletanje vrste
+CREATE OR REPLACE FUNCTION deletanje_vrste(id_z int)
+RETURNS TABLE(
+rp_ime VARCHAR(100),
+rp_frekvenca VARCHAR(100),
+rp_jezik VARCHAR(100),
+z_ime VARCHAR(100),
+r_ime VARCHAR(100)
+) AS $$
+BEGIN
+RETURN QUERY
+SELECT rp.naslov, rp.frekvenca, rp.jezik, z.ime, r.ime FROM radijske_postaje AS rp INNER JOIN zvrsti AS z ON rp.zvrst_id = z.id INNER JOIN regije AS r ON rp.regija_id = r.id WHERE (rp.zvrst_id = id_z);
+DELETE FROM radijske_postaje WHERE zvrst_id = id_z;
+END
+$$ LANGUAGE 'plpgsql';
+
+//deletanje zvrsti
+CREATE OR REPLACE FUNCTION deletanje_zvrsti(id_z int)
+RETURNS void
+AS $$
+BEGIN
+DELETE FROM zvrsti WHERE id = id_z;
+END
+$$ LANGUAGE 'plpgsql';
+
+//regije
+CREATE OR REPLACE FUNCTION return_vse_regije()
+RETURNS TABLE (
+ime VARCHAR(100)
+) AS $$
+BEGIN
+RETURN QUERY
+SELECT r.ime
+FROM regije AS r;
+END
+$$ LANGUAGE 'plpgsql';
+
+//id regije
+CREATE OR REPLACE FUNCTION return_id_regij(r_ime varchar(100))
+RETURNS INTEGER AS
+$$
+DECLARE
+r_id int;
+BEGIN
+SELECT INTO r_id id FROM regije WHERE (ime = r_ime);
+RETURN r_id;
+END
+$$ LANGUAGE 'plpgsql';
+
+//insertanje regije
+CREATE OR REPLACE FUNCTION insertanje_regije(ime_r varchar(100))
+RETURNS void
+AS $$
+BEGIN
+INSERT INTO regije(ime) VALUES (ime_r);
+END
+$$ LANGUAGE 'plpgsql';
+
+//updatanje regije
+CREATE OR REPLACE FUNCTION updatanje_regije(id_r int, ime_r varchar(100))
+RETURNS void
+AS $$
+BEGIN
+UPDATE regije SET ime = ime_r WHERE id = id_r;
+END
+$$ LANGUAGE 'plpgsql';
+
+//deletanje regij
+CREATE OR REPLACE FUNCTION deletanje_regij(id_r int)
+RETURNS TABLE(
+rp_ime VARCHAR(100),
+rp_frekvenca VARCHAR(100),
+rp_jezik VARCHAR(100),
+z_ime VARCHAR(100),
+r_ime VARCHAR(100)
+)
+AS
+$$
+BEGIN
+RETURN QUERY
+SELECT rp.naslov, rp.frekvenca, rp.jezik, z.ime, r.ime FROM radijske_postaje AS rp INNER JOIN zvrsti AS z ON rp.zvrst_id = z.id INNER JOIN regije AS r ON rp.regija_id = r.id WHERE (rp.regija_id = id_r);
+DELETE FROM radijske_postaje WHERE regija_id = id_r;
+END
+$$ LANGUAGE 'plpgsql';
+
+//deletanje regije
+CREATE OR REPLACE FUNCTION deletanje_regije(id_r int)
+RETURNS void
+AS $$
+BEGIN
+DELETE FROM regije WHERE id = id_r;
+END
+$$ LANGUAGE 'plpgsql';
+
+//id studija
+CREATE OR REPLACE FUNCTION return_id_studija(l_ime varchar(100), kraj varchar(100), postaja varchar(100))
+RETURNS INTEGER
+AS $$
+DECLARE
+id_l int;
+BEGIN
+SELECT INTO id_l l.id FROM lokalni_studiji AS l INNER JOIN kraji AS k ON l.kraj_id = k.id INNER JOIN radijske_postaje AS rp ON l.radijska_postaja_id = rp.id WHERE (l.ime = l_ime) AND (l.kraj_id = (SELECT id FROM kraji WHERE (ime = kraj))) AND (l.radijska_postaja_id = (SELECT id FROM radijske_postaje WHERE (naslov = postaja)));
+RETURN id_l;
+END
+$$ LANGUAGE 'plpgsql';
+
+//return opis studijev
+CREATE OR REPLACE FUNCTION return_opis_studijev(l_ime VARCHAR(100), k_ime VARCHAR(100), rp_ime VARCHAR(100))
+RETURNS TEXT
+AS $$
+DECLARE 
+opis_l text;
+BEGIN
+SELECT INTO opis_l l.opis FROM lokalni_studiji AS l INNER JOIN kraji AS k ON l.kraj_id = k.id INNER JOIN radijske_postaje AS rp ON l.radijska_postaja_id = rp.id WHERE (l.ime = l_ime) AND (l.kraj_id = (SELECT id FROM kraji WHERE (ime = k_ime))) AND (l.radijska_postaja_id = (SELECT id FROM radijske_postaje WHERE (naslov = rp_ime))) AND (l.opis IS NOT NULL);
+IF(opis_l IS NULL) THEN
+opis_l = '';
+END IF;
+RETURN opis_l;
+END
+$$ LANGUAGE 'plpgsql';
+
+//list lokalnih studijev
+CREATE OR REPLACE FUNCTION list_studijev()
+RETURNS TABLE (
+l_ime VARCHAR(100),
+k_ime VARCHAR(100),
+rp_ime VARCHAR(100)
+)
+ AS $$
+BEGIN
+RETURN QUERY
+SELECT l.ime, k.ime, rp.naslov FROM lokalni_studiji AS l INNER JOIN kraji AS k ON l.kraj_id = k.id INNER JOIN radijske_postaje AS rp ON l.radijska_postaja_id = rp.id;
+END
+$$ LANGUAGE 'plpgsql';
+
+//insertanje studija
+CREATE OR REPLACE FUNCTION insertanje_studijev(l_ime varchar(100), l_opis text, kraj varchar(100), postaja varchar(100))
+RETURNS void AS
+$$
+BEGIN
+IF(l_opis = '') OR (l_opis = 'Opis') THEN
+INSERT INTO lokalni_studiji(ime, kraj_id, radijska_postaja_id) VALUES (l_ime, (SELECT id FROM kraji WHERE ime = kraj), (SELECT id FROM radijske_postaje WHERE naslov = postaja));
+END IF;
+IF(l_opis != '') AND (l_opis != 'Opis') THEN
+INSERT INTO lokalni_studiji(ime, opis, kraj_id, radijska_postaja_id) VALUES (l_ime, l_opis, (SELECT id FROM kraji WHERE ime = kraj), (SELECT id FROM radijske_postaje WHERE naslov = postaja));
+END IF;
+END
+$$ LANGUAGE 'plpgsql';
+
+//updatanje studijev
+CREATE OR REPLACE FUNCTION updatanje_studijev(l_id int, l_opis text, kraj varchar(100), postaja varchar(100))
+RETURNS void AS
+$$
+BEGIN
+IF(l_opis = '') OR (l_opis = 'Opis') THEN
+UPDATE lokalni_studiji SET kraj_id = (SELECT id FROM kraji WHERE (ime = kraj)), radijska_postaja_id = (SELECT id FROM radijske_postaje WHERE (naslov = postaja)) WHERE id = l_id;
+END IF;
+IF(l_opis != '') AND (l_opis != 'Opis') THEN
+UPDATE lokalni_studiji SET opis= l_opis, kraj_id = (SELECT id FROM kraji WHERE (ime = kraj)), radijska_postaja_id = (SELECT id FROM radijske_postaje WHERE (naslov = postaja)) WHERE id = l_id;
+END IF;
+END
+$$ LANGUAGE 'plpgsql';
+
+//deletanje studijev
+CREATE OR REPLACE FUNCTION deletanje_studijev(l_id int)
+RETURNS TABLE(
+l_ime varchar(100),
+k_ime varchar(100),
+rp_ime varchar(100)
+)
+AS
+$$
+BEGIN
+RETURN QUERY
+SELECT l.ime,k.ime,rp.naslov FROM lokalni_studiji AS l INNER JOIN kraji AS k ON l.kraj_id = k.id INNER JOIN radijske_postaje AS rp ON l.radijska_postaja_id = rp.id WHERE (l.radijska_postaja_id = l_id);
+DELETE FROM lokalni_studiji WHERE radijska_postaja_id = l_id;
+END
+$$ LANGUAGE 'plpgsql';
+
+//deletanje studija
+CREATE OR REPLACE FUNCTION deletanje_studija(l_id int)
+RETURNS void
+AS
+$$
+BEGIN
+DELETE FROM lokalni_studiji WHERE id = l_id;
+END
+$$ LANGUAGE 'plpgsql';
+
+//barva ozadja
+CREATE OR REPLACE FUNCTION return_vse_barve_ozadja()
+RETURNS TABLE(
+bz varchar(100)
+) AS $$
+BEGIN
+RETURN QUERY
+SELECT ozadje FROM nastavitve;
+END
+$$ LANGUAGE 'plpgsql';
+
+//font style
+CREATE OR REPLACE FUNCTION return_vse_fonte()
+RETURNS TABLE(
+style varchar(100)
+) AS $$
+BEGIN
+RETURN QUERY
+SELECT font FROM nastavitve;
+END
+$$ LANGUAGE 'plpgsql';
+
+//registracija
+CREATE OR REPLACE FUNCTION  registracija (u_ime varchar(100), u_priimek varchar(100), u_spol char, u_starost int, mail varchar(100), pass varchar(100), u_kraj varchar(50))
+RETURNS VARCHAR
+AS $$
+DECLARE
+u_mail varchar(100);
+BEGIN
+SELECT INTO u_mail u.email FROM uporabniki AS u WHERE (u.email = mail);
+IF(u_mail IS NULL) THEN
+INSERT INTO uporabniki(ime, priimek, spol, starost, email, geslo, kraj_id) 
+VALUES(u_ime, u_priimek, u_spol, u_starost, mail, pass, (SELECT id FROM kraji WHERE ime = u_kraj));
+u_mail = 'sf';
+END IF;
+RETURN u_mail;
+END
+$$ LANGUAGE 'plpgsql';
+
+//login
+CREATE OR REPLACE FUNCTION login(mail varchar(100), pass varchar(100))
+RETURNS TABLE (
+u_email varchar(100),
+geslo varchar(100)
+)
+AS $$
+BEGIN
+RETURN QUERY
+SELECT u.email, u.geslo
+FROM uporabniki AS u WHERE (u.email = mail) AND (u.geslo = pass);
+END
+$$ LANGUAGE 'plpgsql';
+
+//resetiranje gesla
+CREATE OR REPLACE FUNCTION new_pass(mail varchar(100), novo_geslo varchar(200))
+RETURNS void AS
+$$
+DECLARE 
+BEGIN
+UPDATE uporabniki SET geslo=novo_geslo WHERE email = mail;
+END
+$$ LANGUAGE 'plpgsql';
+
+//vrne ime in priimek od maila za prijavo da se ve kdo je prijavljen
+CREATE OR REPLACE FUNCTION vrni_ime_priimek(u_mail varchar(100))
+RETURNS TABLE(
+ime varchar(100),
+priimek varchar(100)
+)
+AS $$
+BEGIN
+RETURN QUERY
+SELECT u.ime, u.priimek
+FROM uporabniki AS u WHERE (u.email = u_mail);
+END
+$$ LANGUAGE 'plpgsql';
+
+//vrne id uporabnika
+CREATE OR REPLACE FUNCTION IDuporabnika(u_mail varchar(100))
+RETURNS INT
+AS $$
+DECLARE
+u_id int;
+BEGIN
+SELECT INTO u_id id FROM uporabniki WHERE (email = u_mail);
+RETURN u_id;
+END
+$$ LANGUAGE 'plpgsql';
+
+
+
+
